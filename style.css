@@ -1,0 +1,8 @@
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Arial; }
+body { background:#1a1a2e; color:#ffffff; }
+.header { background:linear-gradient(135deg,#6a0dad,#8e44ad); color:white; padding:25px 20px; border-radius:0 0 25px 25px; text-align:center; }
+.balance-card { background:#2c2c54; margin:20px; padding:20px; border-radius:15px; border:1px solid #ffd700; text-align:center; }
+.balance-card h2 { color:#ffd700; font-size:28px; }
+.services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; padding:20px; }
+.service-item { background:#2c2c54; padding:20px 10px; border-radius:15px; text-align:center; border:1px solid #6a0dad; }
+.btn { background:linear-gradient(135deg,#ffd700,#ffc400); color:#1a1a2e; border:none; padding:16px; border-radius:12px; width:90%; margin:20px; font-size:16px; font-weight:bold; }
