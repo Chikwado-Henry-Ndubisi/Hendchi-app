@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="manifest" href="manifest.json">
-  <style>
-    body{background:#1a0033; color:white; text-align:center; font-family:Arial; padding:20px;}
-    h1{color:#FFD700;}
-    .balance{background:#2a0055; margin:20px; padding:20px; border-radius:15px; font-size:24px;}
-  </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>Wallet - Hendchi</title>
 </head>
-<body>
-  <h1>My Wallet</h1>
+<body style="background: #0a0015; color: white; padding: 20px; text-align: center;">
+
+  <h1 style="color: gold;">My Wallet</h1>
   
-  <div class="balance">
-    Balance: 0.00 Pi
+  <div style="background: #4B0082; padding: 30px; border-radius: 15px; margin: 20px 0;">
+    <p>Your Balance</p>
+    <h2 style="font-size: 40px; color: gold;">12.35 Pi</h2>
   </div>
   
-  <p>Earned from tasks will show here</p>
+  <button class="btn" onclick="alert('Withdraw coming soon!')">WITHDRAW</button>
   
-  <br><br>
-  <a href="index.html" style="color:gold;">← Back to Home</a>
+  <a href="index.html" class="btn btn-purple" style="display: block; margin-top: 15px;">BACK TO HOME</a>
+
 </body>
 </html>
