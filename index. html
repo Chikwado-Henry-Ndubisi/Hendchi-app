@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hendchi - Earn Pi Points</title>
+<script src="https://sdk.minepi.com/pi-sdk.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{ --purple:#7B2FFF; --gold:#FFD700; }
+  body{ background:#0a0a0a; color:white; font-family: system-ui; }
+ .btn-purple{ background:var(--purple); }
+ .btn-gold{ background:var(--gold); color:black; }
+ .card{ background:#1a1a1a; border:1px solid #2a2a2a; }
+ .nav-active{ color:var(--gold); }
+ .hide{ display:none; }
+</style>
+</head>
+<body class="pb-20">
+
+<!-- 1. LANDING + PI LOGIN -->
+<div id="landing" class="min-h-screen flex-col items-center justify-center p-6">
+  <h1 class="text-4xl font-bold mb-2" style="color:var(--gold)">Hendchi</h1>
+  <p class="text-gray-400 mb-8">Earn Pi Points by doing simple tasks</p>
+  <button onclick="piLogin()" class="btn-purple w-full py-3 rounded-lg font-bold">Login with Pi</button>
+</div>
+
+<!-- 2. HOME -->
+<div id="home" class="hide p-4">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-bold">Hi, <span id="username">Pi User</span></h2>
+    <div class="text-sm">6761 total tasks</div>
+  </div>
+
+  <div class="card rounded-xl p-4 mb-4">
+    <p class="text-gray-400 text-sm">Your Balance</p>
+    <h1 class="text-3xl font-bold"><span id="balance">0.00</span> π</h1>
+    <div class="flex gap-2 mt-3">
+      <button onclick="show('fund')" class="btn-gold flex-1 py-2 rounded-lg font-bold">FUND</button>
+      <button onclick="show('withdraw')" class="btn-purple flex-1 py-2 rounded-lg font-bold">WITHDRAW</button>
+    </div>
+  </div>
+
+  <button onclick="show('airtime')" class="card w-full p-3 rounded-lg mb-2 text-left">Buy Airtime/Data</button>
+  <button onclick="show('earn')" class="btn-purple w-full py-4 rounded-lg font-bold text-lg">PERFORM TASKS AND EARN</button>
+
+  <h3 class="mt-6 mb-2 font-bold">Recent Activities</h3>
+  <div id="activities" class="text-sm text-gray-400"></div>
+</div>
+
+<!-- 3. EARN PAGE -->
+<div id="earn" class="hide p-4">
+  <button onclick="show('home')" class="mb-4">← Back</button>
+  <div class="flex gap-2 mb-4">
+    <button id="tab-post" onclick="earnTab('post')" class="flex-1 py-2 rounded-lg btn-purple">POST ADVERTS</button>
+    <button id="tab-perform" onclick="earnTab('perform')" class="flex-1 py-2 rounded-lg bg-gray-800">PERFORM TASKS</button>
+  </div>
+  <div id="earn-content"></div>
+</div>
+
+<!-- 4. ADVERTISE PAGE -->
+<div id="advertise" class="hide p-4">
+  <button onclick="show('home')" class="mb-4">← Back</button>
+  <div class="flex gap-2 mb-4">
+    <button onclick="advTab('ad')" class="flex-1 py-2 rounded-lg btn-purple">ADVERT TASKS</button>
+    <button onclick="advTab('eng')" class="flex-1 py-2 rounded-lg bg-gray-800">ENGAGEMENT TASKS</button>
+    <button onclick="advTab('goods')" class="flex-1 py-2 rounded-lg bg-gray-800">ADVERTISE GOODS</button>
+  </div>
+  <form id="advForm" class="card p-4 rounded-xl">
+    <label class="text-sm">Platform</label>
+    <select id="platform" class="w-full bg-black p-2 rounded mb-2">
+      <option>Facebook</option><option>Instagram</option><option>TikTok</option>
+      <option>Twitter</option><option>YouTube</option><option>LinkedIn</option><option>WhatsApp</option>
+    </select>
+    <label class="text-sm">Number of People</label><input id="people" type="number" class="w-full bg-black p-2 rounded mb-2">
+    <label class="text-sm">Target Gender</label>
+    <select id="gender" class="w-full bg-black p-2 rounded mb-2"><option>All</option><option>Male</option><option>Female</option></select>
+    <label class="text-sm">Location</label><input id="location" class="w-full bg-black p-2 rounded mb-2">
+    <label class="text-sm">Task Link</label><input id="link" class="w-full bg-black p-2 rounded mb-2">
+    <button type="button" onclick="createCampaign()" class="btn-gold w-full py-3 rounded-lg font-bold">Create Campaign - 10% Fee</button>
+  </form>
+</div>
+
+<!-- 5. MARKET -->
+<div id="market" class="hide p-4">
+  <button onclick="show('home')" class="mb-4">← Back</button>
+  <h2 class="font-bold mb-4">Market - Buy with π</h2>
+  <div id="products" class="grid grid-cols-2 gap-3"></div>
+</div>
+
+<!-- 6. AIRTIME -->
+<div id="airtime" class="hide p-4">
+  <button onclick="show('home')" class="mb-4">← Back</button>
+  <h2 class="font-bold mb-4">Buy Airtime/Data</h2>
+  <div class="grid grid-cols-2 gap-2">
+    <button onclick="buyAirtime('MTN')" class="card p-3 rounded">MTN</button>
+    <button onclick="buyAirtime('Glo')" class="card p-3 rounded">Glo</button>
+    <button onclick="buyAirtime('Airtel')" class="card p-3 rounded">Airtel</button>
+    <button onclick="buyAirtime('9mobile')" class="card p-3 rounded">9mobile</button>
+  </div>
+</div>
+
+<!-- 7. MORE -->
+<div id="more" class="hide p-4">
+  <button onclick="show('home')" class="mb-4">← Back</button>
+  <div class="space-y-2">
+    <button onclick="alert('My Orders')" class="card w-full p-3 rounded text-left">My Orders</button>
+    <button onclick="show('advertise')" class="card w-full p-3 rounded text-left">My Campaigns</button>
+    <button onclick="show('fund')" class="card w-full p-3 rounded text-left">Fund Wallet</button>
+    <button onclick="show('withdraw')" class="card w-full p-3 rounded text-left">Withdraw</button>
+    <button onclick="alert('History')" class="card w-full p-3 rounded text-left">Transaction History</button>
+    <button onclick="alert('Referral: Earn 5π per referral')" class="card w-full p-3 rounded text-left">Referral - Earn 5π</button>
+    <button onclick="alert('Support Chat')" class="card w-full p-3 rounded text-left">Chat With Support</button>
+    <button onclick="logout()" class="card w-full p-3 rounded text-left text-red-400">Logout</button>
+  </div>
+</div>
+
+<!-- 8
