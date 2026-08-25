@@ -2,45 +2,24 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hendchi</title>
-<style>
-body {
-  background:#2a004f; 
-  color:white; 
-  font-family:Arial; 
-  text-align:center;
-  padding:40px 20px;
-  margin:0;
-}
-.logo {width:100px; margin-bottom:15px;}
-h1 {color:gold; font-size:32px; margin:10px 0;}
-p {font-size:18px; color:#ddd; margin:5px 0;}
-.version {font-size:16px; color:#aaa;}
-.btn {
-  display:block;
-  width:80%;
-  max-width:300px;
-  margin:15px auto;
-  padding:18px;
-  border-radius:12px;
-  font-size:20px;
-  font-weight:bold;
-  text-decoration:none;
-  border:none;
-}
-.btn-yellow {background:gold; color:black;}
-.btn-purple {background:#4b0082; color:white;}
-</style>
+<link rel="stylesheet" href="style.css">
+<title>Hendchi - Earn Pi</title>
 </head>
 <body>
 
-<img src="logo.png" class="logo" alt="Hendchi Logo">
-<h1>Hendchi</h1>
-<p>Pi Network Tasks And Earning Platform</p>
-<p class="version">Version 1.0</p>
+  <!-- TOP HALF: LOGO -->
+  <div class="header">
+    <img src="logo.png" alt="Hendchi Logo">
+    <h1>Hendchi</h1>
+    <p>PI Network Tasks And Earning Platform</p>
+    <p>Version 1.0</p>
+  </div>
 
-<a href="tasks.html" class="btn btn-yellow">START EARNING</a>
-<a href="wallet.html" class="btn btn-purple">MY WALLET</a>
+  <!-- BOTTOM HALF: BUTTONS -->
+  <div class="buttons-container">
+    <a href="tasks.html" class="btn">START EARNING</a>
+    <a href="wallet.html" class="btn btn-purple">MY WALLET</a>
+  </div>
 
 </body>
 </html>
