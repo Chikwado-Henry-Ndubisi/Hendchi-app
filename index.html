@@ -3,7 +3,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <link rel="stylesheet" href="style.css">
-<title>Hendchi</title>
+<title>Hendchi Login</title>
+<script src="https://sdk.minepi.com/pi-sdk.js"></script>
 </head>
 <body>
   <div class="full-page">
@@ -13,16 +14,35 @@
     </div>
     
     <div class="text-area">
-      <h1>Hendchi</h1>
-      <p>PI Network Tasks And Earning Platform</p>
-      <p>Version 1.0</p>
+      <h1>Welcome to Hendchi</h1>
+      <p>Sign in with your Pi Account to Start Earning</p>
     </div>
     
     <div class="button-area">
-      <a href="tasks.html" class="btn">START EARNING</a>
-      <a href="wallet.html" class="btn btn-purple">MY WALLET</a>
+      <button class="btn" onclick="loginWithPi()">SIGN IN WITH PI</button>
+      <p style="color: #aaa; font-size: 12px; text-align: center;">New user? Signing up is automatic</p>
     </div>
     
   </div>
+
+<script>
+Pi.init({ version: "2.0", sandbox: true });
+
+function loginWithPi() {
+  const scopes = ['username', 'payments'];
+  
+  Pi.authenticate(scopes, function(payment) {
+    console.log('incomplete payment found', payment);
+  })
+  .then(function(auth) {
+    alert("Welcome " + auth.user.username + "!");
+    window.location.href = "home.html"; // go to homepage after login
+  })
+  .catch(function(error) {
+    alert("Login failed: " + error);
+  });
+}
+</script>
+
 </body>
 </html>
