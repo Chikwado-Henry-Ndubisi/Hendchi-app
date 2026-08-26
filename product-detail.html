@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Product - Hendchi</title>
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5;padding-bottom:70px}
+.header{background:#fff;padding:15px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #ddd;position:sticky;top:0}
+.header a{color:#000;text-decoration:none;font-size:24px}
+.header h1{font-size:18px;margin:0;font-weight:900}
+
+.seller{background:#fff;padding:15px;display:flex;align-items:center;gap:10px}
+.avatar{width:45px;height:45px;border-radius:50%;background:#6B21A8;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}
+.seller-info .name{font-size:16px;font-weight:900;color:#6B21A8}
+.seller-info .time{font-size:12px;color:#666}
+.seller-info .location{font-size:13px;color:#444}
+
+.product-img{background:#fff;padding:15px;text-align:center}
+.product-img img{width:100%;max-width:350px;border-radius:12px}
+
+.details{background:#fff;padding:15px;margin-top:8px}
+.tag{display:inline-block;background:#f3e8ff;color:#6B21A8;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:10px}
+.title{font-size:17px;font-weight:900;line-height:1.4;margin:5px 0}
+.more{font-size:14px;color:#6B21A8;font-weight:700}
+
+.price-row{display:flex;justify-content:space-between;margin:15px 0}
+.price{font-size:22px;font-weight:900}
+.old-price{text-decoration:line-through;color:#999;font-size:14px}
+.contact{font-size:14px}
+.contact b{font-size:16px}
+
+.actions{display:flex;gap:15px;align-items:center;margin:15px 0}
+.icon-btn{font-size:24px;cursor:pointer}
+.share-btn{margin-left:auto;background:#6B21A8;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:900;cursor:pointer}
+.views{font-size:13px;color:#666;text-align:right}
+
+.reviews{background:#fff;padding:15px;margin-top:8px}
+.reviews h2{font-size:16px;margin:0 0 10px 0}
+
+.nav{position:fixed;bottom:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:9px 0;border-top:1px solid #ddd}
+.nav-item{text-align:center;font-size:11px;color:#666;cursor:pointer}
+.nav-item.active{color:#6B21A8;font-weight:900}
+.nav-icon{font-size:22px;margin-bottom:2px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="market.html">←</a>
+  <h1>View Product</h1>
+</div>
+
+<div class="seller">
+  <div class="avatar">F</div>
+  <div class="seller-info">
+    <div class="name">freshkidd01</div>
+    <div class="time">Last Monday at 2:37 PM</div>
+    <div class="location">📍 Makurdi, Benue, Nigeria</div>
+  </div>
+  <div style="margin-left:auto;font-size:20px">⋯</div>
+</div>
+
+<div class="product-img">
+  <img src="https://via.placeholder.com/400x500/000/FFD700?text=30-DAY+CONTENT+CREATOR">
+</div>
+
+<div class="details">
+  <span class="tag">🏷️ Bestselling Books</span>
+  <div class="title">THE 30 DAYS CONTENT CREATOR STA...</div>
+  <a class="more" href="#">More Details ↗</a>
+  
+  <div class="price-row">
+    <div>
+      <div class="price">1.50 π</div>
+      <div class="old-price">4.605 π</div>
+    </div>
+    <div class="contact">
+      Contact Seller:<br>
+      <b>0813 490 4766</b><br>
+      <span style="color:#6B21A8">📞 Call</span>  <span style="color:#25D366">💬 Whatsapp</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <span class="icon-btn">♡</span>
+    <span class="icon-btn" onclick="generateLink()">🔗</span>
+    <span class="icon-btn">↗</span>
+    <button class="share-btn" onclick="generateLink()">GENERATE RESELL LINK</button>
+  </div>
+  <div class="views">6.2k Views</div>
+  <div style="font-size:13px;margin-top:5px"><span style="background:red;color:#fff;padding:2px 6px;border-radius:4px;font-weight:900">7</span> Be the first person among your contacts to like this</div>
+</div>
+
+<div class="reviews">
+  <h2>Reviews (0)</h2>
+  <p style="color:#666;font-size:14px">No reviews yet on this product. Buy this product now to be the first to review this product.</p>
+</div>
+
+<div class="nav">
+  <div class="nav-item" onclick="window.location.href='index.html'"><div class="nav-icon">🏠</div>Home</div>
+  <div class="nav-item" onclick="window.location.href='earn.html'"><div class="nav-icon">📦</div>Earn</div>
+  <div class="nav-item" onclick="window.location.href='advertise.html'"><div class="nav-icon">➕</div>Advertise</div>
+  <div class="nav-item active"><div class="nav-icon">🏪</div>Market</div>
+  <div class="nav-item" onclick="window.location.href='more.html'"><div class="nav-icon">☰</div>More</div>
+</div>
+
+<script>
+function generateLink(){
+  let myUsername = "azazel4"; // this will be dynamic later
+  let productID = "30day-kit";
+  let resellLink = "https://hendchi.com/p/" + productID + "?ref=" + myUsername;
+  
+  alert("Your Resell Link Generated!\n\n" + resellLink + "\n\nShare this link. When someone buys with Pi, you earn commission.");
+  
+  // Copy to clipboard
+  navigator.clipboard.writeText(resellLink);
+}
+</script>
+
+</body>
+</html>
