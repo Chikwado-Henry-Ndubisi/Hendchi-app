@@ -5,67 +5,68 @@
 <title>Dashboard - Hendchi</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:#f1f1f1;padding-bottom:105px;font-size:21px}
-.header{background:#fff;padding:20px 22px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #e5e5e5;position:sticky;top:0;z-index:10}
-.logo{color:#6B21A8;font-size:34px;font-weight:900}
-.logo span{color:#000;font-size:21px}
-.header-icons{display:flex;gap:27px;font-size:34px}
+body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:#f1f1f1;padding-bottom:110px;font-size:23px}
+.header{background:#fff;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #e5e5e5;position:sticky;top:0;z-index:10}
+.logo{color:#6B21A8;font-size:37px;font-weight:900}
+.logo span{color:#000;font-size:23px}
+.header-icons{display:flex;gap:30px;font-size:37px}
 .header-icons span{cursor:pointer}
 
-.welcome{background:#fff;padding:20px 22px;display:flex;justify-content:space-between;align-items:center;font-size:21px;font-weight:800;border-bottom:1px solid #f0f0f0}
-.logout{color:#6B21A8;font-size:20px;font-weight:900;cursor:pointer}
+.welcome{background:#fff;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;font-size:23px;font-weight:900;border-bottom:2px solid #f0f0f0}
+.logout{color:#6B21A8;font-size:22px;font-weight:900;cursor:pointer}
 
-.alert{background:#dbeafe;color:#1e3a8a;padding:20px 22px;font-size:20px;line-height:1.9}
+.alert{background:#dbeafe;color:#1e3a8a;padding:22px 24px;font-size:22px;line-height:2}
 .alert a{color:#1e3a8a;font-weight:900;text-decoration:underline}
 
-.balance-box{background:#fff;padding:38px 22px;text-align:center}
-.balance-label{font-size:22px;color:#666;margin-bottom:15px;font-weight:800}
-.balance{font-size:60px;font-weight:900;margin:14px 0;letter-spacing:-1px}
-.btn-row{display:flex;gap:18px;justify-content:center;margin:24px 0}
-.btn{background:#fff;border:3px solid #ddd;padding:18px 34px;border-radius:15px;font-size:21px;font-weight:900;cursor:pointer}
-.btn-buy{color:#6B21A8;font-size:20px;font-weight:900;cursor:pointer;margin-top:14px}
+.balance-box{background:#fff;padding:42px 24px;text-align:center}
+.balance-label{font-size:24px;color:#666;margin-bottom:17px;font-weight:900}
+.balance{font-size:65px;font-weight:900;margin:16px 0;letter-spacing:-1px}
+.btn-row{display:flex;gap:20px;justify-content:center;margin:27px 0}
+.btn{background:#fff;border:3px solid #ddd;padding:20px 38px;border-radius:17px;font-size:23px;font-weight:900;cursor:pointer}
+.btn-buy{color:#6B21A8;font-size:22px;font-weight:900;cursor:pointer;margin-top:16px}
 
-.stats{display:flex;justify-content:space-around;background:#fff;padding:24px 15px;margin:15px 0}
+.stats{display:flex;justify-content:space-around;background:#fff;padding:27px 17px;margin:17px 0}
 .stat{text-align:center}
-.stat-label{font-size:19px;color:#666;font-weight:800}
-.stat-value{font-size:23px;font-weight:900;margin-top:9px}
+.stat-label{font-size:21px;color:#666;font-weight:900}
+.stat-value{font-size:25px;font-weight:900;margin-top:11px}
 
-.member-box{background:#fff;padding:38px 22px;margin:15px 0;text-align:center}
-.member-icon{font-size:75px;margin-bottom:15px}
-.member-title{font-size:28px;font-weight:900;margin:18px 0}
-.member-text{font-size:21px;color:#444;line-height:2;margin:18px 0}
-.badge{background:#16a34a;color:#fff;padding:13px 22px;border-radius:38px;font-size:19px;font-weight:900;display:inline-block;margin:18px 0}
-.btn-primary{background:#6B21A8;color:#fff;border:none;padding:22px 42px;border-radius:17px;font-size:22px;font-weight:900;cursor:pointer;width:100%;max-width:420px}
+.member-box{background:#fff;padding:42px 24px;margin:17px 0;text-align:center}
+.member-icon{font-size:80px;margin-bottom:17px}
+.member-title{font-size:30px;font-weight:900;margin:20px 0}
+.member-text{font-size:23px;color:#444;line-height:2.1;margin:20px 0}
+.badge{background:#16a34a;color:#fff;padding:15px 24px;border-radius:42px;font-size:21px;font-weight:900;display:inline-block;margin:20px 0}
+.btn-primary{background:#6B21A8;color:#fff;border:none;padding:24px 46px;border-radius:19px;font-size:24px;font-weight:900;cursor:pointer;width:100%;max-width:440px}
 
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:22px}
-.card{background:#fff;padding:24px;border-radius:20px;font-size:20px;line-height:1.8;font-weight:600}
-.card img{width:55px;margin-bottom:15px}
-.card .link{color:#6B21A8;font-size:20px;font-weight:900;margin-top:15px;cursor:pointer}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:24px}
+.card{background:#fff;padding:27px;border-radius:22px;font-size:22px;line-height:1.9;font-weight:800}
+.card img{width:60px;margin-bottom:17px}
+.card .link{color:#6B21A8;font-size:22px;font-weight:900;margin-top:17px;cursor:pointer}
 
-.section{background:#fff;padding:24px 22px;margin:15px 0}
-.section h2{font-size:28px;font-weight:900;margin:0 0 13px 0}
-.section p{font-size:20px;color:#666;margin:0 0 24px 0;line-height:1.9}
+.section{background:#fff;padding:27px 24px;margin:17px 0}
+.section h2{font-size:30px;font-weight:900;margin:0 0 15px 0}
+.section p{font-size:22px;color:#666;margin:0 0 27px 0;line-height:2}
 
-.resell-banner{background:#fde047;padding:24px;border-radius:17px;display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
-.resell-text{font-size:21px;font-weight:900;line-height:1.7}
-.hot{background:red;color:#fff;padding:11px 15px;border-radius:11px;font-size:17px;font-weight:900}
+.resell-banner{background:#fde047;padding:27px;border-radius:19px;display:flex;justify-content:space-between;align-items:center;margin-bottom:27px}
+.resell-text{font-size:23px;font-weight:900;line-height:1.8}
+.hot{background:red;color:#fff;padding:13px 17px;border-radius:13px;font-size:19px;font-weight:900}
 
-.task{background:#fff;padding:24px;border-radius:17px;display:flex;gap:22px;margin-bottom:18px;align-items:flex-start}
-.task-icon{width:65px;height:65px;background:#f3e8ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;flex-shrink:0}
+.task{background:#fff;padding:27px;border-radius:19px;display:flex;gap:24px;margin-bottom:20px;align-items:flex-start}
+.task-icon{width:70px;height:70px;background:#f3e8ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:38px;flex-shrink:0}
 .task-info{flex:1}
-.task-title{font-size:23px;font-weight:900;margin-bottom:9px}
-.task-earn{font-size:20px;margin:9px 0;font-weight:900}
-.task-desc{font-size:20px;color:#555;line-height:1.8}
-.platforms{margin:13px 0;font-size:26px}
-.task-count{font-size:19px;color:#666}
-.btn-select{background:#fff;border:3px solid #6B21A8;color:#6B21A8;padding:15px 28px;border-radius:13px;font-size:20px;font-weight:900;cursor:pointer;flex-shrink:0}
+.task-title{font-size:25px;font-weight:900;margin-bottom:11px}
+.task-earn{font-size:22px;margin:11px 0;font-weight:900}
+.task-desc{font-size:22px;color:#555;line-height:1.9}
+.platforms{margin:15px 0;font-size:29px}
+.task-count{font-size:21px;color:#666}
+.btn-select{background:#fff;border:3px solid #6B21A8;color:#6B21A8;padding:17px 32px;border-radius:15px;font-size:22px;font-weight:900;cursor:pointer;flex-shrink:0}
 
-.nav{position:fixed;bottom:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:15px 0;border-top:3px solid #ddd;height:90px}
-.nav-item{text-align:center;font-size:18px;color:#666;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800}
+/* BOTTOM NAV - BIGGEST */
+.nav{position:fixed;bottom:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:17px 0;border-top:3px solid #ddd;height:98px}
+.nav-item{text-align:center;font-size:20px;color:#555;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;letter-spacing:0.4px}
 .nav-item.active{color:#6B21A8;font-weight:900}
-.nav-icon{font-size:36px;margin-bottom:6px}
+.nav-icon{font-size:40px;margin-bottom:8px}
 .dot{position:relative}
-.dot::after{content:'•';position:absolute;top:-9px;right:15px;color:red;font-size:34px}
+.dot::after{content:'•';position:absolute;top:-11px;right:17px;color:red;font-size:38px}
 </style>
 </head>
 <body>
@@ -123,46 +124,4 @@ body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:#f1f1f1;padding
 
 <div class="cards">
   <div class="card">
-    <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
-    <div>Earn daily by posting adverts and performing tasks on your social media accounts</div>
-    <div class="link" onclick="window.location.href='earn.html'">↗ Get Started</div>
-  </div>
-  <div class="card">
-    <div style="font-size:34px">📱</div>
-    <div>Get people to repost your adverts and perform social tasks for you on their social media account.</div>
-    <div class="link" onclick="window.location.href='advertise.html'">↗ Get Started</div>
-  </div>
-</div>
-
-<div class="section">
-  <h2>Available Tasks</h2>
-  <p>See our currently available tasks below. Click any of the tasks below to start earning</p>
-  
-  <div class="resell-banner">
-    <div class="resell-text">CLICK HERE TO RESELL PRODUCTS AND EARN UP TO π100 MONTHLY IN SALES COMMISSIONS</div>
-    <div class="hot">HOT AND NEW!!!</div>
-  </div>
-
-  <div class="task">
-    <div class="task-icon">👥</div>
-    <div class="task-info">
-      <div class="task-title">Follow People & Pages</div>
-      <div class="task-earn">Earnings: π0.05 per Follow</div>
-      <div class="task-desc">Follow people and pages on selected social media accounts and earn π0.05 per follow. The more people you follow, the more you earn.</div>
-      <div class="platforms">📷 📘 🎵</div>
-      <div class="task-count">5.5k Tasks Available</div>
-    </div>
-    <button class="btn-select" onclick="alert('Task Started')">SELECT</button>
-  </div>
-</div>
-
-<div class="nav">
-  <div class="nav-item active"><div class="nav-icon">🏠</div>Home</div>
-  <div class="nav-item" onclick="window.location.href='earn.html'"><div class="nav-icon dot">📦</div>Earn</div>
-  <div class="nav-item" onclick="window.location.href='advertise.html'"><div class="nav-icon">➕</div>Advertise</div>
-  <div class="nav-item" onclick="window.location.href='market.html'"><div class="nav-icon dot">🏪</div>Market</div>
-  <div class="nav-item" onclick="window.location.href='more.html'"><div class="nav-icon">☰</div>More</div>
-</div>
-
-</body>
-</html>
+    <img src="https://cdn-icons
