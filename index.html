@@ -12,7 +12,7 @@ html,body{height:100%;background:#fff;color:#000;font-family:-apple-system,Blink
 
 .slider{flex:1;position:relative}
 .slide{position:absolute;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:0 2vw;opacity:0;transition:opacity 0.5s}
-.slide.active{opacity:1} /* ONLY 1 SHOWS AT A TIME */
+.slide.active{opacity:1}
 .slide h1{font-size:5.5vh;font-weight:900;line-height:1.1;margin:0 0 1.5vh 0;color:#000}
 .slide p{font-size:2.8vh;line-height:1.35;color:#000;margin:0 0 1.5vh 0;font-weight:700}
 
@@ -26,7 +26,7 @@ button{width:100%;padding:2vh;margin-bottom:1.2vh;border-radius:3vw;font-size:3.
 .btn2{background:#fff;color:#000;border:0.5vw solid #000}
 </style>
 </head>
-<body onclick="nextSlide()"> <!-- TAP ANYWHERE TO SLIDE -->
+<body onclick="nextSlide()">
 
 <div class="wrap">
   <div class="top">
@@ -34,25 +34,18 @@ button{width:100%;padding:2vh;margin-bottom:1.2vh;border-radius:3vw;font-size:3.
   </div>
 
   <div class="slider">
-    <!-- SLIDE 1 -->
     <div class="slide active" id="s1">
       <h1>Get Paid in Pi for<br>Completing Social Tasks</h1>
       <p>Earn daily Pi by completing social tasks, posting adverts, watching ads and referring friends for top businesses and brands.</p>
     </div>
-
-    <!-- SLIDE 2 -->
     <div class="slide" id="s2">
       <h1>Watch Ads & Earn Pi</h1>
       <p>Watch short ads from real businesses and get rewarded with Pi instantly to your wallet.</p>
     </div>
-
-    <!-- SLIDE 3 -->
     <div class="slide" id="s3">
       <h1>Post & Get Paid</h1>
       <p>Businesses pay you Pi to post their adverts on your social media. More followers = More Pi.</p>
     </div>
-
-    <!-- SLIDE 4 -->
     <div class="slide" id="s4">
       <h1>Refer Friends</h1>
       <p>Invite your friends to Hendchi and earn bonus Pi for every person that joins and completes tasks.</p>
@@ -67,10 +60,8 @@ button{width:100%;padding:2vh;margin-bottom:1.2vh;border-radius:3vw;font-size:3.
   </div>
 
   <div class="bottom">
-    <button class="btn1" onclick="event.stopPropagation();alert('Pi Login coming')">SIGN IN WITH PI</button>
-    <a href="home.html" style="text-decoration:none" onclick="event.stopPropagation()">
-      <button class="btn2">CONTINUE AS GUEST</button>
-    </a>
+    <button class="btn1" onclick="event.stopPropagation();signInWithPi()">SIGN IN WITH PI</button>
+    <button class="btn2" onclick="event.stopPropagation();registerGuest()">REGISTER / SIGN UP</button>
   </div>
 </div>
 
@@ -84,12 +75,21 @@ function nextSlide(){
   document.getElementById('s'+current).classList.add('active');
   document.getElementById('d'+current).classList.add('active');
 }
+setTimeout(function auto(){ nextSlide(); setTimeout(auto, 3000); }, 3000);
 
-// AUTO SLIDE FOR PI
-setTimeout(function auto(){
-  nextSlide();
-  setTimeout(auto, 3000); // 3 seconds
-}, 3000);
+// PI LOGIN FUNCTION
+function signInWithPi(){
+  alert('Connecting to Pi Browser...');
+  // We will add real Pi SDK code here next
+  window.location.href = "home.html";
+}
+
+// GUEST REGISTER FUNCTION
+function registerGuest(){
+  localStorage.setItem('hendchi_user', 'guest_' + Date.now());
+  alert('Account created! Welcome to Hendchi');
+  window.location.href = "home.html";
+}
 </script>
 
 </body>
