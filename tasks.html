@@ -2,98 +2,108 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hendchi Tasks</title>
+<title>Hendchi Home</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#f5f5f5;font-family:Arial;padding-bottom:10vh}
-.header{background:#000;color:#fff;padding:2.5vh 5vw;display:flex;align-items:center;position:sticky;top:0}
-.back{font-size:4vh;margin-right:3vw;cursor:pointer}
-.header h1{font-size:3.5vh}
-.task{background:#fff;margin:2vh 5vw;padding:3vh;border-radius:3vw;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-.task h3{font-size:2.8vh;margin-bottom:1vh;display:flex;align-items:center;gap:2vw}
-.task p{font-size:2.2vh;color:#666;margin-bottom:2vh}
-.reward{color:#00a63e;font-weight:900;font-size:2.5vh}
-.btn{background:#000;color:#fff;border:none;padding:1.5vh 3vw;border-radius:2vw;font-weight:900;float:right}
-.btn:disabled{background:#ccc}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f5f5f5;padding-bottom:10vh}
+
+/* HEADER */
+.header{background:#6B21A8;color:#fff;padding:3vh 5vw}
+.header h1{font-size:3.8vh;font-weight:900}
+.header p{font-size:2.2vh;opacity:0.9;margin-top:0.5vh}
+
+/* BALANCE CARD */
+.balance{background:#fff;margin:2vh 5vw;padding:3vh;border-radius:3vw;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+.balance small{color:#666;font-size:2.2vh}
+.balance h2{font-size:6vh;margin:1vh 0}
+.balance h2 span{color:#F59E0B}
+.balance p{font-size:1.8vh;color:#999}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:2vh;padding:0 5vw}
+.card{background:#fff;padding:2.5vh;border-radius:3vw;box-shadow:0 2px 8px rgba(0,0,0,0.05);cursor:pointer}
+.card h3{font-size:2.5vh;margin-bottom:0.5vh;display:flex;align-items:center;gap:1vw}
+.card p{font-size:2vh;color:#666}
+.card .highlight{background:#DBEAFE;color:#1E40AF;padding:0.3vh 1vw;border-radius:1vw;font-weight:900}
+
+/* BIG BUTTON */
+.big-btn{background:#000;color:#fff;text-align:center;padding:2.5vh;margin:3vh 5vw;border-radius:3vw;font-size:2.8vh;font-weight:900;cursor:pointer}
+
+/* NAV */
 .nav{position:fixed;bottom:0;left:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:1.5vh 0;border-top:1px solid #ddd}
-.nav-item{text-align:center;font-size:2vh;color:#999;cursor:pointer}
+.nav-item{text-align:center;font-size:2vh;color:#999}
 .nav-item.active{color:#000;font-weight:900}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="back" onclick="window.location.href='home.html'">←</div>
-  <h1>Earn Pi Tasks</h1>
+  <h1>Welcome to Hendchi 👋</h1>
+  <p id="userId">User: guest_1787705677965</p>
 </div>
 
-<div id="tasksList"></div>
+<div class="balance">
+  <small>Your Pi Balance</small>
+  <h2 id="piBalance">0.000 <span>π</span></h2>
+  <p>100% FREE - No payment needed</p>
+</div>
+
+<div class="grid">
+  <div class="card" onclick="window.location.href='tasks.html'">
+    <h3>📋 <span class="highlight">Tasks</span></h3>
+    <p>12 Available FREE</p>
+  </div>
+  <div class="card" onclick="alert('Watch Ad +0.01π')">
+    <h3>📺 Watch Ads</h3>
+    <p>Earn 0.01π</p>
+  </div>
+  <div class="card" onclick="alert('Referrals')">
+    <h3>👥 Referrals</h3>
+    <p>0 Friends</p>
+  </div>
+  <div class="card" onclick="alert('Wallet')">
+    <h3>💰 Wallet</h3>
+    <p>Withdraw Pi</p>
+  </div>
+</div>
+
+<div class="big-btn" onclick="claimDaily()">
+  CLAIM DAILY TASK<br>+0.001π
+</div>
 
 <div class="nav">
-  <div class="nav-item" onclick="window.location.href='home.html'">Home</div>
-  <div class="nav-item active">Tasks</div>
+  <div class="nav-item active">Home</div>
+  <div class="nav-item" onclick="window.location.href='tasks.html'">Tasks</div>
   <div class="nav-item">Wallet</div>
   <div class="nav-item">Profile</div>
 </div>
 
 <script>
+// Load saved balance
 let balance = parseFloat(localStorage.getItem('piBalance')) || 0;
-let completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+document.getElementById('piBalance').textContent = balance.toFixed(3) + ' π';
 
-const tasks = [
-  // SOCIAL TASKS - THE VIRAL ONES
-  {id:1, icon:"📺", title:"Subscribe YouTube", desc:"Subscribe to Hendchi Official Channel", reward:0.02, link:"https://youtube.com"},
-  {id:2, icon:"🐦", title:"Follow Twitter/X", desc:"Follow @HendchiPi and Retweet pinned post", reward:0.015, link:"https://twitter.com"},
-  {id:3, icon:"📘", title:"Like Facebook Page", desc:"Like Hendchi Facebook Page", reward:0.01, link:"https://facebook.com"},
-  {id:4, icon:"📸", title:"Follow Instagram", desc:"Follow @hendchi.pi on Instagram", reward:0.01, link:"https://instagram.com"},
-  {id:5, icon:"🎵", title:"Follow TikTok", desc:"Follow Hendchi on TikTok + Like 3 videos", reward:0.02, link:"https://tiktok.com"},
-  {id:6, icon:"💼", title:"Connect LinkedIn", desc:"Connect with Hendchi on LinkedIn", reward:0.015, link:"https://linkedin.com"},
-  
-  // APP TASKS - FOR SUBMISSION
-  {id:7, icon:"🍎", title:"Download iOS App", desc:"Download Hendchi from Apple App Store", reward:0.05, link:"#"},
-  {id:8, icon:"🤖", title:"Download Android App", desc:"Download Hendchi from Google Play Store", reward:0.05, link:"#"},
-  {id:9, icon:"⭐", title:"App Store Review", desc:"Leave 5-star review on App Store", reward:0.03, link:"#"},
-  {id:10, icon:"⭐", title:"Play Store Review", desc:"Leave 5-star review on Play Store", reward:0.03, link:"#"},
-  
-  // BONUS TASKS
-  {id:11, icon:"👥", title:"Invite 1 Friend", desc:"Refer a friend to join Hendchi", reward:0.025},
-  {id:12, icon:"📋", title:"Daily Login", desc:"Come back tomorrow for bonus", reward:0.01}
-];
+// Load user ID
+let userId = localStorage.getItem('userId') || 'guest_' + Date.now();
+localStorage.setItem('userId', userId);
+document.getElementById('userId').textContent = 'User: ' + userId;
 
-function loadTasks(){
-  let html = '';
-  tasks.forEach(task => {
-    let isDone = completedTasks.includes(task.id);
-    html += `
-    <div class="task">
-      <h3>${task.icon} ${task.title}</h3>
-      <p>${task.desc}</p>
-      <span class="reward">+${task.reward}π</span>
-      <button class="btn" ${isDone ? 'disabled' : ''} onclick="completeTask(${task.id}, ${task.reward}, '${task.link}')">
-        ${isDone ? 'DONE ✓' : 'EARN'}
-      </button>
-    </div>`;
-  });
-  document.getElementById('tasksList').innerHTML = html;
-}
-
-function completeTask(id, reward, link){
-  if(completedTasks.includes(id)) return;
+// Daily claim
+function claimDaily(){
+  let lastClaim = localStorage.getItem('lastClaim');
+  let today = new Date().toDateString();
   
-  // Open the social link first
-  if(link !== "#") window.open(link, '_blank');
+  if(lastClaim === today){
+    alert('You already claimed today. Come back tomorrow!');
+    return;
+  }
   
-  // Add reward
-  balance += reward;
-  completedTasks.push(id);
+  balance += 0.001;
   localStorage.setItem('piBalance', balance);
-  localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
-  
-  alert('Task Started! Come back to claim +'+reward+'π after you complete it');
-  loadTasks();
+  localStorage.setItem('lastClaim', today);
+  document.getElementById('piBalance').textContent = balance.toFixed(3) + ' π';
+  alert('Success! +0.001π Added to your balance');
 }
-
-loadTasks();
 </script>
 </body>
 </html>
