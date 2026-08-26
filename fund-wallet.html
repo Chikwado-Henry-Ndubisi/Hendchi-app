@@ -4,121 +4,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fund Wallet - Hendchi</title>
 <style>
-body{margin:0;font-family:Arial;background:#f5f5f5;padding-bottom:70px}
-.header{background:#fff;padding:15px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #ddd;position:sticky;top:0}
-.header a{color:#000;text-decoration:none;font-size:24px}
-.header h1{font-size:20px;margin:0;font-weight:900}
-.container{padding:15px}
-.balance-box{background:#fff;border-radius:16px;padding:20px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center}
-.balance-box h2{font-size:17px;margin:0}
-.balance-box .amount{font-size:24px;font-weight:900;color:#6B21A8}
-.fund-box{background:#fff;border-radius:16px;padding:20px}
-.fund-box p{font-size:14px;color:#666;margin:8px 0 15px 0}
-.input-row{display:flex;gap:10px;align-items:center}
-.input-row input{flex:1;padding:14px;border:1px solid #ddd;border-radius:10px;font-size:16px;font-weight:600}
-.input-row .symbol{background:#f3e8ff;padding:14px 16px;border-radius:10px;font-size:16px;font-weight:900;color:#6B21A8}
-.btn-fund{flex:1;background:#6B21A8;color:#fff;border:none;padding:14px;border-radius:10px;font-size:16px;font-weight:900;cursor:pointer}
-.note{font-size:13px;color:#555;line-height:1.6;margin:15px 0}
-.history{background:#fff;border-radius:16px;padding:20px;margin-top:15px}
-.history h2{font-size:18px;margin:0 0 15px 0}
-.table{width:100%;font-size:13px;border-collapse:collapse}
-.table th{text-align:left;padding:10px 5px;border-bottom:2px solid #eee;font-weight:900}
-.table td{padding:12px 5px;border-bottom:1px solid #f0f0f0;vertical-align:top}
-.status{color:#16a34a;font-weight:700}
-.btn-view{background:#16a34a;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer}
-
-.nav{position:fixed;bottom:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd}
-.nav-item{text-align:center;font-size:12px;color:#666}
+body{margin:0;font-family:Arial;background:#f1f1f1;padding:30px}
+.header{color:#6B21A8;font-size:38px;font-weight:900;text-align:center;margin-bottom:30px}
+.box{background:#fff;padding:40px 25px;border-radius:20px;max-width:600px;margin:0 auto}
+.balance{font-size:24px;color:#666;text-align:center}
+.amount{font-size:60px;color:#6B21A8;font-weight:900;text-align:center;margin:10px 0 30px 0}
+input{width:100%;padding:25px;font-size:24px;border:3px solid #ddd;border-radius:15px;margin:15px 0;box-sizing:border-box}
+.btn{background:#6B21A8;color:#fff;border:none;padding:28px;width:100%;font-size:26px;font-weight:900;border-radius:18px;margin-top:20px}
+.note{font-size:20px;color:#444;line-height:1.8;margin-top:25px;text-align:center}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <a href="more.html">←</a>
-  <h1>Fund Wallet</h1>
-</div>
+<div class="header">💰 Fund Wallet</div>
 
-<div class="container">
-
-  <div class="balance-box">
-    <h2>Wallet Balance</h2>
-    <div class="amount">25.50 π</div>
+<div class="box">
+  <div class="balance">Current Balance</div>
+  <div class="amount">π47.55</div>
+  
+  <input type="number" placeholder="Enter Amount in Pi">
+  <input type="text" placeholder="Pi Wallet Address / Transaction ID">
+  
+  <button class="btn" onclick="alert('Fund request submitted! We will credit you soon.')">Submit Fund Request</button>
+  
+  <div class="note">
+    Send Pi to: <b>hendchi.pi.wallet</b><br>
+    Minimum: π5.00<br>
+    Funds are credited within 10 minutes
   </div>
-
-  <div class="fund-box">
-    <p>Please enter the amount you want to fund your wallet with.</p>
-    <div class="input-row">
-      <span class="symbol">π</span>
-      <input type="number" id="amount" placeholder="Amount" min="1">
-      <button class="btn-fund" onclick="fundWallet()">FUND WALLET</button>
-    </div>
-    
-    <p class="note">
-      You can fund your wallet with Pi. 
-      Click "FUND WALLET" and approve payment with Pi Browser. 
-      Your balance will update instantly.
-    </p>
-  </div>
-
-  <div class="history">
-    <h2>My Funding History</h2>
-    <table class="table">
-      <tr>
-        <th>S/N</th>
-        <th>Date</th>
-        <th>Amount</th>
-        <th>Payment Method</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-      <tr>
-        <td>1.</td>
-        <td>Dec 5th 2024<br>8:46 pm</td>
-        <td><b>18.00 π</b></td>
-        <td>Pi Payment<br>Using Pi Browser</td>
-        <td class="status">PAYMENT APPROVED</td>
-        <td><button class="btn-view">VIEW</button></td>
-      </tr>
-      <tr>
-        <td>2.</td>
-        <td>Sep 26th 2024<br>8:48 am</td>
-        <td><b>1.00 π</b></td>
-        <td>Pi Payment<br>Using Pi Browser</td>
-        <td class="status">PAYMENT APPROVED</td>
-        <td><button class="btn-view">VIEW</button></td>
-      </tr>
-      <tr>
-        <td>3.</td>
-        <td>Sep 26th 2024<br>8:32 am</td>
-        <td><b>10.00 π</b></td>
-        <td>Pi Payment<br>Using Pi Browser</td>
-        <td class="status">PAYMENT APPROVED</td>
-        <td><button class="btn-view">VIEW</button></td>
-      </tr>
-    </table>
-  </div>
-
 </div>
-
-<div class="nav">
-  <div class="nav-item" onclick="window.location.href='index.html'">🏠<br>Home</div>
-  <div class="nav-item" onclick="window.location.href='earn.html'">📦<br>Earn</div>
-  <div class="nav-item" onclick="window.location.href='advertise.html'">➕<br>Advertise</div>
-  <div class="nav-item">🏪<br>Market</div>
-  <div class="nav-item">☰<br>More</div>
-</div>
-
-<script>
-function fundWallet(){
-  let amount = document.getElementById('amount').value;
-  if(amount < 1){
-    alert('Minimum funding is 1 π');
-    return;
-  }
-  alert('Next: Pi SDK Payment will open for ' + amount + ' π');
-  // Here we connect Pi SDK: Pi.createPayment()
-}
-</script>
 
 </body>
 </html>
