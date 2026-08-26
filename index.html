@@ -1,96 +1,74 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hendchi</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;background:#fff;color:#000;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial;overflow:hidden}
-.wrap{display:flex;flex-direction:column;height:100vh;padding:2vh 5vw;justify-content:space-between}
-.top{text-align:center;padding-top:1vh}
-.top h2{font-size:6.5vh;font-weight:900;color:#000;letter-spacing:-1px}
+body{margin:0;font-family:Arial;background:#f5f5f5;padding-bottom:70px}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:15px;background:#fff}
+.logo{color:#6B21A8;font-size:20px;font-weight:900}
+.alert{background:#dbeafe;color:#1e40af;padding:12px;margin:12px;border-radius:8px;font-size:13px}
+.balance-box{text-align:center;padding:20px;background:#fff}
+.balance-box h2{font-size:36px;margin:10px 0}
+.btns{display:flex;gap:10px;justify-content:center;margin:15px}
+.btns button{padding:10px 20px;border:1px solid #ddd;background:#fff;border-radius:8px;font-weight:600}
+.stats{display:flex;justify-content:space-around;padding:15px;background:#fff;margin:10px 0;font-size:13px}
+.stats b{display:block;font-size:16px}
+.member{background:#fff;margin:12px;padding:15px;border-radius:12px;display:flex;gap:12px}
+.nav{position:fixed;bottom:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd}
+.nav-item{text-align:center;font-size:12px;color:#666}
+.nav-item.active{color:#6B21A8;font-weight:900}
+</style></head>
+<body>
 
-.slider{flex:1;position:relative}
-.slide{position:absolute;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:0 2vw;opacity:0;transition:opacity 0.5s}
-.slide.active{opacity:1}
-.slide h1{font-size:5.5vh;font-weight:900;line-height:1.1;margin:0 0 1.5vh 0;color:#000}
-.slide p{font-size:2.8vh;line-height:1.35;color:#000;margin:0 0 1.5vh 0;font-weight:700}
+<div class="topbar">
+  <div class="logo">📍Hendchi.pi</div>
+  <div>?  🔔</div>
+</div>
 
-.dots{display:flex;justify-content:center;gap:1.5vw;margin:1vh 0}
-.dot{width:2vw;height:2vw;background:#999;border-radius:50%;transition:0.3s}
-.dot.active{background:#000;width:5.5vw;border-radius:4vw}
+<p style="padding:0 15px">Welcome, <span id="username">User</span> <span style="float:right;color:#6B21A8;font-weight:900">Logout</span></p>
 
-.bottom{padding-bottom:3vh}
-button{width:100%;padding:2vh;margin-bottom:1.2vh;border-radius:3vw;font-size:3.8vh;font-weight:900;border:none}
-.btn1{background:#000;color:#fff}
-.btn2{background:#fff;color:#000;border:0.5vw solid #000}
-</style>
-</head>
-<body onclick="nextSlide()">
+<div class="alert">
+We are happy to inform you that Hendchi is 100% FREE. No payment needed to earn Pi.
+</div>
 
-<div class="wrap">
-  <div class="top">
-    <h2>hendchi</h2>
+<div class="balance-box">
+  <p>My Pi Balance</p>
+  <h2 id="piBalance">0.000 <span style="color:#F59E0B">π</span></h2>
+  <div class="btns">
+    <button>💰 FUND</button>
+    <button>📤 WITHDRAW</button>
   </div>
+  <p style="color:#6B21A8;font-weight:600">Buy Airtime/Data with Pi</p>
+</div>
 
-  <div class="slider">
-    <div class="slide active" id="s1">
-      <h1>Get Paid in Pi for<br>Completing Social Tasks</h1>
-      <p>Earn daily Pi by completing social tasks, posting adverts, watching ads and referring friends for top businesses and brands.</p>
-    </div>
-    <div class="slide" id="s2">
-      <h1>Watch Ads & Earn Pi</h1>
-      <p>Watch short ads from real businesses and get rewarded with Pi instantly to your wallet.</p>
-    </div>
-    <div class="slide" id="s3">
-      <h1>Post & Get Paid</h1>
-      <p>Businesses pay you Pi to post their adverts on your social media. More followers = More Pi.</p>
-    </div>
-    <div class="slide" id="s4">
-      <h1>Refer Friends</h1>
-      <p>Invite your friends to Hendchi and earn bonus Pi for every person that joins and completes tasks.</p>
-    </div>
-  </div>
+<div class="stats">
+  <div>📋<b id="totalEarned">0.000π</b>Total Earned</div>
+  <div>⏳<b>0.000π</b>Pending</div>
+  <div>📤<b>0.000π</b>Withdrawn</div>
+</div>
 
-  <div class="dots">
-    <div class="dot active" id="d1"></div>
-    <div class="dot" id="d2"></div>
-    <div class="dot" id="d3"></div>
-    <div class="dot" id="d4"></div>
-  </div>
-
-  <div class="bottom">
-    <button class="btn1" onclick="event.stopPropagation();signInWithPi()">SIGN IN WITH PI</button>
-    <button class="btn2" onclick="event.stopPropagation();registerGuest()">REGISTER / SIGN UP</button>
+<div class="member">
+  <div>👤✅</div>
+  <div>
+    <h3>Congratulations! You are now a MEMBER!</h3>
+    <p style="font-size:13px;color:#666">Your account is activated. You can now earn daily by posting adverts and performing tasks on your social media. Click "Earn" below to start.</p>
   </div>
 </div>
 
+<div class="nav">
+  <div class="nav-item active">🏠<br>Home</div>
+  <div class="nav-item" onclick="window.location.href='earn.html'">📦<br>Earn</div>
+  <div class="nav-item" onclick="window.location.href='advertise.html'">➕<br>Advertise</div>
+  <div class="nav-item">🏪<br>Market</div>
+  <div class="nav-item" onclick="window.location.href='more.html'">☰<br>More</div>
+</div>
+
 <script>
-let current = 1;
-function nextSlide(){
-  document.getElementById('s'+current).classList.remove('active');
-  document.getElementById('d'+current).classList.remove('active');
-  current++;
-  if(current > 4) current = 1;
-  document.getElementById('s'+current).classList.add('active');
-  document.getElementById('d'+current).classList.add('active');
-}
-setTimeout(function auto(){ nextSlide(); setTimeout(auto, 3000); }, 3000);
-
-// PI LOGIN FUNCTION
-function signInWithPi(){
-  alert('Connecting to Pi Browser...');
-  // We will add real Pi SDK code here next
-  window.location.href = "home.html";
-}
-
-// GUEST REGISTER FUNCTION
-function registerGuest(){
-  localStorage.setItem('hendchi_user', 'guest_' + Date.now());
-  alert('Account created! Welcome to Hendchi');
-  window.location.href = "home.html";
-}
+let balance = parseFloat(localStorage.getItem('piBalance')) || 0;
+document.getElementById('piBalance').textContent = balance.toFixed(3) + ' π';
+document.getElementById('totalEarned').textContent = balance.toFixed(3) + 'π';
+let user = localStorage.getItem('userId') || 'User';
+document.getElementById('username').textContent = user;
 </script>
-
 </body>
 </html>
