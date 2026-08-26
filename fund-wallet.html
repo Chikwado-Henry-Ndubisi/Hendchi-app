@@ -4,35 +4,98 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fund Wallet - Hendchi</title>
 <style>
-body{margin:0;font-family:Arial;background:#f1f1f1;padding:30px}
-.header{color:#6B21A8;font-size:38px;font-weight:900;text-align:center;margin-bottom:30px}
-.box{background:#fff;padding:40px 25px;border-radius:20px;max-width:600px;margin:0 auto}
-.balance{font-size:24px;color:#666;text-align:center}
-.amount{font-size:60px;color:#6B21A8;font-weight:900;text-align:center;margin:10px 0 30px 0}
-input{width:100%;padding:25px;font-size:24px;border:3px solid #ddd;border-radius:15px;margin:15px 0;box-sizing:border-box}
-.btn{background:#6B21A8;color:#fff;border:none;padding:28px;width:100%;font-size:26px;font-weight:900;border-radius:18px;margin-top:20px}
-.note{font-size:20px;color:#444;line-height:1.8;margin-top:25px;text-align:center}
+body{margin:0;font-family:Arial;background:#f1f1f1;padding-bottom:110px}
+.header{background:#6B21A8;color:#fff;padding:25px;font-size:32px;font-weight:900;text-align:center}
+.tabs{display:flex;background:#fff}
+.tab{flex:1;padding:20px;text-align:center;font-size:22px;font-weight:900;border-bottom:4px solid #ddd}
+.tab.active{color:#6B21A8;border-bottom:4px solid #6B21A8}
+.box{background:#fff;padding:30px 20px;border-radius:20px;margin:20px}
+h2{font-size:28px;font-weight:900;text-align:center}
+.package{background:#F3F4F6;border:3px solid #ddd;border-radius:18px;padding:25px;margin-bottom:20px;text-align:center}
+.points{font-size:50px;font-weight:900;color:#6B21A8}
+.btn{background:#6B21A8;color:#fff;border:none;padding:25px;width:100%;font-size:26px;font-weight:900;border-radius:18px;margin-top:20px}
+input{width:100%;padding:20px;font-size:22px;border:2px solid #ddd;border-radius:12px;margin-top:10px}
+.note{font-size:20px;color:#666;text-align:center;margin-top:15px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:15px 0;border-top:3px solid #ddd}
+.nav-item{font-size:20px;color:#666;text-align:center}
+.nav-item.active{color:#6B21A8;font-weight:900}
 </style>
+<script>
+let tab = 'user';
+function showTab(t) {
+  tab = t;
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.content').forEach(x => x.style.display='none');
+  document.getElementById(t).style.display='block';
+  document.getElementById('tab-'+t).classList.add('active');
+}
+</script>
 </head>
 <body>
 
-<div class="header">💰 Fund Wallet</div>
+<div class="header">Fund Wallet</div>
 
-<div class="box">
-  <div class="balance">Current Balance</div>
-  <div class="amount">π47.55</div>
-  
-  <input type="number" placeholder="Enter Amount in Pi">
-  <input type="text" placeholder="Pi Wallet Address / Transaction ID">
-  
-  <button class="btn" onclick="alert('Fund request submitted! We will credit you soon.')">Submit Fund Request</button>
-  
-  <div class="note">
-    Send Pi to: <b>hendchi.pi.wallet</b><br>
-    Minimum: π5.00<br>
-    Funds are credited within 10 minutes
+<div class="tabs">
+  <div class="tab active" id="tab-user" onclick="showTab('user')">For Users</div>
+  <div class="tab" id="tab-advertiser" onclick="showTab('advertiser')">For Advertisers</div>
+</div>
+
+<!-- USER TAB -->
+<div class="content" id="user">
+  <div class="box">
+    <h2>Buy Pi Points</h2>
+    <p class="note">Use Points to unlock Influencer or Withdraw to Pi</p>
+    
+    <div class="package">
+      <div class="points">100 Points</div>
+      <div>≈ 0.9 Pi</div>
+    </div>
+    <div class="package">
+      <div class="points">500 Points</div>
+      <div>≈ 4.5 Pi</div>
+    </div>
+    <div class="package">
+      <div class="points">1000 Points</div>
+      <div>≈ 9 Pi</div>
+    </div>
+    
+    <label style="font-size:22px;font-weight:900">Pi Transaction ID</label>
+    <input type="text" placeholder="Paste TXID after paying Real Pi">
+    <button class="btn">Submit Payment</button>
   </div>
 </div>
 
+<!-- ADVERTISER TAB -->
+<div class="content" id="advertiser" style="display:none">
+  <div class="box">
+    <h2>Advertiser Wallet</h2>
+    <p class="note">Fund wallet to create tasks and promote products</p>
+    
+    <div class="package">
+      <div class="points">500 Points</div>
+      <div>≈ 4.5 Pi - For 100 Likes/Comments</div>
+    </div>
+    <div class="package">
+      <div class="points">2000 Points</div>
+      <div>≈ 18 Pi - For Product Promotion</div>
+    </div>
+    <div class="package">
+      <div class="points">5000 Points</div>
+      <div>≈ 45 Pi - For Big Campaign</div>
+    </div>
+    
+    <label style="font-size:22px;font-weight:900">Pi Transaction ID</label>
+    <input type="text" placeholder="Paste TXID after paying Real Pi">
+    <button class="btn">Fund Advertiser Wallet</button>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <div class="nav-item" onclick="window.location.href='dashboard.html'">Home</div>
+  <div class="nav-item" onclick="window.location.href='earn.html'">Earn</div>
+  <div class="nav-item active">Fund</div>
+  <div class="nav-item" onclick="window.location.href='withdraw.html'">Withdraw</div>
+</div>
+
 </body>
-</html>
+      </html>
