@@ -2,39 +2,76 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard - Hendchi</title>
+<title>Welcome - Hendchi</title>
 <style>
-body{margin:0;font-family:Arial;background:#f1f1f1;padding-bottom:110px;font-size:22px}
-.header{background:#fff;padding:25px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #ddd}
-.logo{color:#6B21A8;font-size:34px;font-weight:900}
-.header-icons{font-size:32px}
-.welcome{background:#fff;padding:25px;font-size:24px;font-weight:900;display:flex;justify-content:space-between}
-.logout{color:#6B21A8}
-.alert{background:#dbeafe;color:#1e3a8a;padding:25px;font-size:22px;line-height:1.8}
-.balance-box{background:#fff;padding:50px 20px;text-align:center}
-.balance-label{font-size:24px;color:#666;font-weight:900}
-.balance{font-size:70px;font-weight:900;margin:20px 0}
-.btn{border:3px solid #ddd;background:#fff;padding:20px 40px;font-size:24px;font-weight:900;border-radius:15px;margin:10px}
-.btn-buy{color:#6B21A8;font-size:23px;font-weight:900}
-.stats{display:flex;justify-content:space-around;background:#fff;padding:30px}
-.stat-label{font-size:21px;color:#666;font-weight:900}
-.stat-value{font-size:25px;font-weight:900}
-.member-box{background:#fff;padding:50px 20px;text-align:center}
-.member-title{font-size:30px;font-weight:900}
-.member-text{font-size:22px;line-height:1.9}
-.badge{background:#16a34a;color:#fff;padding:18px 30px;border-radius:40px;font-size:22px;font-weight:900}
-.btn-primary{background:#6B21A8;color:#fff;border:none;padding:25px 40px;font-size:25px;font-weight:900;border-radius:18px;width:90%}
-.cards{display:flex;gap:20px;padding:20px}
-.card{background:#fff;padding:30px;border-radius:20px;font-size:22px;font-weight:900;width:50%}
-.card .link{color:#6B21A8;font-size:22px}
-.section{background:#fff;padding:30px;margin:15px 0}
-.section h2{font-size:30px;font-weight:900}
-.nav{position:fixed;bottom:0;left:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:15px 0;border-top:3px solid #ddd;height:100px;z-index:999}
-.nav-item{text-align:center;font-size:20px;color:#444;font-weight:900;flex:1}
-.nav-icon{font-size:38px;display:block;margin-bottom:5px}
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(180deg, #6B21A8 0%, #581C87 100%);
+  color:#fff;
+  text-align:center;
+  padding:40px 20px;
+  min-height:100vh;
+}
+.logo{
+  font-size:90px;
+  font-weight:900;
+  margin-top:60px;
+}
+.logo span{
+  color:#FFD700;
+  font-size:45px;
+}
+h1{
+  font-size:48px;
+  margin:40px 0 20px 0;
+  font-weight:900;
+}
+p{
+  font-size:26px;
+  line-height:1.9;
+  margin:30px 20px;
+  color:#E9D5FF;
+}
+.btn{
+  background:#fff;
+  color:#6B21A8;
+  border:none;
+  padding:28px 50px;
+  font-size:28px;
+  font-weight:900;
+  border-radius:20px;
+  width:90%;
+  max-width:500px;
+  margin:15px auto;
+  display:block;
+  cursor:pointer;
+}
+.btn-outline{
+  background:transparent;
+  color:#fff;
+  border:4px solid #fff;
+}
+.btn:hover{
+  opacity:0.9;
+}
+.footer-text{
+  font-size:18px;
+  margin-top:60px;
+  color:#D8B4FE;
+}
 </style>
 </head>
 <body>
-...PASTE YOUR SAME DASHBOARD CONTENT HERE...
+
+<div class="logo">hendchi<span>.π</span></div>
+<h1>Earn Money Daily</h1>
+<p>Post adverts and perform simple social media tasks. Get paid instantly in Pi Coin.</p>
+
+<button class="btn" onclick="window.location.href='signup.html'">Create Account</button>
+<button class="btn btn-outline" onclick="window.location.href='login.html'">I Already Have an Account</button>
+
+<div class="footer-text">Trusted by 10,000+ members</div>
+
 </body>
 </html>
