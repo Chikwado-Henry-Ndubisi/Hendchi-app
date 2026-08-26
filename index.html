@@ -10,9 +10,9 @@ html,body{height:100%;background:#fff;color:#000;font-family:-apple-system,Blink
 .top{text-align:center;padding-top:1vh}
 .top h2{font-size:6.5vh;font-weight:900;color:#000;letter-spacing:-1px}
 
-.slider{flex:1;overflow:hidden;position:relative}
-.slides{display:flex;transition:transform 0.4s ease; height:100%}
-.slide{min-width:100%;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:0 2vw}
+.slider{flex:1;position:relative}
+.slide{position:absolute;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:0 2vw;opacity:0;transition:opacity 0.5s}
+.slide.active{opacity:1} /* ONLY 1 SHOWS AT A TIME */
 .slide h1{font-size:5.5vh;font-weight:900;line-height:1.1;margin:0 0 1.5vh 0;color:#000}
 .slide p{font-size:2.8vh;line-height:1.35;color:#000;margin:0 0 1.5vh 0;font-weight:700}
 
@@ -26,86 +26,71 @@ button{width:100%;padding:2vh;margin-bottom:1.2vh;border-radius:3vw;font-size:3.
 .btn2{background:#fff;color:#000;border:0.5vw solid #000}
 </style>
 </head>
-<body>
+<body onclick="nextSlide()"> <!-- TAP ANYWHERE TO SLIDE -->
 
 <div class="wrap">
   <div class="top">
     <h2>hendchi</h2>
   </div>
 
-  <div class="slider" id="slider">
-    <div class="slides" id="slides">
-      
-      <!-- SLIDE 1 -->
-      <div class="slide">
-        <h1>Get Paid in Pi for<br>Completing Social Tasks</h1>
-        <p>Earn daily Pi by completing social tasks, posting adverts, watching ads and referring friends for top businesses and brands.</p>
-      </div>
+  <div class="slider">
+    <!-- SLIDE 1 -->
+    <div class="slide active" id="s1">
+      <h1>Get Paid in Pi for<br>Completing Social Tasks</h1>
+      <p>Earn daily Pi by completing social tasks, posting adverts, watching ads and referring friends for top businesses and brands.</p>
+    </div>
 
-      <!-- SLIDE 2 -->
-      <div class="slide">
-        <h1>Watch Ads & Earn Pi</h1>
-        <p>Watch short ads from real businesses and get rewarded with Pi instantly to your wallet.</p>
-      </div>
+    <!-- SLIDE 2 -->
+    <div class="slide" id="s2">
+      <h1>Watch Ads & Earn Pi</h1>
+      <p>Watch short ads from real businesses and get rewarded with Pi instantly to your wallet.</p>
+    </div>
 
-      <!-- SLIDE 3 -->
-      <div class="slide">
-        <h1>Post & Get Paid</h1>
-        <p>Businesses pay you Pi to post their adverts on your social media. More followers = More Pi.</p>
-      </div>
+    <!-- SLIDE 3 -->
+    <div class="slide" id="s3">
+      <h1>Post & Get Paid</h1>
+      <p>Businesses pay you Pi to post their adverts on your social media. More followers = More Pi.</p>
+    </div>
 
-      <!-- SLIDE 4 -->
-      <div class="slide">
-        <h1>Refer Friends</h1>
-        <p>Invite your friends to Hendchi and earn bonus Pi for every person that joins and completes tasks.</p>
-      </div>
-
+    <!-- SLIDE 4 -->
+    <div class="slide" id="s4">
+      <h1>Refer Friends</h1>
+      <p>Invite your friends to Hendchi and earn bonus Pi for every person that joins and completes tasks.</p>
     </div>
   </div>
 
-  <div class="dots" id="dots">
-    <div class="dot active"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
+  <div class="dots">
+    <div class="dot active" id="d1"></div>
+    <div class="dot" id="d2"></div>
+    <div class="dot" id="d3"></div>
+    <div class="dot" id="d4"></div>
   </div>
 
   <div class="bottom">
-    <button class="btn1" onclick="alert('Pi Login coming')">SIGN IN WITH PI</button>
-    <a href="home.html" style="text-decoration:none"><button class="btn2">CONTINUE AS GUEST</button></a>
+    <button class="btn1" onclick="event.stopPropagation();alert('Pi Login coming')">SIGN IN WITH PI</button>
+    <a href="home.html" style="text-decoration:none" onclick="event.stopPropagation()">
+      <button class="btn2">CONTINUE AS GUEST</button>
+    </a>
   </div>
 </div>
 
 <script>
-let currentSlide = 0;
-const slides = document.getElementById('slides');
-const dots = document.querySelectorAll('.dot');
-let startX = 0;
-
-function goToSlide(n) {
-  currentSlide = n;
-  slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-  dots.forEach((dot, i) => {
-    dot.classList.toggle('active', i === currentSlide);
-  });
+let current = 1;
+function nextSlide(){
+  document.getElementById('s'+current).classList.remove('active');
+  document.getElementById('d'+current).classList.remove('active');
+  current++;
+  if(current > 4) current = 1;
+  document.getElementById('s'+current).classList.add('active');
+  document.getElementById('d'+current).classList.add('active');
 }
 
-// SWIPE FOR MOBILE
-document.getElementById('slider').addEventListener('touchstart', e => {
-  startX = e.touches[0].clientX;
-});
-document.getElementById('slider').addEventListener('touchend', e => {
-  let endX = e.changedTouches[0].clientX;
-  if(startX - endX > 50 && currentSlide < 3) goToSlide(currentSlide + 1); // swipe left
-  if(endX - startX > 50 && currentSlide > 0) goToSlide(currentSlide - 1); // swipe right
-});
-
-// AUTO SLIDE EVERY 4 SECONDS
-setInterval(() => {
-  currentSlide = (currentSlide + 1) % 4;
-  goToSlide(currentSlide);
-}, 4000);
+// AUTO SLIDE FOR PI
+setTimeout(function auto(){
+  nextSlide();
+  setTimeout(auto, 3000); // 3 seconds
+}, 3000);
 </script>
 
 </body>
-  </html>
+</html>
