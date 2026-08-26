@@ -1,1 +1,119 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Hendchi</title><style>*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f1f1f1;padding-bottom:130px}.header{background:#6B21A8;color:#fff;padding:30px;font-size:38px;font-weight:900;text-align:center;position:sticky;top:0;z-index:10}.box{background:#fff;padding:35px 25px;border-radius:22px;margin:25px;text-align:center}.balance{font-size:60px;font-weight:900;color:#6B21A8;margin:15px 0}.btn{background:#6B21A8;color:#fff;border:none;padding:28px;width:100%;font-size:28px;font-weight:900;border-radius:20px;margin-top:20px;cursor:pointer}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:20px 0;border-top:4px solid #ddd;z-index:10}.nav-item{font-size:22px;color:#666;text-align:center;cursor:pointer;font-weight:900}.nav-item.active{color:#6B21A8}.nav-icon{font-size:38px;display:block}</style></head><body><div class="header">HENDCHI</div><div class="box"><div style="font-size:24px;font-weight:900">YOUR POINTS</div><div class="balance"><span id="balance">2450.00</span></div><button class="btn" onclick="window.location.href='earn.html'">EARN MORE POINTS</button></div><div class="bottom-nav"><div class="nav-item active"><span class="nav-icon">🏠</span>HOME</div><div class="nav-item" onclick="window.location.href='earn.html'"><span class="nav-icon">💰</span>EARN</div><div class="nav-item" onclick="window.location.href='advertise.html'"><span class="nav-icon">➕</span>ADVERTISE</div><div class="nav-item" onclick="window.location.href='marketplace.html'"><span class="nav-icon">🏪</span>MARKET</div><div class="nav-item" onclick="window.location.href='more.html'"><span class="nav-icon">☰</span>MORE</div></div><script>window.onload=function(){let p=parseFloat(localStorage.getItem('points'))||2450;document.getElementById('balance').innerText=p.toFixed(2)}</script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Dashboard - Hendchi</title>
+<style>
+body{margin:0;font-family:Arial;background:#f1f1f1;padding-bottom:110px;font-size:26px}
+.header{background:#fff;padding:25px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #ddd;position:sticky;top:0}
+.logo{color:#6B21A8;font-size:38px;font-weight:900}
+.logo span{color:#000;font-size:24px}
+.header-icons{font-size:36px}
+.welcome{background:#fff;padding:25px;font-size:28px;font-weight:900;display:flex;justify-content:space-between}
+.logout{color:#6B21A8;cursor:pointer}
+.alert{background:#dbeafe;color:#1e3a8a;padding:25px;font-size:24px;line-height:1.8}
+.alert a{color:#1e3a8a;font-weight:900;text-decoration:underline}
+.balance-box{background:#fff;padding:50px 20px;text-align:center}
+.balance-label{font-size:26px;color:#666;font-weight:900}
+.balance{font-size:75px;font-weight:900;margin:20px 0;color:#6B21A8}
+.btn-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.btn{border:3px solid #ddd;background:#fff;padding:20px 40px;font-size:26px;font-weight:900;border-radius:15px;cursor:pointer;min-width:160px}
+.btn:hover{background:#F3F4F6}
+.btn-buy{color:#6B21A8;font-size:25px;font-weight:900;margin-top:20px;cursor:pointer}
+.stats{display:flex;justify-content:space-around;background:#fff;padding:30px;flex-wrap:wrap;gap:15px}
+.stat-label{font-size:23px;color:#666;font-weight:900}
+.stat-value{font-size:27px;font-weight:900;margin-top:10px;color:#6B21A8}
+.member-box{background:#fff;padding:50px 20px;text-align:center}
+.member-icon{font-size:75px}
+.member-title{font-size:32px;font-weight:900;margin:20px 0}
+.member-text{font-size:24px;line-height:1.9;color:#444}
+.badge{background:#16a34a;color:#fff;padding:18px 30px;border-radius:40px;font-size:24px;font-weight:900;display:inline-block;margin:20px 0}
+.btn-primary{background:#6B21A8;color:#fff;border:none;padding:25px 40px;font-size:27px;font-weight:900;border-radius:18px;width:90%;cursor:pointer}
+.cards{display:flex;gap:20px;padding:20px;flex-direction:column}
+.card{background:#fff;padding:30px;border-radius:20px;font-size:24px;font-weight:900;width:100%;box-sizing:border-box;cursor:pointer}
+.card .link{color:#6B21A8;font-size:24px;margin-top:15px}
+.section{background:#fff;padding:30px;margin:15px 0}
+.section h2{font-size:32px;font-weight:900;margin:0}
+.nav{position:fixed;bottom:0;left:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:15px 0;border-top:3px solid #ddd;height:100px;z-index:999}
+.nav-item{text-align:center;font-size:22px;color:#444;font-weight:900;flex:1;cursor:pointer}
+.nav-icon{font-size:40px;display:block;margin-bottom:5px}
+.nav-item.active{color:#6B21A8}
+</style>
+<script>
+window.onload = function() {
+  let points = localStorage.getItem('points') || 2450;
+  document.getElementById('balance').innerText = points + ' Points';
+  document.getElementById('earnings').innerText = points + ' Points';
+}
+function logout() {
+  alert('Logout feature coming soon');
+}
+</script>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">hendchi<span>.pi</span></div>
+  <div class="header-icons">❓ 🔔 👤</div>
+</div>
+
+<div class="welcome">
+  <div>Welcome, Chikwado</div>
+  <div class="logout" onclick="logout()">⏻ Logout</div>
+</div>
+
+<div class="alert">
+  We are happy to inform you that all withdrawal issues have been resolved successfully. If you haven't received your withdrawals yet, click <a href="#">here</a> to send a withdrawal update request.
+</div>
+
+<div class="balance-box">
+  <div class="balance-label">My Pi Points Balance</div>
+  <div class="balance" id="balance">2,450 Points</div>
+  <div class="btn-row">
+    <button class="btn" onclick="window.location.href='fund-wallet.html'">💰 FUND</button>
+    <button class="btn" onclick="window.location.href='withdraw.html'">💸 WITHDRAW</button>
+  </div>
+  <div class="btn-buy" onclick="window.location.href='fund-wallet.html'">⚡ Buy Points with Real Pi</div>
+</div>
+
+<div class="stats">
+  <div><div class="stat-label">📊 Total Earnings</div><div class="stat-value" id="earnings">2,450 Points</div></div>
+  <div><div class="stat-label">⏳ Pending Balance</div><div class="stat-value">0 Points</div></div>
+  <div><div class="stat-label">💳 Amount Spent</div><div class="stat-value">0 Points</div></div>
+</div>
+
+<div class="member-box">
+  <div class="member-icon">👤✓</div>
+  <div class="member-title">Congratulations! You are now a MEMBER!</div>
+  <div class="member-text">Your membership has been activated successfully. You can now earn daily by posting adverts and performing tasks.</div>
+  <div class="badge">6779 total tasks for you to perform</div><br>
+  <button class="btn-primary" onclick="window.location.href='earn.html'">PERFORM TASKS AND EARN</button>
+</div>
+
+<div class="cards">
+  <div class="card" onclick="window.location.href='earn.html'">
+    <div style="font-size:55px">📍</div>
+    <div>Earn daily by posting adverts and performing tasks</div>
+    <div class="link">↗ Get Started</div>
+  </div>
+  <div class="card" onclick="window.location.href='influencer.html'">
+    <div style="font-size:55px">📱</div>
+    <div>Get people to repost your adverts and perform tasks</div>
+    <div class="link">↗ Get Started</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Available Tasks</h2>
+</div>
+
+<div class="nav">
+  <div class="nav-item active"><span class="nav-icon">🏠</span>Home</div>
+  <div class="nav-item" onclick="window.location.href='earn.html'"><span class="nav-icon">📦</span>Earn</div>
+  <div class="nav-item" onclick="window.location.href='advertise.html'"><span class="nav-icon">➕</span>Advertise</div>
+  <div class="nav-item" onclick="window.location.href='marketplace.html'"><span class="nav-icon">🏪</span>Marketplace</div>
+  <div class="nav-item" onclick="window.location.href='more.html'"><span class="nav-icon">☰</span>More</div>
+</div>
+
+</body>
+      </html>
