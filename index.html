@@ -1,38 +1,111 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard - Hendchi</title>
 <style>
-*{box-sizing:border-box}
-html{font-size:24px}
-body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:#f1f1f1;padding-bottom:120px;font-size:1rem}
-.header{background:#fff;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #e5e5e5;position:sticky;top:0;z-index:999}
-.logo{color:#6B21A8;font-size:1.6rem;font-weight:900}
-.logo span{color:#000;font-size:1rem}
-.header-icons{display:flex;gap:32px;font-size:1.6rem}
-.header-icons span{cursor:pointer}
+body{margin:0;font-family:Arial;background:#f1f1f1;padding-bottom:110px;font-size:22px}
+.header{background:#fff;padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #ddd}
+.logo{color:#6B21A8;font-size:32px;font-weight:900}
+.header-icons{font-size:30px}
 
-.welcome{background:#fff;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;font-size:1rem;font-weight:900;border-bottom:2px solid #f0f0f0}
-.logout{color:#6B21A8;font-size:0.95rem;font-weight:900;cursor:pointer}
+.welcome{background:#fff;padding:20px;font-size:22px;font-weight:900;display:flex;justify-content:space-between}
+.logout{color:#6B21A8}
 
-.alert{background:#dbeafe;color:#1e3a8a;padding:24px 26px;font-size:0.95rem;line-height:2.1}
-.alert a{color:#1e3a8a;font-weight:900;text-decoration:underline}
+.alert{background:#dbeafe;color:#1e3a8a;padding:20px;font-size:21px;line-height:1.8}
 
-.balance-box{background:#fff;padding:45px 26px;text-align:center}
-.balance-label{font-size:1.05rem;color:#666;margin-bottom:18px;font-weight:900}
-.balance{font-size:2.8rem;font-weight:900;margin:18px 0}
-.btn-row{display:flex;gap:22px;justify-content:center;margin:28px 0}
-.btn{background:#fff;border:4px solid #ddd;padding:22px 40px;border-radius:18px;font-size:1rem;font-weight:900;cursor:pointer}
-.btn-buy{color:#6B21A8;font-size:0.95rem;font-weight:900;cursor:pointer;margin-top:18px}
+.balance-box{background:#fff;padding:40px 20px;text-align:center}
+.balance-label{font-size:22px;color:#666;font-weight:900}
+.balance{font-size:60px;font-weight:900;margin:15px 0}
+.btn{border:3px solid #ddd;background:#fff;padding:18px 35px;font-size:22px;font-weight:900;border-radius:15px;margin:10px}
+.btn-buy{color:#6B21A8;font-size:21px;font-weight:900}
 
-.stats{display:flex;justify-content:space-around;background:#fff;padding:28px 18px;margin:18px 0}
-.stat{text-align:center}
-.stat-label{font-size:0.9rem;color:#666;font-weight:900}
-.stat-value{font-size:1.1rem;font-weight:900;margin-top:12px}
+.stats{display:flex;justify-content:space-around;background:#fff;padding:25px}
+.stat-label{font-size:19px;color:#666;font-weight:900}
+.stat-value{font-size:23px;font-weight:900}
 
-.member-box{background:#fff;padding:45px 26px;margin:18px 0;text-align:center}
-.member-icon{font-size:3.5rem;margin-bottom:18px}
-.member-title{font-size:1.3rem;font-weight:900;margin:22px 0}
-.member-text{font-size:1rem;color:#444;line-height:2.2;margin:22px 0}
-.badge{background:#16a34a;color
+.member-box{background:#fff;padding:40px 20px;text-align:center}
+.member-title{font-size:28px;font-weight:900}
+.member-text{font-size:21px;line-height:1.9}
+.badge{background:#16a34a;color:#fff;padding:15px 25px;border-radius:40px;font-size:20px;font-weight:900}
+.btn-primary{background:#6B21A8;color:#fff;border:none;padding:22px 40px;font-size:23px;font-weight:900;border-radius:18px;width:90%}
+
+.cards{display:flex;gap:20px;padding:20px}
+.card{background:#fff;padding:25px;border-radius:20px;font-size:20px;font-weight:900}
+.card .link{color:#6B21A8;font-size:20px}
+
+.section{background:#fff;padding:25px;margin:15px 0}
+.section h2{font-size:28px;font-weight:900}
+
+/* BOTTOM NAV - SIMPLE */
+.nav{position:fixed;bottom:0;left:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:15px 0;border-top:3px solid #ddd;height:100px;z-index:999}
+.nav-item{text-align:center;font-size:18px;color:#444;font-weight:900}
+.nav-icon{font-size:35px;display:block;margin-bottom:5px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">hendchi.π</div>
+  <div class="header-icons">❓ 🔔 👤</div>
+</div>
+
+<div class="welcome">
+  <div>Welcome, Chikwado</div>
+  <div class="logout">⏻ Logout</div>
+</div>
+
+<div class="alert">
+  We are happy to inform you that all withdrawal issues have been resolved successfully. If you haven't received your withdrawals yet, click <a href="#" style="color:#1e3a8a;font-weight:900">here</a> to send a withdrawal update request.
+</div>
+
+<div class="balance-box">
+  <div class="balance-label">My Balance</div>
+  <div class="balance">π47.55</div>
+  <button class="btn">💰 FUND</button>
+  <button class="btn">💸 WITHDRAW</button>
+  <div class="btn-buy">⚡ Buy Pi/Data</div>
+</div>
+
+<div class="stats">
+  <div><div class="stat-label">📊 Total Earnings</div><div class="stat-value">π0.00</div></div>
+  <div><div class="stat-label">⏳ Pending Balance</div><div class="stat-value">π20.00</div></div>
+  <div><div class="stat-label">💳 Amount Spent</div><div class="stat-value">π0.00</div></div>
+</div>
+
+<div class="member-box">
+  <div style="font-size:60px">👤✓</div>
+  <div class="member-title">Congratulations! You are now a MEMBER!</div>
+  <div class="member-text">Your membership has been activated successfully. You can now earn daily by posting adverts and performing tasks.</div>
+  <div class="badge">6779 total tasks for you to perform</div><br><br>
+  <button class="btn-primary">PERFORM TASKS AND EARN</button>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <div style="font-size:45px">📍</div>
+    <div>Earn daily by posting adverts and performing tasks</div>
+    <div class="link">↗ Get Started</div>
+  </div>
+  <div class="card">
+    <div style="font-size:45px">📱</div>
+    <div>Get people to repost your adverts and perform tasks</div>
+    <div class="link">↗ Get Started</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Available Tasks</h2>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="nav">
+  <div class="nav-item"><span class="nav-icon">🏠</span>Home</div>
+  <div class="nav-item"><span class="nav-icon">📦</span>Earn</div>
+  <div class="nav-item"><span class="nav-icon">➕</span>Advertise</div>
+  <div class="nav-item"><span class="nav-icon">🏪</span>Marketplace</div>
+  <div class="nav-item"><span class="nav-icon">☰</span>More</div>
+</div>
+
+</body>
+    </html>
