@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Withdraw - Hendchi</title>
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5;padding-bottom:70px}
+.header{background:#fff;padding:15px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #ddd;position:sticky;top:0}
+.header a{color:#000;text-decoration:none;font-size:24px}
+.header h1{font-size:20px;margin:0;font-weight:900}
+.container{padding:15px}
+.box{background:#fff;border-radius:16px;padding:20px;margin-bottom:15px}
+.balance-row{display:flex;justify-content:space-between;margin-bottom:8px}
+.balance-row .label{font-size:16px;font-weight:900}
+.balance-row .value{font-size:16px;font-weight:900}
+.balance-row .max{color:#16a34a;font-size:14px}
+.bank-title{color:#6B21A8;font-size:14px;font-weight:700;margin-bottom:8px}
+.bank-name{font-size:17px;font-weight:900;margin:5px 0}
+.bank-details{font-size:15px;color:#444;display:flex;align-items:center;gap:8px}
+.edit{margin-left:auto;cursor:pointer;font-size:20px}
+label{display:block;font-size:15px;font-weight:700;margin:15px 0 8px 0}
+.input-box{display:flex;align-items:center;border:1px solid #ddd;border-radius:12px;padding:12px;background:#fff}
+.input-box input{border:none;outline:none;flex:1;font-size:16px;background:transparent}
+.input-icon{margin-right:10px;font-size:18px}
+.note{font-size:13px;color:#666;line-height:1.6;margin:10px 0}
+.btn-withdraw{width:100%;background:#6B21A8;color:#fff;border:none;padding:16px;border-radius:12px;font-size:17px;font-weight:900;margin:15px 0;cursor:pointer}
+.btn-history{width:100%;background:#fff;color:#333;border:1px solid #ccc;padding:16px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer}
+.nav{position:fixed;bottom:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd}
+.nav-item{text-align:center;font-size:12px;color:#666}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="more.html">←</a>
+  <h1>Withdraw</h1>
+</div>
+
+<div class="container">
+
+  <div class="box">
+    <div class="balance-row">
+      <div>
+        <div class="label">Wallet Balance</div>
+        <div class="max">Max. Withdrawable Amount</div>
+      </div>
+      <div style="text-align:right">
+        <div class="value">25.50 π</div>
+        <div class="value" style="color:#16a34a">18.50 π</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="bank-title">Pi Wallet Details</div>
+    <div class="bank-name">HENRY NDUBISI CHIKWADO</div>
+    <div class="bank-details">
+      GCX5K...7Z9Q <span>🏦 Pi Network Wallet</span>
+      <span class="edit" onclick="alert('Edit Pi Wallet Address')">✏️</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <label>Amount (π)</label>
+    <div class="input-box">
+      <span class="input-icon">≡</span>
+      <input type="number" id="amount" placeholder="Enter Withdrawal Amount" min="1">
+    </div>
+    <p class="note">Please note that a network fee of 0.01π will be deducted from your account.</p>
+
+    <label>Password</label>
+    <div class="input-box">
+      <span class="input-icon">🔒</span>
+      <input type="password" id="password" placeholder="Enter your password">
+      <span class="input-icon">👁️</span>
+    </div>
+    <p class="note">Please validate this transaction using the password you use to log in to your account.</p>
+
+    <button class="btn-withdraw" onclick="withdraw()">WITHDRAW</button>
+    <button class="btn-history" onclick="alert('Withdrawal History Page Coming')">WITHDRAWAL HISTORY</button>
+  </div>
+
+</div>
+
+<div class="nav">
+  <div class="nav-item" onclick="window.location.href='index.html'">🏠<br>Home</div>
+  <div class="nav-item" onclick="window.location.href='earn.html'">📦<br>Earn</div>
+  <div class="nav-item" onclick="window.location.href='advertise.html'">➕<br>Advertise</div>
+  <div class="nav-item">🏪<br>Market</div>
+  <div class="nav-item">☰<br>More</div>
+</div>
+
+<script>
+function withdraw(){
+  let amount = document.getElementById('amount').value;
+  let password = document.getElementById('password').value;
+  if(amount < 1){
+    alert('Minimum withdrawal is 1 π');
+    return;
+  }
+  if(!password){
+    alert('Please enter your password');
+    return;
+  }
+  alert('Withdrawal request of ' + amount + ' π submitted. You will receive Pi in your wallet within 24hrs.');
+}
+</script>
+
+</body>
+</html>
