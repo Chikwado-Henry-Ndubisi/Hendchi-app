@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Hendchi</title>
+<style>
+html,body{height:100%!important;margin:0!important;padding:0!important;overflow:hidden!important}
+*{box-sizing:border-box!important}
+.container{width:400vw!important;height:100vh!important;display:flex!important;transition:transform 0.5s ease!important}
+.slide{width:100vw!important;height:100vh!important;padding:0 30px 280px 30px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;text-align:center!important}
+.topbar{position:absolute!important;top:0!important;left:0!important;width:100%!important;padding:25px!important;display:flex!important;justify-content:space-between!important;align-items:center!important;z-index:99!important}
+.logo{font-size:60px!important;color:#6B21A8!important;font-weight:900!important;font-family:Arial Black,Arial!important}
+.logo span{font-size:32px!important;color:#000!important;font-weight:900!important}
+.menu{font-size:60px!important;font-weight:900!important}
+.slide h1{font-size:70px!important;font-weight:900!important;color:#000!important;line-height:1.2!important;margin-bottom:30px!important;font-family:Arial Black,Arial!important}
+.slide p{font-size:36px!important;font-weight:800!important;color:#333!important;line-height:1.5!important;font-family:Arial!important}
+.dots{position:fixed!important;bottom:180px!important;width:100%!important;display:flex!important;justify-content:center!important;gap:15px!important}
+.dot{width:18px!important;height:18px!important;border-radius:50%!important;background:#ccc!important}
+.dot.active{background:#6B21A8!important;width:45px!important;border-radius:12px!important}
+.bottom{position:fixed!important;bottom:0!important;left:0!important;width:100%!important;background:#fff!important;padding:25px!important;box-shadow:0 -10px 30px rgba(0,0,0,0.2)!important}
+.btn1{width:100%!important;padding:35px!important;background:#6B21A8!important;color:#fff!important;border:none!important;border-radius:20px!important;font-size:32px!important;font-weight:900!important;margin-bottom:15px!important;font-family:Arial Black,Arial!important}
+.btn2{width:100%!important;padding:35px!important;background:#fff!important;color:#6B21A8!important;border:4px solid #6B21A8!important;border-radius:20px!important;font-size:32px!important;font-weight:900!important;font-family:Arial Black,Arial!important}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">📢 hendchi<span>.pi</span></div>
+  <div class="menu">☰</div>
+</div>
+
+<div class="container" id="s">
+  <div class="slide">
+    <h1>Get Paid for<br>Posting Adverts<br>Daily on Your<br>Social Media</h1>
+    <p>Earn daily income by posting adverts and performing simple social tasks for top businesses.</p>
+  </div>
+  <div class="slide">
+    <h1>Get People to<br>Post Your Adverts<br>And Grow Your<br>Business</h1>
+    <p>Reach thousands of real people on Facebook, Instagram, TikTok, Twitter and Telegram.</p>
+  </div>
+  <div class="slide">
+    <h1>Boost Your Social<br>Media Engagement<br>And Go Viral</h1>
+    <p>Get real likes, comments, followers and views. Our community of 1000+ users engage daily.</p>
+  </div>
+  <div class="slide">
+    <h1>Sell Faster on<br>Hendchi<br>Marketplace</h1>
+    <p>Buy and sell products using Pi Points. Zero fees, instant delivery, trusted users.</p>
+  </div>
+</div>
+
+<div class="dots" id="d"></div>
+
+<div class="bottom">
+  <button class="btn1" onclick="location.href='signup.html'">CREATE FREE ACCOUNT</button>
+  <button class="btn2" onclick="location.href='login.html'">LOGIN TO YOUR ACCOUNT</button>
+</div>
+
+<script>
+let c=0,s=document.querySelectorAll('.slide'),sl=document.getElementById('s'),dc=document.getElementById('d');
+s.forEach((_,i)=>{let x=document.createElement('div');x.className='dot'+(i==0?' active':'');dc.appendChild(x)});
+let dots=document.querySelectorAll('.dot');
+function u(){sl.style.transform=`translateX(-${c*100}vw)`;dots.forEach((d,i)=>d.className='dot'+(i==c?' active':''))}
+function n(){c=(c+1)%4;u()}
+let t=setInterval(n,3000);
+let sx=0;sl.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;clearInterval(t)});
+sl.addEventListener('touchend',e=>{let ex=e.changedTouches[0].clientX;if(sx-ex>50&&c<3)c++;if(ex-sx>50&&c>0)c--;u();t=setInterval(n,3000)});
+</script>
+
+</body>
+  </html>
