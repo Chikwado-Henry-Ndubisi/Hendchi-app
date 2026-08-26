@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Orders - Hendchi</title>
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5;padding-bottom:20px}
+.header{background:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;position:sticky;top:0}
+.header h1{font-size:20px;margin:0;font-weight:900}
+.header a{color:#000;text-decoration:none;font-size:24px}
+.btn-new{background:#6B21A8;color:#fff;border:none;padding:10px 16px;border-radius:25px;font-size:14px;font-weight:900;cursor:pointer}
+
+.tabs{display:flex;background:#fff;border-bottom:1px solid #ddd}
+.tab{flex:1;text-align:center;padding:14px;font-size:15px;font-weight:600;color:#666;cursor:pointer}
+.tab.active{color:#6B21A8;border-bottom:3px solid #6B21A8}
+
+.order-card{background:#fff;border-radius:16px;padding:18px;margin:15px;border:1px solid #eee}
+.order-date{font-size:13px;color:#666;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.order-title{font-size:16px;font-weight:900;margin:8px 0}
+.order-price{font-size:14px;color:#444;margin-bottom:12px}
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.grid-item{font-size:14px}
+.grid-item b{display:block;font-size:15px;margin-top:3px}
+.link{color:#6B21A8;text-decoration:none;font-size:14px;word-break:break-all}
+.amount{font-size:17px;font-weight:900}
+.status{background:#3b82f6;color:#fff;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block}
+.btn-view{background:#16a34a;color:#fff;border:none;padding:12px;border-radius:10px;width:100%;font-size:15px;font-weight:900;margin-top:12px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="advertise.html">←</a>
+  <h1>My Orders</h1>
+  <button class="btn-new" onclick="window.location.href='social-order.html'">+ NEW ORDER</button>
+</div>
+
+<div class="tabs">
+  <div class="tab active">Social Orders</div>
+  <div class="tab" onclick="alert('Purchase Orders Coming')">Purchase Orders</div>
+  <div class="tab" onclick="alert('Sales Orders Coming')">Sales Orders</div>
+</div>
+
+<!-- ORDER 1 -->
+<div class="order-card">
+  <div class="order-date">📘 Sep 26th 2024 9:04 am</div>
+  <div class="order-title">Get Real People to Like and Follow Your Facebook Business Page</div>
+  <div class="order-price">Pricing: 0.05π per Page Like and Follow</div>
+  
+  <div class="order-grid">
+    <div class="grid-item">
+      No. Of Page Likes and Follows
+      <b>200</b>
+    </div>
+    <div class="grid-item">
+      Your Link - <a href="#" class="link">Visit Link</a>
+      <b><a href="#" class="link">https://www.facebook.com/sha...</a></b>
+    </div>
+  </div>
+
+  <div class="order-grid">
+    <div class="grid-item">
+      Amount Paid
+      <b class="amount">10.00 π</b>
+    </div>
+    <div class="grid-item">
+      Status
+      <div><span class="status">● ALLOCATED</span></div>
+    </div>
+  </div>
+
+  <button class="btn-view" onclick="alert('Monitor Results Page Coming')">VIEW & MONITOR RESULTS</button>
+</div>
+
+<!-- ORDER 2 -->
+<div class="order-card">
+  <div class="order-date">📘 Sep 1st 2024 10:20 pm</div>
+  <div class="order-title">Get Real People to Like and Follow Your Facebook Business Page</div>
+  <div class="order-price">Pricing: 0.05π per Page Like and Follow</div>
+  
+  <div class="order-grid">
+    <div class="grid-item">No. Of Page Likes and Follows <b>207</b></div>
+    <div class="grid-item">Your Link - <a href="#" class="link">Visit Link</a> <b><a href="#" class="link">https://www.facebook.com/615...</a></b></div>
+  </div>
+
+  <div class="order-grid">
+    <div class="grid-item">Amount Paid <b class="amount">10.35 π</b></div>
+    <div class="grid-item">Status <div><span class="status">● ALLOCATED</span></div></div>
+  </div>
+
+  <button class="btn-view" onclick="alert('Monitor Results Page Coming')">VIEW & MONITOR RESULTS</button>
+</div>
+
+<!-- ORDER 3 -->
+<div class="order-card">
+  <div class="order-date">📘 Aug 11th 2024 5:13 pm</div>
+  <div class="order-title">Get Real People to Post Your Advert on WhatsApp Status</div>
+  <div class="order-price">Pricing: 0.50π per WhatsApp Status</div>
+  
+  <div class="order-grid">
+    <div class="grid-item">No. Of Posts <b>20</b></div>
+    <div class="grid-item">Your Link - <a href="#" class="link">Visit Link</a> <b><a href="#" class="link">https://wa.me/234...</a></b></div>
+  </div>
+
+  <div class="order-grid">
+    <div class="grid-item">Amount Paid <b class="amount">10.00 π</b></div>
+    <div class="grid-item">Status <div><span class="status">● ALLOCATED</span></div></div>
+  </div>
+
+  <button class="btn-view" onclick="alert('Monitor Results Page Coming')">VIEW & MONITOR RESULTS</button>
+</div>
+
+</body>
+</html>
