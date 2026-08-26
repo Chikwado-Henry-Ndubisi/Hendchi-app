@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Place Order - Hendchi</title>
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5;padding-bottom:90px}
+.header{background:#6B21A8;color:#fff;padding:18px;font-size:18px;font-weight:900;display:flex;align-items:center;gap:12px}
+.header a{color:#fff;text-decoration:none;font-size:22px}
+.container{padding:15px}
+.card{background:#fff;border-radius:16px;padding:20px;margin-bottom:15px}
+.card h2{font-size:18px;margin:0 0 15px 0}
+label{display:block;font-size:15px;font-weight:600;margin:15px 0 8px 0}
+input, textarea, select{width:100%;padding:14px;border:1px solid #ddd;border-radius:10px;font-size:15px;box-sizing:border-box}
+textarea{min-height:120px;resize:vertical}
+.upload-box{border:2px dashed #6B21A8;border-radius:12px;padding:30px;text-align:center;background:#f3e8ff}
+.upload-box p{margin:8px 0;font-size:14px;color:#666}
+.summary{background:#dcfce7;border-radius:12px;padding:15px;margin:15px 0}
+.summary-row{display:flex;justify-content:space-between;margin:8px 0;font-size:15px}
+.summary-row.total{font-size:18px;font-weight:900;border-top:1px solid #16a34a;padding-top:10px;margin-top:10px}
+.btn-pay{position:fixed;bottom:0;left:0;width:100%;background:#6B21A8;color:#fff;padding:18px;border:none;font-size:18px;font-weight:900;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="social-order.html">←</a>
+  Place Your Social Media Order
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h2>1. Your Advert Details</h2>
+    
+    <label>Upload Image or Video for Advert</label>
+    <div class="upload-box">
+      <p style="font-size:40px">📤</p>
+      <p><b>Tap to Upload</b></p>
+      <p>Image or 30s Video. Max 5MB</p>
+      <input type="file" accept="image/*,video/*" style="opacity:0;position:absolute">
+    </div>
+
+    <label>Write Your Advert Caption/Text</label>
+    <textarea placeholder="Example: Buy Original iPhone 13 Pro Max. Pay with Pi. DM @hendchi.store. #PiNetwork #PortHarcourt"></textarea>
+    <p style="font-size:12px;color:#666">This is what influencers will post</p>
+
+    <label>Link to Website or WhatsApp</label>
+    <input type="text" placeholder="https://wa.me/234... or https://yourstore.com">
+  </div>
+
+  <div class="card">
+    <h2>2. Choose Quantity</h2>
+    
+    <label>Which Platform?</label>
+    <select id="platform">
+      <option>WhatsApp Status - 0.50π each</option>
+      <option>Facebook Post - 0.75π each</option>
+      <option>Instagram Post - 0.75π each</option>
+      <option>Twitter Tweet - 0.60π each</option>
+    </select>
+
+    <label>How many people should post?</label>
+    <input type="number" id="quantity" value="10" min="5">
+    <p style="font-size:12px;color:#666">Minimum 5 people. More people = more reach</p>
+  </div>
+
+  <div class="summary">
+    <h2 style="font-size:16px;margin:0 0 10px 0">Order Summary</h2>
+    <div class="summary-row">
+      <span>Platform:</span>
+      <span id="sumPlatform">WhatsApp Status</span>
+    </div>
+    <div class="summary-row">
+      <span>Quantity:</span>
+      <span id="sumQty">10 People</span>
+    </div>
+    <div class="summary-row">
+      <span>Price per post:</span>
+      <span>0.50 π</span>
+    </div>
+    <div class="summary-row total">
+      <span>Total Cost:</span>
+      <span id="totalCost">5.00 π</span>
+    </div>
+  </div>
+
+</div>
+
+<button class="btn-pay" onclick="placeOrder()">PAY 5.00 π AND POST ORDER</button>
+
+<script>
+function updateSummary(){
+  let qty = document.getElementById('quantity').value;
+  let platform = document.getElementById('platform').value;
+  let price = 0.50;
+  if(platform.includes('0.75')) price = 0.75;
+  if(platform.includes('0.60')) price = 0.60;
+  
+  document.getElementById('sumPlatform').innerText = platform.split(' - ')[0];
+  document.getElementById('sumQty').innerText = qty + ' People';
+  document.getElementById('totalCost').innerText = (qty * price).toFixed(2) + ' π';
+  document.querySelector('.btn-pay').innerText = `PAY ${(qty * price).toFixed(2)} π AND POST ORDER`;
+}
+
+document.getElementById('quantity').oninput = updateSummary;
+document.getElementById('platform').onchange = updateSummary;
+
+function placeOrder(){
+  alert('Next: Pi Payment will open here. Order saved!');
+  // Here we will connect Pi SDK payment
+}
+</script>
+
+</body>
+</html>
