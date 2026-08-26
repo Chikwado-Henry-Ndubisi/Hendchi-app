@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Hendchi</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial;background:#fff;color:#000;text-align:center;height:100vh;display:flex;flex-direction:column;justify-content:center} /* CHANGED: center instead of space-between */
-.top{margin-bottom:30px}
-.top h2{font-size:36px;font-weight:900;color:#000;margin:0} 
-.middle{padding:0 20px;margin-bottom:40px} /* LESS SPACE */
-.middle h1{font-size:34px;font-weight:900;line-height:1.25;margin:0 0 15px 0;color:#000} /* BOLDER + BIGGER */
-.middle p{font-size:18px;line-height:1.6;color:#111;margin:0 0 20px 0;font-weight:600} /* BOLDER DESCRIPTION */
-.dots{margin:15px 0}
-.dot{display:inline-block;width:10px;height:10px;background:#bbb;border-radius:50%;margin:0 5px}
-.dot.active{background:#000;width:28px;border-radius:14px}
-.bottom{padding:0 20px} /* REMOVED BOTTOM PADDING SO IT COMES UP */
-button{width:100%;padding:17px;margin-bottom:10px;border-radius:14px;font-size:19px;font-weight:900;border:none} /* BOLDER BUTTONS */
+html,body{height:100%;background:#fff;color:#000;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial}
+.container{display:flex;flex-direction:column;height:100%;padding:30px 20px 0 20px}
+.top{text-align:center;padding-bottom:20px}
+.top h2{font-size:32px;font-weight:900;color:#000} 
+.middle{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.middle h1{font-size:28px;font-weight:900;line-height:1.3;margin:0 0 15px 0;color:#000} /* BOLD */
+.middle p{font-size:16px;line-height:1.5;color:#000;margin:0 0 20px 0;font-weight:700} /* BOLD + BLACK */
+.dots{display:flex;justify-content:center;gap:6px;margin-bottom:30px}
+.dot{width:8px;height:8px;background:#ccc;border-radius:50%}
+.dot.active{background:#000;width:20px;border-radius:10px}
+.bottom{padding-bottom:20px} /* BUTTONS NOT TOO DOWN */
+button{width:100%;padding:16px;margin-bottom:10px;border-radius:12px;font-size:18px;font-weight:900;border:none} /* BOLD */
 .btn1{background:#000;color:#fff}
-.btn2{background:#fff;color:#000;border:2px solid #bbb}
+.btn2{background:#fff;color:#000;border:2px solid #000}
 </style>
 </head>
 <body>
 
-<div class="top">
-  <h2>hendchi</h2>
-</div>
+<div class="container">
+  <div class="top">
+    <h2>hendchi</h2>
+  </div>
 
-<div class="middle">
-  <h1>Get Paid in Pi for<br>Completing Social Tasks</h1>
-  <p>Earn daily Pi by completing social tasks, posting adverts, watching ads and referring friends for top businesses and brands.</p>
-  <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-</div>
+  <div class="middle">
+    <h1>Get Paid in Pi for<br>Completing Social Tasks</h1>
+    <p>Earn daily Pi by completing social tasks, posting adverts, watching ads and referring friends for top businesses and brands.</p>
+    <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  </div>
 
-<div class="bottom">
-  <button class="btn1" onclick="alert('Pi Login coming')">SIGN IN WITH PI</button>
-  <a href="home.html" style="text-decoration:none"><button class="btn2">CONTINUE AS GUEST</button></a>
+  <div class="bottom">
+    <button class="btn1" onclick="alert('Pi Login coming')">SIGN IN WITH PI</button>
+    <a href="home.html" style="text-decoration:none"><button class="btn2">CONTINUE AS GUEST</button></a>
+  </div>
 </div>
 
 </body>
