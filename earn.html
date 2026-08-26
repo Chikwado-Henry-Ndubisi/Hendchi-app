@@ -1,1 +1,41 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Earn - Hendchi</title><style>*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f1f1f1;padding-bottom:130px}.header{background:#6B21A8;color:#fff;padding:30px;font-size:38px;font-weight:900;text-align:center;position:sticky;top:0;z-index:10}.box{background:#fff;padding:35px 25px;border-radius:22px;margin:25px}.task{border:3px solid #ddd;border-radius:18px;padding:25px;margin-bottom:20px}.task-title{font-size:26px;font-weight:900}.task-reward{font-size:24px;color:#16a34a;font-weight:900;margin:10px 0}.btn{background:#6B21A8;color:#fff;border:none;padding:22px;width:100%;font-size:24px;font-weight:900;border-radius:16px;cursor:pointer}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:20px 0;border-top:4px solid #ddd;z-index:10}.nav-item{font-size:22px;color:#666;text-align:center;cursor:pointer;font-weight:900}.nav-item.active{color:#6B21A8}.nav-icon{font-size:38px;display:block}</style></head><body><div class="header">EARN PI POINTS</div><div class="box"><div class="task"><div class="task-title">VIEW INFLUENCER TASK</div><div class="task-reward">+ 10 Points</div><button class="btn" onclick="earnPoints(10)">START TASK</button></div><div class="task"><div class="task-title">VISIT ADVERTISER</div><div class="task-reward">+ 15 Points</div><button class="btn" onclick="earnPoints(15)">START TASK</button></div></div><div class="bottom-nav"><div class="nav-item" onclick="window.location.href='index.html'"><span class="nav-icon">🏠</span>HOME</div><div class="nav-item active"><span class="nav-icon">💰</span>EARN</div><div class="nav-item" onclick="window.location.href='advertise.html'"><span class="nav-icon">➕</span>ADVERTISE</div><div class="nav-item" onclick="window.location.href='marketplace.html'"><span class="nav-icon">🏪</span>MARKET</div><div class="nav-item" onclick="window.location.href='more.html'"><span class="nav-icon">☰</span>MORE</div></div><script>function earnPoints(p){let c=parseFloat(localStorage.getItem('points'))||2450;localStorage.setItem('points',c+p);alert('You earned '+p+' Points!');window.location.href='index.html'}</script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Earn - Hendchi</title>
+<style>
+body{margin:0;font-family:Arial;background:#f1f1f1;padding-bottom:110px;font-size:24px}
+.header{background:#6B21A8;color:#fff;padding:30px;font-size:36px;font-weight:900;text-align:center;position:sticky;top:0}
+.balance-top{text-align:center;padding:25px;background:#fff;font-size:26px;font-weight:900}
+.task-box{background:#fff;padding:30px;margin:15px;border-radius:18px;border:2px solid #eee}
+.task-header{display:flex;align-items:center;gap:20px;margin-bottom:18px}
+.logo{width:60px;height:60px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:35px;color:#fff;font-weight:900}
+.fb{background:#1877F2}
+.yt{background:#FF0000}
+.ig{background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)}
+.tt{background:#000}
+.tg{background:#0088CC}
+.li{background:#0A66C2}
+.tw{background:#1DA1F2}
+.task-title{font-size:28px;font-weight:900}
+.task-desc{font-size:22px;color:#666;line-height:1.8;margin-bottom:12px}
+.points{font-size:25px;font-weight:900;color:#16a34a;margin-bottom:18px}
+.btn{background:#6B21A8;color:#fff;border:none;padding:22px;width:100%;font-size:25px;font-weight:900;border-radius:14px;cursor:pointer}
+.influencer-ad{background:#EDE9FE;padding:30px;margin:15px;border-radius:18px;text-align:center}
+.influencer-ad h2{font-size:30px;color:#6B21A8;margin:0 0 12px 0;font-weight:900}
+.influencer-ad p{font-size:22px;color:#444;line-height:1.6}
+.influencer-btn{background:#6B21A8;color:#fff;padding:22px 35px;border-radius:14px;font-size:25px;font-weight:900;text-decoration:none;display:inline-block;margin-top:15px}
+.nav{position:fixed;bottom:0;left:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:15px 0;border-top:3px solid #ddd}
+.nav-item{text-align:center;font-size:22px;color:#666;font-weight:900;cursor:pointer;flex:1}
+.nav-item.active{color:#6B21A8}
+</style>
+<script>
+window.onload = function() {
+  let points = parseFloat(localStorage.getItem('points')) || 2450;
+  document.getElementById('balance').innerText = points.toFixed(2) + ' Points';
+}
+
+function completeTask(taskName, points) {
+  let link = prompt('Paste proof link: Screenshot URL or Post link\n\nTask: ' + taskName);
+  if(!link) {
+    alert('Task cancelled. Proof link required
