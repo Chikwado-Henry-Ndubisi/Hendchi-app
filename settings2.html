@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Settings - Hendchi</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f0f0f0;padding-bottom:120px}
+
+.topbar{background:#6B21A8;color:#fff;padding:25px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.top-title{font-size:36px;font-weight:900}
+.logout-btn{background:#fff;color:#6B21A8;border:none;padding:12px 25px;border-radius:30px;font-size:22px;font-weight:900}
+
+.profile-box{background:#fff;padding:30px 20px;display:flex;align-items:center;gap:20px;border-bottom:4px solid #eee}
+.avatar{width:80px;height:80px;border-radius:50%;background:#6B21A8;display:flex;align-items:center;justify-content:center;font-size:45px;color:#fff;font-weight:900}
+.profile-info .user{font-size:22px;color:#666;font-weight:700}
+.profile-info .name{font-size:28px;color:#000;font-weight:900;margin:5px 0}
+.profile-info .link{font-size:20px;color:#6B21A8;font-weight:900}
+
+.menu-section{background:#fff;margin-top:15px}
+.menu-title{font-size:20px;color:#666;font-weight:900;padding:15px 20px;background:#e8e8e8;letter-spacing:1px}
+.menu-item{display:flex;justify-content:space-between;align-items:center;padding:28px 20px;border-bottom:2px solid #f5f5f5;font-size:24px;font-weight:900;color:#000}
+.menu-item:active{background:#F3E8FF}
+.menu-left{display:flex;align-items:center;gap:20px}
+.menu-icon{font-size:32px;width:40px;text-align:center}
+.menu-arrow{font-size:28px;color:#999;font-weight:900}
+.badge{background:#ef4444;color:#fff;padding:6px 14px;border-radius:20px;font-size:18px;font-weight:900;margin-left:10px}
+
+.nav{position:fixed;bottom:0;left:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:18px 0;border-top:4px solid #ddd}
+.nav-item{text-align:center;font-size:20px;color:#666;font-weight:900}
+.nav-icon{font-size:35px;display:block;margin-bottom:6px}
+.nav-item.active{color:#6B21A8}
+</style>
+<script>
+function logout(){if(confirm('Logout?')){alert('Logged out');window.location.href='index.html'}}
+function comingSoon(n){alert(n+' - Coming Soon')}
+</script>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="top-title">SETTINGS</div>
+  <button class="logout-btn" onclick="logout()">LOGOUT</button>
+</div>
+
+<div class="profile-box">
+  <div class="avatar">C</div>
+  <div class="profile-info">
+    <div class="user">@azaze4</div>
+    <div class="name">CHIKWADO HENRY NDUBISI</div>
+    <div class="link" onclick="comingSoon('View Profile')">VIEW PROFILE ></div>
+  </div>
+</div>
+
+<div class="menu-section">
+  <div class="menu-title">ACCOUNT</div>
+  <div class="menu-item" onclick="comingSoon('My Orders')"><div class="menu-left"><span class="menu-icon">📋</span> MY ORDERS</div><span class="menu-arrow">></span></div>
+  <div class="menu-item" onclick="window.location.href='fund-wallet.html'"><div class="menu-left"><span class="menu-icon">💰</span> FUND WALLET</div><span class="menu-arrow">></span></div>
+  <div class="menu-item" onclick="window.location.href='withdraw.html'"><div class="menu-left"><span class="menu-icon">💸</span> PLACE WITHDRAWALS</div><span class="menu-arrow">></span></div>
+  <div class="menu-item" onclick="comingSoon('Transaction History')"><div class="menu-left"><span class="menu-icon">📊</span> TRANSACTION HISTORY</div><span class="menu-arrow">></span></div>
+</div>
+
+<div class="menu-section">
+  <div class="menu-title">COMMUNICATION</div>
+  <div class="menu-item" onclick="comingSoon('My Chats')"><div class="menu-left"><span class="menu-icon">💬</span> MY CHATS</div><span class="menu-arrow">></span></div>
+  <div class="menu-item" onclick="comingSoon('My Notifications')"><div class="menu-left"><span class="menu-icon">🔔</span> MY NOTIFICATIONS <span class="badge">3</span></div><span class="menu-arrow">></span></div>
+</div>
+
+<div class="menu-section">
+  <div class="menu-title">PROFILE & SECURITY</div>
+  <div class="menu-item" onclick="comingSoon('Edit Profile')"><div class="menu-left"><span class="menu-icon">👤</span> EDIT PROFILE</div><span class="menu-arrow">></span></div>
+  <div class="menu-item" onclick="comingSoon('Update Password')"><div class="menu-left"><span class="menu-icon">🔒</span> UPDATE PASSWORD</div><span class="menu-arrow">></span></div>
+  <div class="menu-item" onclick="comingSoon('Update Location')"><div class="menu-left"><span class="menu-icon">📍</span> UPDATE LOCATION</div><span class="menu-arrow">></span></div>
+  <div class="menu-item" onclick="comingSoon('Update Pi Wallet')"><div class="menu-left"><span class="menu-icon">✓</span> UPDATE PI WALLET</div><span class="menu-arrow">></span></div>
+</div>
+
+<div class="menu-section">
+  <div class="menu-title">SUPPORT & LEGAL</div>
+  <div class="menu-item" onclick="comingSoon('Chat With Support')"><div class="menu-left"><span class="menu-icon">❓</span> CHAT WITH SUPPORT</div><span class="menu-arrow">...</span></div>
+  <div class="menu-item" onclick="comingSoon('Privacy Policy')"><div class="menu-left"><span class="menu-icon">🏆</span> PRIVACY POLICY</div><span class="menu-arrow">></span></div>
+  <div class="menu-item" onclick="comingSoon('About')"><div class="menu-left"><span class="menu-icon">ℹ️</span> ABOUT</div><span class="menu-arrow">></span></div>
+  <div class="menu-item" onclick="comingSoon('Terms of Use')"><div class="menu-left"><span class="menu-icon">ℹ️</span> TERMS OF USE</div><span class="menu-arrow">></span></div>
+  <div class="menu-item" onclick="logout()"><div class="menu-left"><span class="menu-icon">🚪</span> LOGOUT</div><span class="menu-arrow">></span></div>
+</div>
+
+<div class="nav">
+  <div class="nav-item" onclick="window.location.href='index.html'"><span class="nav-icon">🏠</span>HOME</div>
+  <div class="nav-item" onclick="window.location.href='earn.html'"><span class="nav-icon">💰</span>EARN</div>
+  <div class="nav-item" onclick="window.location.href='advertise.html'"><span class="nav-icon">➕</span>ADVERTISE</div>
+  <div class="nav-item" onclick="window.location.href='marketplace.html'"><span class="nav-icon">🏪</span>MARKET</div>
+  <div class="nav-item active"><span class="nav-icon">☰</span>MORE</div>
+</div>
+
+</body>
+</html>
