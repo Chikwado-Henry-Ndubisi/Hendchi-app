@@ -5,18 +5,18 @@
 <title>Hendchi</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;background:#fff;color:#000;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial}
-.wrap{display:flex;flex-direction:column;height:100vh;padding:4vh 5vw} /* USE VH/VW FOR BIG */
-.top{text-align:center;padding-top:2vh}
-.top h2{font-size:8vh;font-weight:900;color:#000;letter-spacing:-1px} /* 8% of screen height */
-.content{flex:1;display:flex;flex-direction:column;justify-content:center}
-.content h1{font-size:7vh;font-weight:900;line-height:1.1;margin:0 0 2vh 0;color:#000;text-align:center} /* 7% of screen */
-.content p{font-size:3.5vh;line-height:1.4;color:#000;margin:0 0 3vh 0;font-weight:700;text-align:center} /* 3.5% of screen */
-.dots{display:flex;justify-content:center;gap:1.5vw;margin:2vh 0}
+html,body{height:100%;background:#fff;color:#000;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial;overflow:hidden}
+.wrap{display:flex;flex-direction:column;height:100vh;padding:3vh 5vw;justify-content:space-between} /* SPACE-BETWEEN TO SPREAD */
+.top{text-align:center;padding-top:1vh}
+.top h2{font-size:8vh;font-weight:900;color:#000;letter-spacing:-1px}
+.content{display:flex;flex-direction:column;justify-content:center}
+.content h1{font-size:7vh;font-weight:900;line-height:1.1;margin:0 0 2vh 0;color:#000;text-align:center}
+.content p{font-size:3.5vh;line-height:1.4;color:#000;margin:0 0 2vh 0;font-weight:700;text-align:center}
+.dots{display:flex;justify-content:center;gap:1.5vw;margin:1vh 0}
 .dot{width:2.5vw;height:2.5vw;background:#999;border-radius:50%}
 .dot.active{background:#000;width:7vw;border-radius:4vw}
-.bottom{padding-bottom:2vh}
-button{width:100%;padding:2.5vh;margin-bottom:1.5vh;border-radius:3vw;font-size:4.5vh;font-weight:900;border:none} /* BIG BUTTONS */
+.bottom{padding-bottom:8vh} /* BROUGHT UP 8% FROM BOTTOM SO IT'S NOT HIDDEN */
+button{width:100%;padding:2.5vh;margin-bottom:1.5vh;border-radius:3vw;font-size:4.5vh;font-weight:900;border:none}
 .btn1{background:#000;color:#fff}
 .btn2{background:#fff;color:#000;border:0.6vw solid #000}
 </style>
