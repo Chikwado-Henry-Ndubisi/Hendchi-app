@@ -7,53 +7,83 @@
 body{margin:0;font-family:Arial;background:#f1f1f1;padding-bottom:110px}
 .header{background:#6B21A8;color:#fff;padding:25px;font-size:32px;font-weight:900;text-align:center}
 .balance-bar{background:#fff;padding:20px;text-align:center;font-size:24px;border-bottom:3px solid #ddd}
-.task{background:#fff;margin:20px;border-radius:18px;padding:25px}
-.task-title{font-size:28px;font-weight:900;margin-bottom:10px}
-.task-desc{font-size:22px;color:#666;margin-bottom:15px}
-.task-reward{font-size:30px;color:#16a34a;font-weight:900}
-.btn{background:#6B21A8;color:#fff;border:none;padding:22px;width:100%;font-size:24px;font-weight:900;border-radius:15px;margin-top:15px}
+.section-title{background:#EDE9FE;color:#6B21A8;padding:15px 20px;font-size:26px;font-weight:900}
+.task{background:#fff;margin:15px 20px;border-radius:18px;padding:25px}
+.task-title{font-size:26px;font-weight:900;margin-bottom:8px}
+.task-desc{font-size:20px;color:#666;margin-bottom:12px}
+.requirement{background:#FEF3C7;color:#92400E;padding:12px;border-radius:10px;font-size:18px;margin:10px 0;font-weight:900}
+.task-reward{font-size:28px;color:#16a34a;font-weight:900}
+.btn{background:#6B21A8;color:#fff;border:none;padding:20px;width:100%;font-size:22px;font-weight:900;border-radius:15px;margin-top:12px}
+.btn:disabled{background:#ccc}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:15px 0;border-top:3px solid #ddd}
 .nav-item{font-size:20px;color:#666;text-align:center}
 .nav-item.active{color:#6B21A8;font-weight:900}
 </style>
 <script>
-function completeTask(reward) {
-  alert('Task Submitted! π' + reward + ' will be added to your balance in 5 minutes');
+function completeTask(reward, type) {
+  if(type == 'influencer') {
+    let followers = prompt('Enter your follower count to verify:');
+    if(followers < 1000) {
+      alert('Sorry! You need at least 1000 followers to do Influencer Tasks');
+      return;
+    }
+  }
+  alert('Task Submitted! ' + reward + ' Pi Points will be added in 5 minutes');
 }
 </script>
 </head>
 <body>
 
-<div class="header">Earn Tasks</div>
-<div class="balance-bar">Your Balance: <b>π47.55</b></div>
+<div class="header">Earn Pi Points</div>
+<div class="balance-bar">Your Balance: <b>2,450 Pi Points</b></div>
+
+<div class="section-title">⭐ INFLUENCER TASKS - 1000+ Followers Required</div>
 
 <div class="task">
-  <div class="task-title">Follow @BrandOnInstagram</div>
-  <div class="task-desc">Follow the brand and screenshot your profile</div>
-  <div class="task-reward">+ π1.50</div>
-  <button class="btn" onclick="completeTask(1.50)">Start Task</button>
+  <div class="task-title">Post Brand Advert on Your Page</div>
+  <div class="task-desc">Post the brand flyer on your FB/IG/TikTok page</div>
+  <div class="requirement">✓ Must have 1000+ followers on any platform</div>
+  <div class="task-reward">+ 10 Pi Points</div>
+  <button class="btn" onclick="completeTask(10, 'influencer')">Start Task</button>
 </div>
 
 <div class="task">
-  <div class="task-title">Like 5 Posts on TikTok</div>
-  <div class="task-desc">Like 5 posts from @HendchiBrand</div>
-  <div class="task-reward">+ π2.00</div>
-  <button class="btn" onclick="completeTask(2.00)">Start Task</button>
+  <div class="task-title">Share Brand Post</div>
+  <div class="task-desc">Share brand post to your page and 3 groups</div>
+  <div class="requirement">✓ Must have 1000+ followers on any platform</div>
+  <div class="task-reward">+ 8 Pi Points</div>
+  <button class="btn" onclick="completeTask(8, 'influencer')">Start Task</button>
+</div>
+
+<div class="section-title">📱 ORDINARY TASKS - No Follower Limit</div>
+
+<div class="task">
+  <div class="task-title">Like & Comment</div>
+  <div class="task-desc">Like 3 posts and comment on 1</div>
+  <div class="task-reward">+ 0.09 Pi Points</div>
+  <button class="btn" onclick="completeTask(0.09, 'ordinary')">Start Task</button>
 </div>
 
 <div class="task">
-  <div class="task-title">Share Post to WhatsApp Status</div>
-  <div class="task-desc">Post our flyer and keep for 24hrs</div>
-  <div class="task-reward">+ π3.00</div>
-  <button class="btn" onclick="completeTask(3.00)">Start Task</button>
+  <div class="task-title">Follow & Share</div>
+  <div class="task-desc">Follow page and share 1 post</div>
+  <div class="task-reward">+ 0.2 Pi Points</div>
+  <button class="btn" onclick="completeTask(0.2, 'ordinary')">Start Task</button>
+</div>
+
+<div class="task">
+  <div class="task-title">View Reel + Watch YouTube</div>
+  <div class="task-desc">Watch Facebook Reel + 2min YouTube video</div>
+  <div class="task-reward">+ 1 Pi Point</div>
+  <button class="btn" onclick="completeTask(1, 'ordinary')">Start Task</button>
 </div>
 
 <div class="bottom-nav">
   <div class="nav-item" onclick="window.location.href='dashboard.html'">Home</div>
   <div class="nav-item active">Earn</div>
-  <div class="nav-item" onclick="window.location.href='fund-wallet.html'">Fund</div>
+  <div class="nav-item" onclick="window.location.href='fund-wallet.html'">Buy Points</div>
   <div class="nav-item" onclick="window.location.href='withdraw.html'">Withdraw</div>
 </div>
 
 </body>
-</html>
+    </html>
