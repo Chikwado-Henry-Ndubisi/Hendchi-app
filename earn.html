@@ -13,35 +13,57 @@ body{margin:0;font-family:Arial;background:#f1f1f1;padding-bottom:110px}
 .task-desc{font-size:20px;color:#666;margin-bottom:12px}
 .requirement{background:#FEF3C7;color:#92400E;padding:12px;border-radius:10px;font-size:18px;margin:10px 0;font-weight:900}
 .task-reward{font-size:28px;color:#16a34a;font-weight:900}
-.btn{background:#6B21A8;color:#fff;border:none;padding:20px;width:100%;font-size:22px;font-weight:900;border-radius:15px;margin-top:12px}
+.btn{background:#6B21A8;color:#fff;border:none;padding:20px;width:100%;font-size:22px;font-weight:900;border-radius:15px;margin-top:12px;cursor:pointer}
 .btn:disabled{background:#ccc}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:15px 0;border-top:3px solid #ddd}
-.nav-item{font-size:20px;color:#666;text-align:center}
+.nav-item{font-size:20px;color:#666;text-align:center;cursor:pointer}
 .nav-item.active{color:#6B21A8;font-weight:900}
 </style>
 <script>
+// Load balance on start
+window.onload = function() {
+  let points = localStorage.getItem('points') || 2450;
+  document.getElementById('balance').innerText = points + ' Pi Points';
+}
+
 function completeTask(reward, type) {
   if(type == 'influencer') {
+    let isInfluencer = localStorage.getItem('isInfluencer') || 'false';
+    if(isInfluencer != 'true') {
+      alert('You need to pay 100 Points to unlock Influencer Tasks first');
+      window.location.href = 'influencer.html';
+      return;
+    }
+    
     let followers = prompt('Enter your follower count to verify:');
     if(followers < 1000) {
       alert('Sorry! You need at least 1000 followers to do Influencer Tasks');
       return;
     }
   }
-  alert('Task Submitted! ' + reward + ' Pi Points will be added in 5 minutes');
+  
+  // Add points to balance
+  let current = parseFloat(localStorage.getItem('points')) || 2450;
+  let newBalance = current + parseFloat(reward);
+  localStorage.setItem('points', newBalance);
+  
+  alert('Task Submitted! ' + reward + ' Pi Points added. New Balance: ' + newBalance.toFixed(2) + ' Points');
+  
+  // Update balance on page
+  document.getElementById('balance').innerText = newBalance.toFixed(2) + ' Pi Points';
 }
 </script>
 </head>
 <body>
 
 <div class="header">Earn Pi Points</div>
-<div class="balance-bar">Your Balance: <b>2,450 Pi Points</b></div>
+<div class="balance-bar">Your Balance: <b id="balance">2,450 Pi Points</b></div>
 
 <div class="section-title">⭐ INFLUENCER TASKS - 1000+ Followers Required</div>
 
 <div class="task">
   <div class="task-title">Post Brand Advert on Your Page</div>
-  <div class="task-desc">Post the brand flyer on your FB/IG/TikTok page</div>
+  <div class="task-desc">Post the brand flyer on your FB/IG/TikTok page for 24hrs</div>
   <div class="requirement">✓ Must have 1000+ followers on any platform</div>
   <div class="task-reward">+ 10 Pi Points</div>
   <button class="btn" onclick="completeTask(10, 'influencer')">Start Task</button>
@@ -86,4 +108,4 @@ function completeTask(reward, type) {
 </div>
 
 </body>
-    </html>
+  </html>
