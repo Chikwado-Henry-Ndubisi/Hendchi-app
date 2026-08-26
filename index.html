@@ -1,74 +1,168 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hendchi</title>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Hendchi</title>
 <style>
 body{margin:0;font-family:Arial;background:#f5f5f5;padding-bottom:70px}
-.topbar{display:flex;justify-content:space-between;align-items:center;padding:15px;background:#fff}
-.logo{color:#6B21A8;font-size:20px;font-weight:900}
-.alert{background:#dbeafe;color:#1e40af;padding:12px;margin:12px;border-radius:8px;font-size:13px}
-.balance-box{text-align:center;padding:20px;background:#fff}
-.balance-box h2{font-size:36px;margin:10px 0}
-.btns{display:flex;gap:10px;justify-content:center;margin:15px}
-.btns button{padding:10px 20px;border:1px solid #ddd;background:#fff;border-radius:8px;font-weight:600}
-.stats{display:flex;justify-content:space-around;padding:15px;background:#fff;margin:10px 0;font-size:13px}
-.stats b{display:block;font-size:16px}
-.member{background:#fff;margin:12px;padding:15px;border-radius:12px;display:flex;gap:12px}
-.nav{position:fixed;bottom:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd}
-.nav-item{text-align:center;font-size:12px;color:#666}
+.header{background:#fff;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;border-bottom:1px solid #ddd}
+.logo{color:#6B21A8;font-size:22px;font-weight:900}
+.logo span{color:#000;font-size:14px}
+.header-icons{display:flex;gap:18px;font-size:22px}
+.header-icons span{cursor:pointer}
+
+.welcome{background:#fff;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee}
+.welcome-text{font-size:15px}
+.logout{color:#6B21A8;font-size:14px;font-weight:700;cursor:pointer}
+
+.alert{background:#dbeafe;color:#1e40af;padding:12px 15px;font-size:13px;line-height:1.5}
+.alert a{color:#1e40af;font-weight:700;text-decoration:underline}
+
+.balance-box{background:#fff;padding:20px 15px;text-align:center}
+.balance-label{font-size:14px;color:#666;margin-bottom:8px}
+.balance{font-size:36px;font-weight:900;margin:5px 0}
+.btn-row{display:flex;gap:10px;justify-content:center;margin:15px 0}
+.btn{background:#fff;border:1px solid #ddd;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer}
+.btn-buy{color:#6B21A8;font-size:13px;font-weight:700;cursor:pointer}
+
+.stats{display:flex;justify-content:space-around;background:#fff;padding:15px;margin:8px 0}
+.stat{text-align:center}
+.stat-label{font-size:12px;color:#666}
+.stat-value{font-size:15px;font-weight:900;margin-top:3px}
+
+.member-box{background:#fff;padding:20px 15px;margin:8px 0;text-align:center}
+.member-title{font-size:18px;font-weight:900;margin:10px 0}
+.member-text{font-size:14px;color:#444;line-height:1.5;margin:10px 0}
+.badge{background:#16a34a;color:#fff;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;margin:10px 0}
+.btn-primary{background:#6B21A8;color:#fff;border:none;padding:12px 25px;border-radius:8px;font-size:15px;font-weight:900;cursor:pointer;width:100%;max-width:300px}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:15px}
+.card{background:#fff;padding:15px;border-radius:12px;font-size:13px}
+.card img{width:35px;margin-bottom:8px}
+.card .link{color:#6B21A8;font-size:12px;font-weight:700;margin-top:8px;cursor:pointer}
+
+.section{background:#fff;padding:15px;margin:8px 0}
+.section h2{font-size:18px;font-weight:900;margin:0 0 5px 0}
+.section p{font-size:13px;color:#666;margin:0 0 15px 0}
+
+.resell-banner{background:#fde047;padding:15px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.resell-text{font-size:14px;font-weight:900}
+.hot{background:red;color:#fff;padding:3px 8px;border-radius:5px;font-size:10px;font-weight:900}
+
+.task{background:#fff;padding:15px;border-radius:10px;display:flex;gap:12px;margin-bottom:10px}
+.task-icon{width:40px;height:40px;background:#f3e8ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
+.task-info{flex:1}
+.task-title{font-size:15px;font-weight:900}
+.task-earn{font-size:13px;margin:3px 0}
+.task-desc{font-size:12px;color:#666}
+.platforms{margin:5px 0;font-size:16px}
+.btn-select{background:#fff;border:1px solid #6B21A8;color:#6B21A8;padding:6px 18px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer}
+
+.nav{position:fixed;bottom:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:9px 0;border-top:1px solid #ddd}
+.nav-item{text-align:center;font-size:11px;color:#666;cursor:pointer}
 .nav-item.active{color:#6B21A8;font-weight:900}
-</style></head>
+.nav-icon{font-size:22px;margin-bottom:2px}
+.dot{position:relative}
+.dot::after{content:'•';position:absolute;top:-4px;right:8px;color:red;font-size:20px}
+</style>
+</head>
 <body>
 
-<div class="topbar">
-  <div class="logo">📍Hendchi.pi</div>
-  <div>?  🔔</div>
+<div class="header">
+  <div class="logo">hendchi<span>.π</span></div>
+  <div class="header-icons">
+    <span>❓</span>
+    <span>🔔</span>
+    <span>👤</span>
+  </div>
 </div>
 
-<p style="padding:0 15px">Welcome, <span id="username">User</span> <span style="float:right;color:#6B21A8;font-weight:900">Logout</span></p>
+<div class="welcome">
+  <div class="welcome-text">Welcome, Chikwado</div>
+  <div class="logout" onclick="alert('Logout')">⏻ Logout</div>
+</div>
 
 <div class="alert">
-We are happy to inform you that Hendchi is 100% FREE. No payment needed to earn Pi.
+  We are happy to inform you that all withdrawal issues have been resolved successfully. If you haven't received your withdrawals yet, click <a href="#">here</a> to send a withdrawal update request and we will process your withdrawal as soon as possible. Thank you for choosing Hendchi
 </div>
 
 <div class="balance-box">
-  <p>My Pi Balance</p>
-  <h2 id="piBalance">0.000 <span style="color:#F59E0B">π</span></h2>
-  <div class="btns">
-    <button>💰 FUND</button>
-    <button>📤 WITHDRAW</button>
+  <div class="balance-label">My Balance</div>
+  <div class="balance">π47.55</div>
+  <div class="btn-row">
+    <button class="btn" onclick="window.location.href='fund-wallet.html'">💰 FUND</button>
+    <button class="btn" onclick="window.location.href='withdraw.html'">💸 WITHDRAW</button>
   </div>
-  <p style="color:#6B21A8;font-weight:600">Buy Airtime/Data with Pi</p>
+  <div class="btn-buy" onclick="alert('Buy Pi/Data Coming')">⚡ Buy Pi/Data</div>
 </div>
 
 <div class="stats">
-  <div>📋<b id="totalEarned">0.000π</b>Total Earned</div>
-  <div>⏳<b>0.000π</b>Pending</div>
-  <div>📤<b>0.000π</b>Withdrawn</div>
+  <div class="stat">
+    <div class="stat-label">📊 Total Earnings</div>
+    <div class="stat-value">π0.00</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">⏳ Pending Balance</div>
+    <div class="stat-value">π20.00</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">💳 Amount Spent</div>
+    <div class="stat-value">π0.00</div>
+  </div>
 </div>
 
-<div class="member">
-  <div>👤✅</div>
-  <div>
-    <h3>Congratulations! You are now a MEMBER!</h3>
-    <p style="font-size:13px;color:#666">Your account is activated. You can now earn daily by posting adverts and performing tasks on your social media. Click "Earn" below to start.</p>
+<div class="member-box">
+  <div style="font-size:40px">👤✓</div>
+  <div class="member-title">Congratulations! You are now a MEMBER!</div>
+  <div class="member-text">Your membership has been activated successfully. You can now earn daily by posting adverts and performing tasks. Click the button below to start earning by generating your next task. You can perform as many tasks as possible.</div>
+  <div class="badge">6779 total tasks for you to perform</div><br>
+  <button class="btn-primary" onclick="window.location.href='earn.html'">PERFORM TASKS AND EARN</button>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
+    <div>Earn daily by posting adverts and performing tasks on your social media accounts</div>
+    <div class="link" onclick="window.location.href='earn.html'">↗ Get Started</div>
+  </div>
+  <div class="card">
+    <div style="font-size:20px">📱</div>
+    <div>Get people to repost your adverts and perform social tasks for you on their social media account.</div>
+    <div class="link" onclick="window.location.href='advertise.html'">↗ Get Started</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Available Tasks</h2>
+  <p>See our currently available tasks below. Click any of the tasks below to start earning</p>
+  
+  <div class="resell-banner">
+    <div>
+      <div class="resell-text">CLICK HERE TO RESELL PRODUCTS AND EARN UP TO π100 MONTHLY IN SALES COMMISSIONS</div>
+    </div>
+    <div class="hot">HOT AND NEW!!!</div>
+  </div>
+
+  <div class="task">
+    <div class="task-icon">👥</div>
+    <div class="task-info">
+      <div class="task-title">Follow People & Pages</div>
+      <div class="task-earn"><b>Earnings: π0.05 per Follow</b></div>
+      <div class="task-desc">Follow people and pages on selected social media accounts and earn π0.05 per follow. The more people you follow, the more you earn.</div>
+      <div class="platforms">📷 📘 🎵</div>
+      <div style="font-size:12px;color:#666">5.5k Tasks Available</div>
+    </div>
+    <button class="btn-select" onclick="alert('Task Started')">SELECT</button>
   </div>
 </div>
 
 <div class="nav">
-  <div class="nav-item active">🏠<br>Home</div>
-  <div class="nav-item" onclick="window.location.href='earn.html'">📦<br>Earn</div>
-  <div class="nav-item" onclick="window.location.href='advertise.html'">➕<br>Advertise</div>
-  <div class="nav-item">🏪<br>Market</div>
-  <div class="nav-item" onclick="window.location.href='more.html'">☰<br>More</div>
+  <div class="nav-item active"><div class="nav-icon">🏠</div>Home</div>
+  <div class="nav-item" onclick="window.location.href='earn.html'"><div class="nav-icon dot">📦</div>Earn</div>
+  <div class="nav-item" onclick="window.location.href='advertise.html'"><div class="nav-icon">➕</div>Advertise</div>
+  <div class="nav-item" onclick="window.location.href='market.html'"><div class="nav-icon dot">🏪</div>Market</div>
+  <div class="nav-item" onclick="window.location.href='more.html'"><div class="nav-icon">☰</div>More</div>
 </div>
 
-<script>
-let balance = parseFloat(localStorage.getItem('piBalance')) || 0;
-document.getElementById('piBalance').textContent = balance.toFixed(3) + ' π';
-document.getElementById('totalEarned').textContent = balance.toFixed(3) + 'π';
-let user = localStorage.getItem('userId') || 'User';
-document.getElementById('username').textContent = user;
-</script>
 </body>
-</html>
+      </html>
