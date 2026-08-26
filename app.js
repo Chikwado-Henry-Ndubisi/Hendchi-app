@@ -1,1 +1,0 @@
-let balance=5000;document.addEventListener('DOMContentLoaded',function(){document.getElementById('balance').innerText='₦'+balance.toLocaleString();document.getElementById('airtimeBtn').onclick=function(){alert('Airtime coming soon!')};document.getElementById('dataBtn').onclick=function(){alert('Data coming soon!')};});
