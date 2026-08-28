@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hendchi</title>
+<script src="https://sdk.minepi.com/pi-sdk.js"></script>
+<style>
+body{margin:0; font-family:Arial; background:#f8f5ff;}
+.page{display:none;}
+.active{display:block;}
+
+/* SPLASH SCREEN */
+#splash{background:#6b21a8; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; color:white;}
+#splash h1{font-size:40px; margin:10px 0;}
+
+/* SLIDER */
+.slider-container{height:70vh; display:flex; flex-direction:column; justify-content:center; padding:20px;}
+.slide{display:none; text-align:center;}
+.slide.active{display:block; animation:fade 0.5s;}
+@keyframes fade{from{opacity:0} to{opacity:1}}
+.slide h2{font-size:24px; color:#111; padding:0 10px;}
+.slide p{color:#666; margin:15px 20px 25px; font-size:15px;}
+.dots{text-align:center; margin:20px 0;}
+.dots span{height:8px; width:8px; margin:0 4px; background:#ddd; border-radius:50%; display:inline-block;}
+.dots span.active{background:#6b21a8;}
+
+/* BUTTONS AT BOTTOM LIKE HAWKIT */
+.bottom-buttons{padding:0 20px 40px; position:fixed; bottom:0; left:0; right:0; background:white;}
+.btn-purple{background:#6b21a8; color:white; border:none; padding:15px; width:100%; border-radius:25px; font-size:16px; font-weight:bold; margin:8px 0;}
+.btn-white{background:white; color:#6b21a8; border:1px solid #6b21a8; padding:15px; width:100%; border-radius:25px; font-size:16px; font-weight:bold; margin:8px 0;}
+
+/* HOME PAGE */
+.balance-card{background:linear-gradient(135deg, #6b21a8, #9333ea); color:white; padding:25px; border-radius:20px; margin:15px; text-align:center;}
+.balance-card h1{font-size:36px; margin:10px 0;}
+.task-card{background:white; padding:15px; margin:12px 15px; border-radius:15px; display:flex; box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.nav{position:fixed; bottom:0; left:0; right:0; background:white; display:flex; justify-content:space-around; padding:12px 0; box-shadow:0 -2px 10px rgba(0,0,0,0.1);}
+</style>
+</head>
+<body>
+
+<!-- 1. SPLASH SCREEN -->
+<div id="splash" class="page active">
+  <h1>🧲</h1>
+  <h1>Hendchi</h1>
+</div>
+
+<!-- 2. SLIDER / ONBOARDING -->
+<div id="onboard" class="page">
+  <div class="slider-container">
+    <div class="slide active">
+      <h2>Get Paid in Pi for Simple Tasks</h2>
+      <p>Earn daily Pi by posting and performing simple social tasks for businesses</p>
+    </div>
+    <div class="slide">
+      <h2>Get People to Post for You</h2>
+      <p>Get Pi users to post your adverts and perform tasks for you</p>
+    </div>
+    <div class="slide">
+      <h2>Boost Your Pi Earnings</h2>
+      <p>Grow your Pi portfolio by completing engagement tasks</p>
+    </div>
+    <div class="slide">
+      <h2>Sell with Pi</h2>
+      <p>Take advantage and sell your products faster with Pi payments</p>
+    </div>
+    <div class="dots"><span class="active"></span><span></span><span></span><span></span></div>
+  </div>
+  
+  <div class="bottom-buttons">
+    <button class="btn-purple" onclick="showPage('loginPage')">CREATE FREE ACCOUNT</button>
+    <button class="btn-white" onclick="loginWithPi()">LOGIN TO YOUR ACCOUNT</button>
+  </div>
+</div>
+
+<!-- 3. LOGIN PAGE -->
+<div id="loginPage" class="page">
+  <div style="text-align:center; padding:50px 20px;"><h1>🧲 Hendchi</h1></div>
+  <button class="btn-purple" onclick="loginWithPi()">LOGIN WITH PI</button>
+</div>
+
+<!-- 4. HOME PAGE -->
+<div id="homePage" class="page">
+  <div style="padding:20px;"><h1>Hi <span id="username">User</span> 👋</h1></div>
+  <div class="balance-card">
+    <h2>Your Pi Balance</h2>
+    <h1>0.000 π</h1>
+  </div>
+  <button class="btn-purple" onclick="showPage('tasksPage')">🚀 View Available Tasks</button>
+</div>
+
+<!-- 5. TASKS PAGE -->
+<div id="tasksPage" class="page">
+  <h2 style="padding:20px; color:#6b21a8;">Available Tasks</h2>
+  <div class="task-card"><div style="font-size:30px;">📘</div><div style="margin-left:15px;"><h3>Facebook Post</h3><p>Earn 0.01 π</p></div></div>
+</div>
+
+<div class="nav">
+  <button onclick="showPage('homePage')">🏠 Home</button>
+  <button onclick="showPage('tasksPage')">📋 Tasks</button>
+</div>
+
+<script>
+Pi.init({ version: "2.0" });
+let slideIndex = 0;
+
+// Auto slider
+setInterval(()=>{
+  let slides = document.querySelectorAll('.slide');
+  let dots = document.querySelectorAll('.dots span');
+  slides[slideIndex].classList.remove('active');
+  dots[slideIndex].classList.remove('active');
+  slideIndex = (slideIndex + 1) % slides.length;
+  slides[slideIndex].classList.add('active');
+  dots[slideIndex].classList.add('active');
+}, 3000);
+
+// Show splash for 2 seconds then go to onboard
+setTimeout(()=>{showPage('onboard')}, 2000);
+
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function loginWithPi(){Pi.authenticate(['username'], function(auth) {document.getElementById("username").innerText = auth.user.username;showPage('homePage');});}
+</script>
+</body>
+  </html>
