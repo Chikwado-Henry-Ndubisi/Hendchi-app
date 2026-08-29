@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hendchi - Connect Pioneers</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    /* HEADER */
+    .header {
+      background: #7B2FFF;
+      color: white;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .logo-dot {
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50% 0 50% 50%;
+    }
+
+    /* MAIN CONTENT */
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    p {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* DOTS */
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 30px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #ccc;
+      border-radius: 50%;
+    }
+    .dot.active {
+      width: 20px;
+      background: #7B2FFF;
+      border-radius: 10px;
+    }
+
+    /* BUTTONS */
+    .buttons {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      background: #7B2FFF;
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #7B2FFF;
+      border: 2px solid #7B2FFF;
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* MOBILE BIGGER TEXT */
+    @media only screen and (max-width: 600px) {
+      h1 { font-size: 24px !important; }
+      p { font-size: 16px !important; }
+      .btn-primary, .btn-secondary { font-size: 17px !important; }
+    }
+  </style
