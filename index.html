@@ -1,0 +1,52 @@
+<script>
+let n=1, timer;
+const data=[
+ {t:"Get Paid for Posting Adverts Daily on Your Social Media",p:"Earn daily Pi by posting adverts and performing simple social tasks"},
+ {t:"Get People to Post Your Adverts on their Social Media",p:"Get people with atleast 1,000 followers to post your adverts"},
+ {t:"Boost Your Social Media Engagement and Portfolio",p:"Get real people to grow your social media portfolio"},
+ {t:"Sell Faster on Hendchi Marketplace",p:"Take advantage of our huge web traffic and sell your products faster"}
+];
+function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function slide(){n=(n+1)%4;document.getElementById('title').innerText=data[n].t;document.getElementById('text').innerText=data[n].p;document.querySelectorAll('.dot').forEach((d,i)=>d.className='dot'+(i==n?' active':''))}
+setTimeout(()=>show('loading'),2000);
+setTimeout(()=>{show('onboard');timer=setInterval(slide,3000)},3000);
+
+// NEW: WAIT FOR PI SDK WITH 5 SECOND TIMEOUT
+function waitForPi(callback) {
+  let attempts = 0;
+  const check = setInterval(() => {
+    attempts++;
+    if (window.Pi) {
+      clearInterval(check);
+      callback();
+    } else if (attempts > 50) { // 5 seconds
+      clearInterval(check);
+      alert("Pi SDK failed to load. 1. Are you in Pi Browser? 2. Did you add domain in Portal?");
+    }
+  }, 100);
+}
+
+// INIT PI WHEN READY
+waitForPi(() => {
+  window.Pi.init({ version: "2.0", sandbox: true });
+});
+
+function piLogin(){
+  clearInterval(timer);
+  if (!window.Pi) {
+    alert("Pi not ready yet. Please wait 3 seconds and tap again");
+    timer=setInterval(slide,3000);
+    return;
+  }
+  window.Pi.authenticate(['username'],
+    function(auth) {
+      document.getElementById('user').innerText = auth.user.username;
+      show('home')
+    },
+    function(error) {
+      alert("Login Error: " + JSON.stringify(error));
+      timer=setInterval(slide,3000)
+    }
+  );
+}
+</script>
