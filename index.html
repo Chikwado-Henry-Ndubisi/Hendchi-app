@@ -6,21 +6,35 @@
 <script src="https://sdk.minepi.com/pi-sdk.js"></script>
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
-body {background:#fff;}
-.page {display:none; width:100%; min-height:100vh;}
+body {background:#fff; position:relative; overflow-x:hidden;}
+/* BACKGROUND WATERMARK */
+body::before {
+  content:"";
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:300px;
+  height:300px;
+  background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="10" y="10" width="30" height="30" rx="8" fill="%23ff3b30"/><text x="50" y="60" font-family="Arial" font-size="18" font-weight="bold" fill="%236b21a8">hendchi</text></svg>') no-repeat center;
+  background-size:contain;
+  opacity:0.04;
+  z-index:0;
+}
+.page {display:none; width:100%; min-height:100vh; position:relative; z-index:1;}
 .active {display:block;}
-.top {padding:20px; display:flex; justify-content:space-between; align-items:center;}
-.logo {display:flex; align-items:center; gap:8px; color:#6b21a8; font-size:22px; font-weight:900;}
-.logo-icon {width:28px; height:28px; background:#ff3b30; border-radius:8px 0 8px 0;}
-.content {padding:60px 30px 20px; text-align:center;}
-.content h2 {font-size:28px; color:#000; line-height:1.3; margin-bottom:14px; font-weight:900;}
-.content p {font-size:15px; color:#666; line-height:1.6; padding:0 10px;}
-.dots {display:flex; justify-content:center; gap:8px; margin:30px 0 50px;}
+.top {padding:20px; display:flex; justify-content:space-between; align-items:center; position:relative; z-index:2;}
+.logo {display:flex; align-items:center; gap:8px; color:#6b21a8; font-size:20px; font-weight:900;}
+.logo-icon {width:24px; height:24px; background:#ff3b30; border-radius:6px 0 6px 0;}
+.content {padding:60px 30px 20px; text-align:center; position:relative; z-index:2;}
+.content h2 {font-size:26px; color:#000; line-height:1.3; margin-bottom:12px; font-weight:900;}
+.content p {font-size:14px; color:#777; line-height:1.6;}
+.dots {display:flex; justify-content:center; gap:8px; margin:30px 0 40px;}
 .dot {width:8px; height:8px; background:#d0d0d0; border-radius:50%;}
 .dot.active {width:24px; background:#6b21a8; border-radius:12px;}
-.bottom {padding:0 30px 40px;}
-.btn1 {width:100%; padding:16px; background:#6b21a8; color:#fff; border:none; border-radius:12px; font-size:16px; font-weight:900; margin-bottom:12px; text-transform:uppercase;}
-.btn2 {width:100%; padding:16px; background:#fff; color:#6b21a8; border:2px solid #6b21a8; border-radius:12px; font-size:16px; font-weight:900; text-transform:uppercase;}
+.bottom {padding:0 20px 40px; position:relative; z-index:2;}
+.btn1 {width:100%; padding:15px; background:#6b21a8; color:#fff; border:none; border-radius:10px; font-size:15px; font-weight:900; margin-bottom:12px; text-transform:uppercase;}
+.btn2 {width:100%; padding:15px; background:#fff; color:#6b21a8; border:2px solid #6b21a8; border-radius:10px; font-size:15px; font-weight:900; text-transform:uppercase;}
 #home {background:#f5f5f5; padding:20px;}
 #home h1 {font-size:24px;}
 .card {background:linear-gradient(135deg,#6b21a8,#9333ea); color:#fff; padding:25px; border-radius:20px; text-align:center; margin-top:20px;}
@@ -36,9 +50,9 @@ body {background:#fff;}
     <div style="font-size:24px;">☰</div>
   </div>
   <div class="content">
-    <h2 id="title">Sell Faster on<br>Hendchi Marketplace</h2>
-    <p id="text">Take advantage of our huge web traffic and sell your products faster</p>
-    <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot active"></span></div>
+    <h2 id="title">Boost Your Social<br>Media Engagement<br>and Portfolio</h2>
+    <p id="text">Get real people to grow your social media portfolio</p>
+    <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot active"></span><span class="dot"></span></div>
   </div>
   <div class="bottom">
     <button class="btn1" onclick="piLogin()">CREATE FREE ACCOUNT</button>
@@ -52,10 +66,8 @@ body {background:#fff;}
 </div>
 
 <script>
-window.addEventListener('load', function() {
-  window.Pi.init({ version: "2.0", sandbox: true });
-});
-let n=3, timer;
+window.addEventListener('load', function() {window.Pi.init({ version: "2.0", sandbox: true });});
+let n=2, timer;
 const data=[
  {t:"Get Paid for<br>Posting Adverts Daily<br>on Your Social Media",p:"Earn daily Pi by posting adverts and performing simple social tasks"},
  {t:"Get People to Post<br>Your Adverts on<br>their Social Media",p:"Get people with atleast 1,000 followers to post your adverts"},
