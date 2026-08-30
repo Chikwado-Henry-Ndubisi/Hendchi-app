@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Hendchi - Connect Pioneers</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;}
+  body{background:#7B2FFF; overflow:hidden;}
+
+ .header{background:#7B2FFF;color:#fff;padding:18px 15px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;left:0;right:0;z-index:100;height:60px;}
+ .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:22px;letter-spacing:0.5px;}
+ .logo-dot{width:24px;height:24px;background:#FF3B30;border-radius:50% 0 50% 50%;}
+ .menu{font-size:24px;font-weight:bold;}
+
+ .container{height:100vh;width:400%;display:flex;transition:transform 0.4s ease-in-out;padding-top:60px;}
+
+ .slide{
+    width:25%;
+    height:calc(100vh - 60px);
+    padding:40px 25px 200px 25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:#FFFFFF;
+  }
+
+  h1{font-size:32px!important;font-weight:900;color:#000000;margin-bottom:20px;line-height:1.3;}
+  p{font-size:21px!important;color:#444;margin-bottom:20px;line-height:1.8;}
+  b{color:#7B2FFF;font-weight:900;}
+
+ .dots{display:flex;justify-content:center;gap:10px;position:fixed;bottom:170px;left:0;right:0;z-index:50;}
+ .dot{width:12px;height:12px;background:#D1D1D6;border-radius:50%;transition:all 0.3s;}
+ .dot.active{width:30px;background:#7B2FFF;border-radius:15px;}
+
+ .buttons{position:fixed;bottom:0;left:0;right:0;padding:20px 20px 30px 20px;background:#FFFFFF;box-shadow:0 -4px 20px rgba(0,0,0,0.1);display:flex;flex-direction:column;gap:14px;z-index:100;}
+ .btn-primary{background:#7B2FFF;color:#fff;border:none;padding:20px;border-radius:16px;font-size:20px;font-weight:900;width:100%;letter-spacing:0.5px;}
+ .btn-secondary{background:#FFFFFF;color:#7B2FFF;border:3px solid #7B2FFF;padding:20px;border-radius:16px;font-size:20px;font-weight:900;width:100%;letter-spacing:0.5px;}
+ .btn-primary:active,.btn-secondary:active{transform:scale(0.98);}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo"><div class="logo-dot"></div>hendchi</div>
+  <div class="menu">☰</div>
+</div>
+
+<div class="container" id="container">
+  <!-- SLIDE 1 -->
+  <div class="slide">
+    <h1>Get People to Post Your <b>Adverts</b> on their <b>Social Media</b></h1>
+    <p>Connect with <b>real Pioneers</b> to post your <b>products</b>. <b>Reach thousands</b> of buyers. <b>No bots</b>. Just <b>real results</b>.</p>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide">
+    <h1><b>Boost</b> Your <b>Social Media</b> and <b>Portfolio</b></h1>
+    <p>Get <b>real likes</b>, <b>comments</b> and <b>followers</b>. Build a portfolio that attracts <b>customers</b> and <b>brand deals</b>. Grow <b>fast</b>.</p>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide">
+    <h1><b>Sell Faster</b> on Hendchi <b>Marketplace</b></h1>
+    <p>List your <b>products</b> for <b>FREE</b>. Sell to <b>millions of Pioneers</b> worldwide. From <b>phones</b> to <b>clothes</b>. Your <b>customers</b> are here.</p>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide">
+    <h1><b>Get Paid</b> for Your <b>Influence</b></h1>
+    <p><b>Monetize</b> your social media. <b>Earn Pi</b> and <b>cash</b> by sharing adverts. The more you <b>post</b>, the more you <b>earn</b>. Turn influence into <b>income</b>.</p>
+  </div>
+</div>
+
+<div class="dots">
+  <div class="dot active" onclick="goToSlide(0)"></div>
+  <div class="dot" onclick="goToSlide(1)"></div>
+  <div class="dot" onclick="goToSlide(2)"></div>
+  <div class="dot" onclick="goToSlide(3)"></div>
+</div>
+
+<div class="buttons">
+  <button class="btn-primary">CREATE FREE ACCOUNT</button>
+  <button class="btn-secondary">LOGIN TO YOUR ACCOUNT</button>
+</div>
+
+<script>
+let currentSlide = 0;
+const container = document.getElementById('container');
+const dots = document.querySelectorAll('.dot');
+
+function goToSlide(n){
+  currentSlide = n;
+  container.style.transform = 'translateX(-' + (n * 25) + '%)';
+  dots.forEach((d,i)=>d.classList.toggle('active', i===n));
+}
+
+let startX = 0;
+document.addEventListener('touchstart', e=> { startX = e.touches[0].clientX; });
+document.addEventListener('touchend', e=>{
+  let endX = e.changedTouches[0].clientX;
+  if(startX - endX > 60 && currentSlide < 3) goToSlide(currentSlide + 1);
+  if(endX - startX > 60 && currentSlide > 0) goToSlide(currentSlide - 1);
+});
+</script>
+
+</body>
+  </html>
