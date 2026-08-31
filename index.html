@@ -1,87 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Hendchi</title>
-<script src="https://sdk.minepi.com/pi-sdk.js"></script>
 <style>
-* {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
-body {background:#fff; overflow:hidden;}
-.page {display:none; width:100%; height:100vh;}
-.active {display:flex; flex-direction:column;}
-
-/* SPLASH - NEW */
-#splash {background:#6b21a8; justify-content:center; align-items:center;}
-#splash h1 {color:#fff; font-size:36px; display:flex; align-items:center; gap:8px;}
-.logo-c {width:32px; height:32px; background:#ff3b30; border-radius:50% 0 0 50%;}
-
-/* LOADING - NEW */
-#loading {background:#f5f5f5; justify-content:center; align-items:center;}
-.spinner {border:5px solid #e0e0e0; border-top:5px solid #6b21a8; border-radius:50%; width:45px; height:45px; animation:spin 1s linear infinite;}
-@keyframes spin {to {transform:rotate(360deg);}}
-
-/* ONBOARD - YOUR ARCHIVED LAYOUT. ZERO CHANGES */
-#onboard {background:#fff;}
-.top {padding:20px; display:flex; justify-content:space-between; align-items:center;}
-.logo {display:flex; align-items:center; gap:6px; color:#6b21a8; font-size:22px; font-weight:bold;}
-.content {flex:1; padding:20px 30px; text-align:center; display:flex; flex-direction:column; justify-content:center;}
-.content h2 {font-size:26px; color:#000; line-height:1.4; margin-bottom:12px; font-weight:700;}
-.content p {font-size:15px; color:#555; line-height:1.5;}
-.dots {display:flex; justify-content:center; gap:8px; margin-top:20px;}
-.dot {width:8px; height:8px; background:#d0d0d0; border-radius:50%;}
-.dot.active {width:24px; background:#6b21a8; border-radius:12px;}
-.bottom {padding:0 20px 40px;}
-.btn1 {width:100%; padding:16px; background:#6b21a8; color:#fff; border:none; border-radius:12px; font-size:16px; font-weight:bold; margin-bottom:12px;}
-.btn2 {width:100%; padding:16px; background:#fff; color:#6b21a8; border:2px solid #6b21a8; border-radius:12px; font-size:16px; font-weight:bold;}
-
-/* HOME - NEW */
-#home {background:#f5f5f5; padding:20px;}
-#home h1 {font-size:24px;}
-.card {background:linear-gradient(135deg,#6b21a8,#9333ea); color:#fff; padding:25px; border-radius:20px; text-align:center; margin-top:20px;}
-.card h2 {font-size:16px; font-weight:400;}
-.card h3 {font-size:40px; margin-top:8px;}
+html,body{height:100%!important;margin:0!important;padding:0!important;overflow:hidden!important;background:#fff!important}
+*{box-sizing:border-box!important}
+.container{width:400vw!important;height:100vh!important;display:flex!important;transition:transform 0.5s ease!important}
+.slide{width:100vw!important;height:100vh!important;padding:0 30px 280px 30px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;text-align:center!important}
+.topbar{position:absolute!important;top:0!important;left:0!important;width:100%!important;padding:25px!important;display:flex!important;justify-content:space-between!important;align-items:center!important;z-index:99!important;background:#fff!important}
+.logo{font-size:60px!important;color:#6B21A8!important;font-weight:900!important;font-family:Arial Black,Arial!important}
+.logo span{font-size:32px!important;color:#000!important;font-weight:900!important}
+.menu{font-size:60px!important;font-weight:900!important;color:#000!important}
+.slide h1{font-size:70px!important;font-weight:900!important;color:#000!important;line-height:1.2!important;margin-bottom:30px!important;font-family:Arial Black,Arial!important}
+.slide p{font-size:36px!important;font-weight:800!important;color:#333!important;line-height:1.5!important;font-family:Arial!important}
+.dots{position:fixed!important;bottom:180px!important;width:100%!important;display:flex!important;justify-content:center!important;gap:15px!important}
+.dot{width:18px!important;height:18px!important;border-radius:50%!important;background:#ccc!important}
+.dot.active{background:#6B21A8!important;width:45px!important;border-radius:12px!important}
+.bottom{position:fixed!important;bottom:0!important;left:0!important;width:100%!important;background:#fff!important;padding:25px!important;box-shadow:0 -10px 30px rgba(0,0,0,0.2)!important}
+.btn1{width:100%!important;padding:35px!important;background:#6B21A8!important;color:#fff!important;border:none!important;border-radius:20px!important;font-size:32px!important;font-weight:900!important;margin-bottom:15px!important;font-family:Arial Black,Arial!important}
+.btn2{width:100%!important;padding:35px!important;background:#fff!important;color:#6B21A8!important;border:4px solid #6B21A8!important;border-radius:20px!important;font-size:32px!important;font-weight:900!important;font-family:Arial Black,Arial!important}
 </style>
 </head>
 <body>
 
-<div id="splash" class="page active"><h1><div class="logo-c"></div>Hendchi</h1></div>
-<div id="loading" class="page"><div class="spinner"></div></div>
+<div class="topbar">
+  <div class="logo">📢 hendchi<span>.pi</span></div>
+  <div class="menu">☰</div>
+</div>
 
-<div id="onboard" class="page">
-  <div class="top">
-    <div class="logo"><div class="logo-c"></div>hendchi</div>
-    <div>☰</div>
+<div class="container" id="s">
+  <div class="slide">
+    <h1>Get Paid for<br>Posting Adverts<br>Daily on Your<br>Social Media</h1>
+    <p>Earn daily income by posting adverts and performing simple social tasks for top businesses.</p>
   </div>
-  <div class="content">
-    <h2 id="title">Get People to Post Your Adverts on their Social Media</h2>
-    <p id="text">Get people with atleast 1,000 followers to post your adverts</p>
-    <div class="dots"><span class="dot"></span><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+  <div class="slide">
+    <h1>Get People to<br>Post Your Adverts<br>And Grow Your<br>Business</h1>
+    <p>Reach thousands of real people on Facebook, Instagram, TikTok, Twitter and Telegram.</p>
   </div>
-  <div class="bottom">
-    <button class="btn1" onclick="piLogin()">CREATE FREE ACCOUNT</button>
-    <button class="btn2" onclick="piLogin()">LOGIN TO YOUR ACCOUNT</button>
+  <div class="slide">
+    <h1>Boost Your Social<br>Media Engagement<br>And Go Viral</h1>
+    <p>Get real likes, comments, followers and views. Our community of 1000+ users engage daily.</p>
+  </div>
+  <div class="slide">
+    <h1>Sell Faster on<br>Hendchi<br>Marketplace</h1>
+    <p>Buy and sell products using Pi Points. Zero fees, instant delivery, trusted users.</p>
   </div>
 </div>
 
-<div id="home" class="page">
-  <h1>Welcome <span id="user">Pioneer</span> 👋</h1>
-  <div class="card"><h2>Your Pi Balance</h2><h3>0.000 π</h3></div>
+<div class="dots" id="d"></div>
+
+<div class="bottom">
+  <button class="btn1" onclick="alert('We will create this next')">CREATE FREE ACCOUNT</button>
+  <button class="btn2" onclick="alert('We will create this next')">LOGIN TO YOUR ACCOUNT</button>
 </div>
 
 <script>
-Pi.init({version:"2.0"});
-let n=1, timer;
-const data=[
- {t:"Get Paid for Posting Adverts Daily on Your Social Media",p:"Earn daily Pi by posting adverts and performing simple social tasks"},
- {t:"Get People to Post Your Adverts on their Social Media",p:"Get people with atleast 1,000 followers to post your adverts"},
- {t:"Boost Your Social Media Engagement and Portfolio",p:"Get real people to grow your social media portfolio"},
- {t:"Sell Faster on Hendchi Marketplace",p:"Take advantage of our huge web traffic and sell your products faster"}
-];
-function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active')}
-function slide(){n=(n+1)%4;document.getElementById('title').innerText=data[n].t;document.getElementById('text').innerText=data[n].p;document.querySelectorAll('.dot').forEach((d,i)=>d.className='dot'+(i==n?' active':''))}
-setTimeout(()=>show('loading'),2000);
-setTimeout(()=>{show('onboard');timer=setInterval(slide,3000)},3000);
-function piLogin(){clearInterval(timer); Pi.authenticate(['username'],function(a){document.getElementById('user').innerText=a.user.username;show('home')},function(){timer=setInterval(slide,3000)})}
+let c=0,s=document.querySelectorAll('.slide'),sl=document.getElementById('s'),dc=document.getElementById('d');
+s.forEach((_,i)=>{let x=document.createElement('div');x.className='dot'+(i==0?' active':'');dc.appendChild(x)});
+let dots=document.querySelectorAll('.dot');
+function u(){sl.style.transform=`translateX(-${c*100}vw)`;dots.forEach((d,i)=>d.className='dot'+(i==c?' active':''))}
+function n(){c=(c+1)%4;u()}
+let t=setInterval(n,3000);
+let sx=0;sl.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;clearInterval(t)});
+sl.addEventListener('touchend',e=>{let ex=e.changedTouches[0].clientX;if(sx-ex>50&&c<3)c++;if(ex-sx>50&&c>0)c--;u();t=setInterval(n,3000)});
 </script>
+
 </body>
 </html>
