@@ -1,62 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hendchi - Pi Social Tasks</title>
-  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; background: #fff; color: #333; overflow-x: hidden; }
-    .header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    .logo { display: flex; align-items: center; gap: 8px; font-weight: bold; font-size: 18px; color: #7B2CBF; }
-    .logo-box { width: 20px; height: 20px; background: #FF3B30; border-radius: 4px; }
-    .menu { font-size: 24px; cursor: pointer; }
-    .slider { text-align: center; padding: 40px 20px 20px; }
-    .slider h1 { font-size: 24px; font-weight: 900; margin-bottom: 10px; line-height: 1.3; }
-    .slider p { font-size: 14px; color: #666; margin-bottom: 20px; }
-    .dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 30px; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; }
-    .dot.active { background: #7B2CBF; width: 20px; border-radius: 10px; }
-    .btn { width: 90%; max-width: 400px; margin: 10px auto; padding: 16px; border-radius: 12px; font-weight: bold; font-size: 16px; cursor: pointer; display: block; box-shadow: 0 4px 10px rgba(123,44,191,0.3); }
-    .btn-primary { background: #7B2CBF; color: white; border: none; }
-    .btn-outline { background: white; color: #7B2CBF; border: 2px solid #7B2CBF; box-shadow: none; }
-    .watermark { position: fixed; bottom: 50px; left: 50%; transform: translateX(-50%); opacity: 0.05; font-size: 80px; font-weight: 900; color: #7B2CBF; z-index: -1; }
-    .page { display: none; padding: 20px; }
-    .page.active { display: block; }
-  </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hendchi</title>
+<script src="https://sdk.minepi.com/pi-sdk.js"></script>
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
+body {background:#fff; overflow:hidden;}
+.page {display:none; width:100%; height:100vh;}
+.active {display:flex; flex-direction:column;}
+
+/* SPLASH - NEW */
+#splash {background:#6b21a8; justify-content:center; align-items:center;}
+#splash h1 {color:#fff; font-size:36px; display:flex; align-items:center; gap:8px;}
+.logo-c {width:32px; height:32px; background:#ff3b30; border-radius:50% 0 0 50%;}
+
+/* LOADING - NEW */
+#loading {background:#f5f5f5; justify-content:center; align-items:center;}
+.spinner {border:5px solid #e0e0e0; border-top:5px solid #6b21a8; border-radius:50%; width:45px; height:45px; animation:spin 1s linear infinite;}
+@keyframes spin {to {transform:rotate(360deg);}}
+
+/* ONBOARD - YOUR ARCHIVED LAYOUT. ZERO CHANGES */
+#onboard {background:#fff;}
+.top {padding:20px; display:flex; justify-content:space-between; align-items:center;}
+.logo {display:flex; align-items:center; gap:6px; color:#6b21a8; font-size:22px; font-weight:bold;}
+.content {flex:1; padding:20px 30px; text-align:center; display:flex; flex-direction:column; justify-content:center;}
+.content h2 {font-size:26px; color:#000; line-height:1.4; margin-bottom:12px; font-weight:700;}
+.content p {font-size:15px; color:#555; line-height:1.5;}
+.dots {display:flex; justify-content:center; gap:8px; margin-top:20px;}
+.dot {width:8px; height:8px; background:#d0d0d0; border-radius:50%;}
+.dot.active {width:24px; background:#6b21a8; border-radius:12px;}
+.bottom {padding:0 20px 40px;}
+.btn1 {width:100%; padding:16px; background:#6b21a8; color:#fff; border:none; border-radius:12px; font-size:16px; font-weight:bold; margin-bottom:12px;}
+.btn2 {width:100%; padding:16px; background:#fff; color:#6b21a8; border:2px solid #6b21a8; border-radius:12px; font-size:16px; font-weight:bold;}
+
+/* HOME - NEW */
+#home {background:#f5f5f5; padding:20px;}
+#home h1 {font-size:24px;}
+.card {background:linear-gradient(135deg,#6b21a8,#9333ea); color:#fff; padding:25px; border-radius:20px; text-align:center; margin-top:20px;}
+.card h2 {font-size:16px; font-weight:400;}
+.card h3 {font-size:40px; margin-top:8px;}
+</style>
 </head>
 <body>
-  <div class="header">
-    <div class="logo"><div class="logo-box"></div> hendchi</div>
-    <div class="menu">☰</div>
-  </div>
 
-  <div id="welcome" class="page active">
-    <div class="slider">
-      <h1>Get People to Post Your Adverts on Their Accounts for a Fee</h1>
-      <p>Get real people to grow your social media portfolio</p>
-      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
-    </div>
-    <button class="btn btn-primary" onclick="login()">CREATE FREE ACCOUNT</button>
-    <button class="btn btn-outline" onclick="login()">LOGIN TO YOUR ACCOUNT</button>
-    <div class="watermark">hend</div>
-  </div>
+<div id="splash" class="page active"><h1><div class="logo-c"></div>Hendchi</h1></div>
+<div id="loading" class="page"><div class="spinner"></div></div>
 
-  <div id="home" class="page">
-    <h2>Welcome to Hendchi!</h2>
-    <p id="balance">Loading Pi Balance...</p>
+<div id="onboard" class="page">
+  <div class="top">
+    <div class="logo"><div class="logo-c"></div>hendchi</div>
+    <div>☰</div>
   </div>
+  <div class="content">
+    <h2 id="title">Get People to Post Your Adverts on their Social Media</h2>
+    <p id="text">Get people with atleast 1,000 followers to post your adverts</p>
+    <div class="dots"><span class="dot"></span><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+  </div>
+  <div class="bottom">
+    <button class="btn1" onclick="piLogin()">CREATE FREE ACCOUNT</button>
+    <button class="btn2" onclick="piLogin()">LOGIN TO YOUR ACCOUNT</button>
+  </div>
+</div>
 
-  <script>
-    function login() {
-      Pi.authenticate(["payments"], function(payment) {}).then(function(auth) {
-        document.getElementById('welcome').classList.remove('active');
-        document.getElementById('home').classList.add('active');
-        document.getElementById('balance').innerText = "Your Pi Balance: Loading...";
-      }).catch(function(error) { alert("Login failed"); });
-    }
-    Pi.init({ version: "2.0" });
-  </script>
+<div id="home" class="page">
+  <h1>Welcome <span id="user">Pioneer</span> 👋</h1>
+  <div class="card"><h2>Your Pi Balance</h2><h3>0.000 π</h3></div>
+</div>
+
+<script>
+Pi.init({version:"2.0"});
+let n=1, timer;
+const data=[
+ {t:"Get Paid for Posting Adverts Daily on Your Social Media",p:"Earn daily Pi by posting adverts and performing simple social tasks"},
+ {t:"Get People to Post Your Adverts on their Social Media",p:"Get people with atleast 1,000 followers to post your adverts"},
+ {t:"Boost Your Social Media Engagement and Portfolio",p:"Get real people to grow your social media portfolio"},
+ {t:"Sell Faster on Hendchi Marketplace",p:"Take advantage of our huge web traffic and sell your products faster"}
+];
+function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function slide(){n=(n+1)%4;document.getElementById('title').innerText=data[n].t;document.getElementById('text').innerText=data[n].p;document.querySelectorAll('.dot').forEach((d,i)=>d.className='dot'+(i==n?' active':''))}
+setTimeout(()=>show('loading'),2000);
+setTimeout(()=>{show('onboard');timer=setInterval(slide,3000)},3000);
+function piLogin(){clearInterval(timer); Pi.authenticate(['username'],function(a){document.getElementById('user').innerText=a.user.username;show('home')},function(){timer=setInterval(slide,3000)})}
+</script>
 </body>
 </html>
