@@ -22,13 +22,14 @@ html,body{height:100%!important;margin:0!important;padding:0!important;overflow:
 .btn1{width:100%!important;padding:35px!important;background:#7B2CBF!important;color:#fff!important;border:none!important;border-radius:20px!important;font-size:32px!important;font-weight:900!important;margin-bottom:15px!important;font-family:Arial Black,Arial!important;box-shadow:0 8px 20px rgba(123,44,191,0.4)!important}
 .btn2{width:100%!important;padding:35px!important;background:#fff!important;color:#7B2CBF!important;border:4px solid #7B2CBF!important;border-radius:20px!important;font-size:32px!important;font-weight:900!important;font-family:Arial Black,Arial!important}
 
-/* WATERMARK BACKGROUND */
-.watermark{position:fixed!important;top:50%!important;left:50%!important;transform:translate(-50%,-50%)!important;opacity:0.04!important;font-size:200px!important;font-weight:900!important;color:#7B2CBF!important;z-index:1!important;pointer-events:none!important;font-family:Arial Black,Arial!important}
+/* LOGO WATERMARK BACKGROUND - MORE VISIBLE */
+.watermark{position:fixed!important;top:50%!important;left:50%!important;transform:translate(-50%,-50%)!important;opacity:0.12!important;font-size:250px!important;z-index:1!important;pointer-events:none!important}
 </style>
 </head>
 <body>
 
-<div class="watermark">hend</div>
+<!-- LOGO WATERMARK -->
+<div class="watermark">📢</div>
 
 <div class="topbar">
   <div class="logo">📢 hendchi<span>.pi</span></div>
@@ -66,21 +67,9 @@ html,body{height:100%!important;margin:0!important;padding:0!important;overflow:
 function login() {
   Pi.authenticate(["payments"], function(payment) {}).then(function(auth) {
     alert("Welcome " + auth.user.username + "! Login successful");
-    // After login we can redirect to dashboard
   }).catch(function(error) { alert("Login failed: " + error); });
 }
 Pi.init({ version: "2.0" });
 
 // SLIDER CODE
 let c=0,s=document.querySelectorAll('.slide'),sl=document.getElementById('s'),dc=document.getElementById('d');
-s.forEach((_,i)=>{let x=document.createElement('div');x.className='dot'+(i==0?' active':'');dc.appendChild(x)});
-let dots=document.querySelectorAll('.dot');
-function u(){sl.style.transform=`translateX(-${c*100}vw)`;dots.forEach((d,i)=>d.className='dot'+(i==c?' active':''))}
-function n(){c=(c+1)%4;u()}
-let t=setInterval(n,3000);
-let sx=0;sl.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;clearInterval(t)});
-sl.addEventListener('touchend',e=>{let ex=e.changedTouches[0].clientX;if(sx-ex>50&&c<3)c++;if(ex-sx>50&&c>0)c--;u();t=setInterval(n,3000)});
-</script>
-
-</body>
-  </html>
