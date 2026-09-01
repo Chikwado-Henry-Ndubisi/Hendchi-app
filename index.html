@@ -1,32 +1,98 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hendchi</title>
+<title>Hendchi - Earn & Withdraw with Pi</title>
 <script src="https://sdk.minepi.com/pi-sdk.js"></script>
 <style>
-  body{font-family:Arial;text-align:center;background:linear-gradient(135deg,#7B2CBF,#C77DFF);color:#fff;margin:0;padding:0;overflow:hidden}
-  h1{margin-top:80px;font-size:32px}
-  .moving{margin:30px 0;font-size:18px;animation:slide 3s infinite}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Arial',sans-serif}
+  body{background:linear-gradient(135deg,#7B2CBF,#C77DFF);min-height:100vh;color:#fff}
+  .page{display:none;padding:20px;text-align:center}
+  .page.active{display:block}
+  
+  h1{font-size:32px;margin:40px 0 10px}
+  .moving{font-size:18px;margin-bottom:30px;animation:slide 3s infinite}
   @keyframes slide{0%{opacity:0;transform:translateY(10px)}50%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
-  .btn{padding:16px 40px;margin:10px;border:none;border-radius:12px;font-size:18px;font-weight:900;cursor:pointer;width:80%;max-width:300px}
+  
+  .btn{padding:16px 40px;margin:10px;border:none;border-radius:12px;font-size:18px;font-weight:900;cursor:pointer;width:85%;max-width:320px}
   .btn1{background:#fff;color:#7B2CBF}
   .btn2{background:#FFD60A;color:#000}
+  .btn3{background:#7B2CBF;color:#fff;border:2px solid #fff}
+  
+  .card{background:rgba(255,255,255,0.15);padding:20px;border-radius:16px;margin:15px 0;backdrop-filter:blur(10px)}
+  .balance{font-size:48px;font-weight:900;color:#FFD60A}
+  .nav{display:flex;justify-content:space-around;position:fixed;bottom:0;left:0;right:0;background:#fff;padding:10px 0}
+  .nav button{background:none;border:none;color:#7B2CBF;font-weight:700;cursor:pointer}
 </style>
-</head><body>
+</head>
+<body>
+
+<!-- PAGE 1: LOGIN -->
+<div class="page active" id="login">
   <h1>Welcome to Hendchi</h1>
   <div class="moving">Earn Pi • Withdraw Pi • Shop with Pi</div>
-  
   <button class="btn btn1" onclick="create()">CREATE ACCOUNT</button>
   <button class="btn btn2" onclick="login()">LOGIN WITH PI</button>
-  
+</div>
+
+<!-- PAGE 2: DASHBOARD -->
+<div class="page" id="dashboard">
+  <h1>Hello <span id="username">User</span></h1>
+  <div class="card">
+    <p>Your Pi Balance</p>
+    <div class="balance">0.00 π</div>
+  </div>
+  <div class="card">
+    <p>Today's Tasks</p>
+    <p>Complete 3 tasks to earn 0.01π</p>
+  </div>
+  <button class="btn btn3" onclick="showPage('earn')">GO TO EARN</button>
+</div>
+
+<!-- PAGE 3: EARN -->
+<div class="page" id="earn">
+  <h1>Earn Pi</h1>
+  <div class="card"><p>Watch Ad +0.001π</p><button class="btn btn2">WATCH</button></div>
+  <div class="card"><p>Complete Survey +0.005π</p><button class="btn btn2">START</button></div>
+  <button class="btn btn3" onclick="showPage('withdraw')">WITHDRAW</button>
+</div>
+
+<!-- PAGE 4: WITHDRAW -->
+<div class="page" id="withdraw">
+  <h1>Withdraw Pi</h1>
+  <div class="card"><p>Minimum: 1.00 π</p><p>Available: 0.00 π</p></div>
+  <button class="btn btn2">REQUEST WITHDRAWAL</button>
+  <button class="btn btn3" onclick="showPage('dashboard')">BACK</button>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="nav" id="bottomNav" style="display:none">
+  <button onclick="showPage('dashboard')">Dashboard</button>
+  <button onclick="showPage('earn')">Earn</button>
+  <button onclick="showPage('withdraw')">Withdraw</button>
+</div>
+
 <script>
   Pi.init({ version: "2.0", sandbox: true });
-  async function login(){
-    const auth = await Pi.authenticate(['username']);
-    alert("Welcome back " + auth.user.username);
+  
+  function showPage(id){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    if(id !== 'login') document.getElementById('bottomNav').style.display = 'flex';
   }
+  
+  async function login(){
+    try{
+      const auth = await Pi.authenticate(['username']);
+      document.getElementById('username').innerText = auth.user.username;
+      showPage('dashboard');
+    }catch(e){alert("Login cancelled")}
+  }
+  
   function create(){
-    login(); // In Pi, create = login first time
+    login(); // In Pi, first login = create account
   }
 </script>
+
 </body></html>
