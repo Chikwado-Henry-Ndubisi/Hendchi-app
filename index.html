@@ -1,98 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hendchi - Earn & Withdraw with Pi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Hendchi - Pi Social</title>
 <script src="https://sdk.minepi.com/pi-sdk.js"></script>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:'Arial',sans-serif}
-  body{background:linear-gradient(135deg,#7B2CBF,#C77DFF);min-height:100vh;color:#fff}
-  .page{display:none;padding:20px;text-align:center}
-  .page.active{display:block}
-  
-  h1{font-size:32px;margin:40px 0 10px}
-  .moving{font-size:18px;margin-bottom:30px;animation:slide 3s infinite}
-  @keyframes slide{0%{opacity:0;transform:translateY(10px)}50%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
-  
-  .btn{padding:16px 40px;margin:10px;border:none;border-radius:12px;font-size:18px;font-weight:900;cursor:pointer;width:85%;max-width:320px}
-  .btn1{background:#fff;color:#7B2CBF}
-  .btn2{background:#FFD60A;color:#000}
-  .btn3{background:#7B2CBF;color:#fff;border:2px solid #fff}
-  
-  .card{background:rgba(255,255,255,0.15);padding:20px;border-radius:16px;margin:15px 0;backdrop-filter:blur(10px)}
-  .balance{font-size:48px;font-weight:900;color:#FFD60A}
-  .nav{display:flex;justify-content:space-around;position:fixed;bottom:0;left:0;right:0;background:#fff;padding:10px 0}
-  .nav button{background:none;border:none;color:#7B2CBF;font-weight:700;cursor:pointer}
+html,body{height:100%!important;margin:0!important;padding:0!important;overflow:hidden!important;background:#fff!important}
+*{box-sizing:border-box!important}
+.container{width:400vw!important;height:100vh!important;display:flex!important;transition:transform 0.5s ease!important}
+.slide{width:100vw!important;height:100vh!important;padding:0 20px 300px 20px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;text-align:center!important;position:relative!important;z-index:2!important}
+.topbar{position:absolute!important;top:0!important;left:0!important;width:100%!important;padding:20px!important;display:flex!important;justify-content:space-between!important;align-items:center!important;z-index:99!important;background:#7B2CBF!important;color:#fff!important}
+.logo{font-size:60px!important;color:#fff!important;font-weight:900!important;font-family:Arial Black,Arial!important}
+.logo span{font-size:32px!important;color:#fff!important;font-weight:900!important}
+.menu{font-size:60px!important;font-weight:900!important;color:#fff!important}
+.slide h1{font-size:90px!important;font-weight:900!important;color:#000!important;line-height:1.1!important;margin-bottom:40px!important;font-family:Arial Black,Arial!important;text-shadow:2px 2px 8px rgba(255,255,255,0.8)!important}
+.slide p{font-size:44px!important;font-weight:800!important;color:#222!important;line-height:1.4!important;font-family:Arial!important;text-shadow:1px 1px 6px rgba(255,255,255,0.8)!important}
+.dots{position:fixed!important;bottom:200px!important;width:100%!important;display:flex!important;justify-content:center!important;gap:18px!important;z-index:3!important}
+.dot{width:20px!important;height:20px!important;border-radius:50%!important;background:#999!important}
+.dot.active{background:#7B2CBF!important;width:50px!important;border-radius:12px!important}
+.bottom{position:fixed!important;bottom:0!important;left:0!important;width:100%!important;background:#fff!important;padding:20px!important;box-shadow:0 -10px 30px rgba(0,0,0,0.2)!important;z-index:3!important}
+.btn1{width:100%!important;padding:40px!important;background:#7B2CBF!important;color:#fff!important;border:none!important;border-radius:20px!important;font-size:38px!important;font-weight:900!important;margin-bottom:15px!important;font-family:Arial Black,Arial!important;box-shadow:0 8px 20px rgba(123,44,191,0.4)!important}
+.btn2{width:100%!important;padding:40px!important;background:#fff!important;color:#7B2CBF!important;border:4px solid #7B2CBF!important;border-radius:20px!important;font-size:38px!important;font-weight:900!important;font-family:Arial Black,Arial!important}
+.watermark{position:fixed!important;top:0!important;left:0!important;width:100%!important;height:100%!important;object-fit:cover!important;opacity:0.12!important;z-index:1!important;pointer-events:none!important}
 </style>
 </head>
 <body>
-
-<!-- PAGE 1: LOGIN -->
-<div class="page active" id="login">
-  <h1>Welcome to Hendchi</h1>
-  <div class="moving">Earn Pi • Withdraw Pi • Shop with Pi</div>
-  <button class="btn btn1" onclick="create()">CREATE ACCOUNT</button>
-  <button class="btn btn2" onclick="login()">LOGIN WITH PI</button>
+<img src="logo.png" class="watermark" alt="Hendchi Logo">
+<div class="topbar">
+  <div class="logo">📢 hendchi<span>.pi</span></div>
+  <div class="menu">☰</div>
 </div>
-
-<!-- PAGE 2: DASHBOARD -->
-<div class="page" id="dashboard">
-  <h1>Hello <span id="username">User</span></h1>
-  <div class="card">
-    <p>Your Pi Balance</p>
-    <div class="balance">0.00 π</div>
-  </div>
-  <div class="card">
-    <p>Today's Tasks</p>
-    <p>Complete 3 tasks to earn 0.01π</p>
-  </div>
-  <button class="btn btn3" onclick="showPage('earn')">GO TO EARN</button>
+<div class="container" id="s">
+  <div class="slide"><h1>Get Paid for<br>Posting Adverts<br>Daily on Your<br>Social Media</h1><p>Earn daily income by posting adverts and performing simple social tasks for top businesses.</p></div>
+  <div class="slide"><h1>Get People to<br>Post Your Adverts<br>And Grow Your<br>Business</h1><p>Reach thousands of real people on Facebook, Instagram, TikTok, Twitter and Telegram.</p></div>
+  <div class="slide"><h1>Boost Your Social<br>Media Engagement<br>And Go Viral</h1><p>Get real likes, comments, followers and views. Our community of 1000+ users engage daily.</p></div>
+  <div class="slide"><h1>Sell Faster on<br>Hendchi<br>Marketplace</h1><p>Buy and sell products using Pi Points. Zero fees, instant delivery, trusted users.</p></div>
 </div>
-
-<!-- PAGE 3: EARN -->
-<div class="page" id="earn">
-  <h1>Earn Pi</h1>
-  <div class="card"><p>Watch Ad +0.001π</p><button class="btn btn2">WATCH</button></div>
-  <div class="card"><p>Complete Survey +0.005π</p><button class="btn btn2">START</button></div>
-  <button class="btn btn3" onclick="showPage('withdraw')">WITHDRAW</button>
+<div class="dots" id="d"></div>
+<div class="bottom">
+  <button class="btn1" onclick="login()">CREATE FREE ACCOUNT</button>
+  <button class="btn2" onclick="login()">LOGIN TO YOUR ACCOUNT</button>
 </div>
-
-<!-- PAGE 4: WITHDRAW -->
-<div class="page" id="withdraw">
-  <h1>Withdraw Pi</h1>
-  <div class="card"><p>Minimum: 1.00 π</p><p>Available: 0.00 π</p></div>
-  <button class="btn btn2">REQUEST WITHDRAWAL</button>
-  <button class="btn btn3" onclick="showPage('dashboard')">BACK</button>
-</div>
-
-<!-- BOTTOM NAV -->
-<div class="nav" id="bottomNav" style="display:none">
-  <button onclick="showPage('dashboard')">Dashboard</button>
-  <button onclick="showPage('earn')">Earn</button>
-  <button onclick="showPage('withdraw')">Withdraw</button>
-</div>
-
 <script>
-  Pi.init({ version: "2.0", sandbox: true });
-  
-  function showPage(id){
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    if(id !== 'login') document.getElementById('bottomNav').style.display = 'flex';
-  }
-  
-  async function login(){
-    try{
-      const auth = await Pi.authenticate(['username']);
-      document.getElementById('username').innerText = auth.user.username;
-      showPage('dashboard');
-    }catch(e){alert("Login cancelled")}
-  }
-  
-  function create(){
-    login(); // In Pi, first login = create account
-  }
+function login() {Pi.authenticate(["payments"], function(payment) {}).then(function(auth) {alert("Welcome " + auth.user.username + "! Login successful");}).catch(function(error) { alert("Login failed: " + error); });}
+Pi.init({ version: "2.0" });
+let c=0,s=document.querySelectorAll('.slide'),sl=document.getElementById('s'),dc=document.getElementById('d');
+s.forEach((_,i)=>{let x=document.createElement('div');x.className='dot'+(i==0?' active':'');dc.appendChild(x)});
+let dots=document.querySelectorAll('.dot');
+function u(){sl.style.transform=`translateX(-${c*100}vw)`;dots.forEach((d,i)=>d.className='dot'+(i==c?' active':''))}
+function n(){c=(c+1)%4;u()}
+let t=setInterval(n,3000);
+let sx=0;sl.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;clearInterval(t)});
+sl.addEventListener('touchend',e=>{let ex=e.changedTouches[0].clientX;if(sx-ex>50&&c<3)c++;if(ex-sx>50&&c>0)c--;u();t=setInterval(n,3000)});
 </script>
-
-</body></html>
+</body>
+</html>
