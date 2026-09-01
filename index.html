@@ -1,17 +1,55 @@
 <!DOCTYPE html>
-<html><head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Test</title>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Hendchi</title>
 <script src="https://sdk.minepi.com/pi-sdk.js"></script>
-</head><body style="text-align:center;padding-top:100px">
-<h1>Hendchi Test</h1>
-<button onclick="test()" style="padding:20px;font-size:20px;background:#7B2CBF;color:#fff;border:none;border-radius:10px">LOGIN WITH PI</button>
+<style>
+html,body{height:100%!important;margin:0!important;padding:0!important;overflow:hidden!important;background:#fff!important;font-family:Arial!important}
+*{box-sizing:border-box!important}
+.topbar{position:absolute!important;top:0!important;left:0!important;width:100%!important;padding:20px!important;display:flex!important;justify-content:space-between!important;align-items:center!important;z-index:99!important}
+.logo{display:flex!important;align-items:center!important;gap:10px!important;font-size:40px!important;color:#7B2CBF!important;font-weight:900!important}
+.logo.dot{width:40px!important;height:40px!important;background:#FF6B35!important;border-radius:10px!important}
+.menu{font-size:50px!important;font-weight:900!important;color:#000!important}
+.container{width:400vw!important;height:100vh!important;display:flex!important;transition:transform 0.5s ease!important}
+.slide{width:100vw!important;height:100vh!important;padding:0 30px 280px 30px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;text-align:center!important}
+.slide h1{font-size:70px!important;font-weight:900!important;color:#000!important;line-height:1.2!important;margin-bottom:30px!important}
+.slide p{font-size:36px!important;font-weight:500!important;color:#666!important;line-height:1.4!important}
+.dots{position:absolute!important;top:60%!important;left:50%!important;transform:translate(-50%,-50%)!important;display:flex!important;justify-content:center!important;gap:15px!important;z-index:3!important}
+.dot{width:18px!important;height:18px!important;border-radius:50%!important;background:#CCC!important;transition:all 0.3s!important}
+.dot.active{background:#7B2CBF!important;width:45px!important;border-radius:12px!important}
+.bottom{position:fixed!important;bottom:0!important;left:0!important;width:100%!important;background:#fff!important;padding:20px!important;z-index:3!important}
+.btn1{width:100%!important;padding:35px!important;background:#7B2CBF!important;color:#fff!important;border:none!important;border-radius:15px!important;font-size:34px!important;font-weight:900!important;margin-bottom:15px!important}
+.btn2{width:100%!important;padding:35px!important;background:#fff!important;color:#7B2CBF!important;border:3px solid #7B2CBF!important;border-radius:15px!important;font-size:34px!important;font-weight:900!important}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="logo"><div class="dot"></div> hendchi</div>
+  <div class="menu">☰</div>
+</div>
+<div class="container" id="s">
+  <div class="slide"><h1>Get Paid for Posting<br>Adverts Daily on<br>Your Social Media</h1><p>Earn daily Pi by posting adverts and performing simple social tasks</p></div>
+  <div class="slide"><h1>Get People to Post<br>Your Adverts on<br>their Social Media</h1><p>Get people with atleast 1,000 followers to post your adverts</p></div>
+  <div class="slide"><h1>Boost Your Social<br>Media Engagement<br>and Portfolio</h1><p>Get real people to grow your social media portfolio</p></div>
+  <div class="slide"><h1>Sell Faster on<br>Hendchi Marketplace</h1><p>Take advantage of our huge web traffic and sell your products faster</p></div>
+</div>
+<div class="dots" id="d"></div>
+<div class="bottom">
+  <button class="btn1" onclick="login()">CREATE FREE ACCOUNT</button>
+  <button class="btn2" onclick="login()">LOGIN TO YOUR ACCOUNT</button>
+</div>
 <script>
-Pi.init({ version: "2.0", sandbox: true });
-async function test(){
-  try{
-    const auth = await Pi.authenticate(['username']);
-    alert("IT WORKS! Welcome " + auth.user.username);
-  }catch(e){alert("Error: "+e.message)}
-}
-</script></body></html>
+function login() {Pi.authenticate(["payments"], function(payment) {}).then(function(auth) {alert("Welcome " + auth.user.username + "!");}).catch(function(error) { alert("Login failed: " + error); });}
+Pi.init({ version: "2.0" });
+let c=0,s=document.querySelectorAll('.slide'),sl=document.getElementById('s'),dc=document.getElementById('d');
+s.forEach((_,i)=>{let x=document.createElement('div');x.className='dot'+(i==0?' active':'');dc.appendChild(x)});
+let dots=document.querySelectorAll('.dot');
+function u(){sl.style.transform=`translateX(-${c*100}vw)`;dots.forEach((d,i)=>d.className='dot'+(i==c?' active':''))}
+function n(){c=(c+1)%4;u()}
+let t=setInterval(n,3000);
+let sx=0;sl.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;clearInterval(t)});
+sl.addEventListener('touchend',e=>{let ex=e.changedTouches[0].clientX;if(sx-ex>50&&c<3)c++;if(ex-sx>50&&c>0)c--;u();t=setInterval(n,3000)});
+</script>
+</body>
+  </html>
