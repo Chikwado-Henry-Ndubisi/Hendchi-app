@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Hendchi</title>
+<script src="https://sdk.minepi.com/pi-sdk.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff;font-family:Arial;overflow-x:hidden}
+.topbar{position:fixed;top:0;left:0;width:100%;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;background:#fff;z-index:99}
+.logo{display:flex;align-items:center;gap:8px;font-size:24px;color:#7B2CBF;font-weight:900}
+.logo-dot{width:24px;height:24px;background:#FF6B35;border-radius:6px}
+.menu{font-size:28px;font-weight:900;color:#000}
+.container{width:400%;height:100vh;display:flex;transition:transform 0.5s ease;padding-top:70px}
+.slide{width:25%;height:calc(100vh - 200px);padding:0 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.slide h1{font-size:28px;font-weight:900;color:#000;line-height:1.3;margin-bottom:15px}
+.slide p{font-size:16px;font-weight:500;color:#666;line-height:1.4}
+.dots{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;gap:10px;z-index:3}
+.dot{width:10px;height:10px;border-radius:50%;background:#CCC;transition:all 0.3s}
+.dot.active{background:#7B2CBF;width:25px;border-radius:10px}
+.bottom{position:fixed;bottom:0;left:0;width:100%;background:#fff;padding:15px;z-index:3}
+.btn1{width:100%;padding:18px;background:#7B2CBF;color:#fff;border:none;border-radius:12px;font-size:18px;font-weight:900;margin-bottom:10px}
+.btn2{width:100%;padding:18px;background:#fff;color:#7B2CBF;border:2px solid #7B2CBF;border-radius:12px;font-size:18px;font-weight:900}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="logo"><div class="logo-dot"></div> hendchi</div>
+  <div class="menu">☰</div>
+</div>
+
+<div class="container" id="s">
+  <div class="slide"><h1>Get Paid for Posting<br>Adverts Daily on<br>Your Social Media</h1><p>Earn daily Pi by posting adverts and performing simple social tasks</p></div>
+  <div class="slide"><h1>Get People to Post<br>Your Adverts on<br>their Social Media</h1><p>Get people with atleast 1,000 followers to post your adverts</p></div>
+  <div class="slide"><h1>Boost Your Social<br>Media Engagement<br>and Portfolio</h1><p>Get real people to grow your social media portfolio</p></div>
+  <div class="slide"><h1>Sell Faster on<br>Hendchi Marketplace</h1><p>Take advantage of our huge web traffic and sell your products faster</p></div>
+</div>
+
+<div class="dots" id="d"></div>
+
+<div class="bottom">
+  <button class="btn1" onclick="piLogin()">CREATE FREE ACCOUNT</button>
+  <button class="btn2" onclick="piLogin()">LOGIN TO YOUR ACCOUNT</button>
+</div>
+
+<script>
+// 1. INIT PI
+Pi.init({ version: "2.0", sandbox: true });
+
+// 2. LOGIN FUNCTION
+async function piLogin() {
+  try {
+    const auth = await Pi.authenticate(['username', 'payments']);
+    alert("Welcome " + auth.user.username + "!");
+    console.log("Token:", auth.accessToken);
+  } catch (err) {
+    alert("Login failed: " + err.message);
+  }
+}
+
+// 3. SLIDER
+let c=0,s=document.querySelectorAll('.slide'),sl=document.getElementById('s'),dc=document.getElementById('d');
+s.forEach((_,i)=>{let x=document.createElement('div');x.className='dot'+(i==0?' active':'');dc.appendChild(x)});
+let dots=document.querySelectorAll('.dot');
+function u(){sl.style.transform=`translateX(-${c*25}%)`;dots.forEach((d,i)=>d.className='dot'+(i==c?' active':''))}
+function n(){c=(c+1)%4;u()}
+let t=setInterval(n,3000);
+let sx=0;sl.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;clearInterval(t)});
+sl.addEventListener('touchend',e=>{let ex=e.changedTouches[0].clientX;if(sx-ex>50&&c<3)c++;if(ex-sx>50&&c>0)c--;u();t=setInterval(n,3000)});
+</script>
+</body>
+    </html>
