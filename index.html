@@ -9,44 +9,44 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
 .page{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:25px 20px;text-align:center}
 .hidden{display:none}
-/* SPLASH */
-#splash{background:#6a0dad;color:#fff;animation:fade 2s}
-@keyframes fade{0%{opacity:0}100%{opacity:1}}
-#splash h1{font-size:40px;margin-top:10px}
-/* LANDING - LIKE HAWKIT */
+/* SPLASH - PURPLE LIKE HAWKIT */
+#splash{background:#6a0dad;color:#fff}
+#splash h1{font-size:40px;margin-top:10px;font-weight:800}
+/* LANDING - WHITE LIKE HAWKIT */
 #landing{background:#fff;color:#111}
-#landing .logo{color:#6a0dad;font-size:24px;font-weight:800;margin-bottom:20px;align-self:flex-start}
+.logo{color:#6a0dad;font-size:24px;font-weight:800;margin-bottom:20px;align-self:flex-start}
 #landing h2{font-size:24px;margin-bottom:12px}
-#landing p{color:#666;margin-bottom:25px;font-size:15px}
-.dots{display:flex;gap:8px;margin-bottom:25px}
+#landing p{color:#666;margin-bottom:25px;font-size:15px;line-height:1.5}
+.dots{display:flex;gap:8px;margin-bottom:25px;justify-content:center}
 .dot{width:8px;height:8px;border-radius:50%;background:#ddd}
 .dot.active{background:#6a0dad}
 .btn{padding:16px;border-radius:12px;width:90%;max-width:400px;margin:10px auto;border:none;font-size:16px;font-weight:bold;cursor:pointer}
 .btn-purple{background:#6a0dad;color:#fff}
 .btn-outline{background:#fff;color:#6a0dad;border:2px solid #6a0dad}
 /* LOGIN POPUP */
-.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;z-index:999}
 .popup{background:#fff;padding:25px;border-radius:16px;width:90%;max-width:380px}
-.popup h3{margin-bottom:15px}
-.input{width:100%;padding:14px;margin:8px 0;border:1px solid #ddd;border-radius:10px}
+.popup h3{margin-bottom:15px;text-align:left}
+.input{width:100%;padding:14px;margin:8px 0;border:1px solid #ddd;border-radius:10px;font-size:15px}
 /* DASHBOARD */
-#dashboard{background:#f5f5f5;color:#111;padding:20px}
-.header{display:flex;justify-content:space-between;width:100%;margin-bottom:20px}
+#dashboard{background:#f5f5f5;color:#111;padding:20px;align-items:flex-start}
+.header{display:flex;justify-content:space-between;width:100%;margin-bottom:20px;font-weight:bold}
 .balance-box{background:#fff;padding:20px;border-radius:14px;width:100%;text-align:center;margin-bottom:20px}
-.balance{font-size:32px;font-weight:bold;color:#6a0dad}
+.balance{font-size:32px;font-weight:bold;color:#6a0dad;margin:10px 0}
 .btn-row{display:flex;gap:10px;width:100%;margin-bottom:20px}
-.btn-small{flex:1;padding:12px;border-radius:10px;border:none;background:#fff;border:1px solid #ddd}
+.btn-small{flex:1;padding:12px;border-radius:10px;border:none;background:#fff;border:1px solid #ddd;font-weight:bold}
+.member-box{background:#fff;padding:15px;border-radius:12px;width:100%;text-align:left;margin-bottom:15px}
 </style>
 </head>
 <body>
 
-<!-- SPLASH LIKE HAWKIT -->
+<!-- 1. SPLASH LIKE HAWKIT -->
 <div class="page" id="splash">
-<div style="font-size:60px">🛒</div>
+<div style="font-size:70px">🛒</div>
 <h1>hendchi</h1>
 </div>
 
-<!-- LANDING -->
+<!-- 2. LANDING LIKE HAWKIT -->
 <div class="page hidden" id="landing">
 <div class="logo">hendchi.pi</div>
 <h2>Get Paid for Posting Adverts Daily</h2>
@@ -56,7 +56,7 @@
 <button class="btn btn-outline" onclick="showLogin()">LOGIN TO YOUR ACCOUNT</button>
 </div>
 
-<!-- LOGIN POPUP -->
+<!-- 3. LOGIN POPUP -->
 <div class="overlay hidden" id="loginOverlay">
 <div class="popup">
 <h3>Log in to Hendchi</h3>
@@ -67,9 +67,9 @@
 </div>
 </div>
 
-<!-- DASHBOARD -->
+<!-- 4. DASHBOARD LIKE HAWKIT -->
 <div class="page hidden" id="dashboard">
-<div class="header"><b>hendchi.pi</b> <span onclick="logout()">Logout</span></div>
+<div class="header"><span>hendchi.pi</span> <span onclick="logout()">Logout</span></div>
 <h2>Welcome, Boss</h2>
 <div class="balance-box">
 <p>My Pi Balance</p>
@@ -79,40 +79,9 @@
 <button class="btn-small">WITHDRAW</button>
 </div>
 </div>
+<div class="member-box">
 <h3>Congratulations! You are now a MEMBER!</h3>
-<p>You can now earn daily by posting adverts and performing tasks</p>
-<button class="btn btn-purple" onclick="alert('Tasks coming soon')">PERFORM TASKS AND EARN</button>
+<p>Your membership has been activated. You can now earn daily by posting adverts and performing tasks.</p>
 </div>
-
-<script>
-Pi.init({ version: "2.0", sandbox: true });
-
-// Auto go from splash to landing after 2s like Hawkit
-setTimeout(()=>{
-  showPage('landing')
-}, 2000);
-
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-}
-function showLogin(){
-  document.getElementById('loginOverlay').classList.remove('hidden');
-}
-function goDashboard(){
-  document.getElementById('loginOverlay').classList.add('hidden');
-  showPage('dashboard');
-}
-function logout(){ showPage('landing') }
-
-async function piLogin(){
-  try{
-    const auth = await Pi.authenticate(['username','payments']);
-    document.getElementById('piBalance').innerText = "10.50";
-    goDashboard();
-    alert("Welcome " + auth.user.username);
-  }catch(e){ alert("Pi Login failed") }
-}
-</script>
-</body>
-  </html>
+<button class="btn btn-purple" onclick="alert('Tasks coming soon')">PERFORM TASKS AND EARN</button>
+</div
