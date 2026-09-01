@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head><button onclick="showLogin()">LOGIN TO YOUR ACCOUNT</button>
-  <title>Hendchi</title>
-  <style>
-    body { margin:0; font-family:Arial; }
-    .page { min-height:100vh; padding:20px; text-align:center; }
-    .hidden { display:none; }
-    
-    /* WHITE LANDING PAGE */
-    #landing { background:white; color:black; }
-    #landing h1 { color:#6a0dad; }
-    .btn-purple { background:#6a0dad; color:white; padding:15px; border:none; border-radius:10px; width:80%; margin:10px; }
-    .btn-white { background:white; color:#6a0dad; padding:15px; border:2px solid #6a0dad; border-radius:10px; width:80%; margin:10px; }
-
-    /* PURPLE LOGIN PAGE */
-    #login { background: linear-gradient(135deg, #6a0dad, #9b59b6); color:white; }
-    .btn-yellow { background:yellow; color:black; padding:15px; border:none; border-radius:10px; width:80%; margin:10px; }
-    .btn-white2 { background:white; color:#6a0dad; padding:15px; border:none; border-radius:10px; width:80%; margin:10px; }
-  </style>
+<head>
+<title>Hendchi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{margin:0;font-family:Arial;text-align:center}
+.page{min-height:100vh;padding:30px 20px;box-sizing:border-box}
+.hidden{display:none}
+#landing{background:#fff;color:#000}
+#landing h1{color:#6a0dad;font-size:28px}
+.btn{padding:15px;border-radius:12px;width:85%;margin:10px auto;border:none;font-size:16px;font-weight:bold;display:block}
+.btn-purple{background:#6a0dad;color:#fff}
+.btn-outline{background:#fff;color:#6a0dad;border:2px solid #6a0dad}
+#login{background:linear-gradient(135deg,#6a0dad,#9b59b6);color:#fff}
+#login h1{font-size:28px;margin-top:60px}
+.btn-yellow{background:#FFD700;color:#000}
+.btn-white{background:#fff;color:#6a0dad}
+#dashboard{background:#f5f5f5;color:#000}
+</style>
 </head>
 <body>
 
-<!-- PAGE 1: WHITE LANDING PAGE -->
+<!-- PAGE 1: WHITE LANDING -->
 <div class="page" id="landing">
-  <h1>hendchi.pi</h1>
-  <h2>Get Paid for Posting Adverts Daily</h2>
-  <p>Grow Your Business • Go Viral • Sell Faster</p>
-  <button class="btn-purple" onclick="showLogin()">CREATE FREE ACCOUNT</button>
-  <button class="btn-white" onclick="showLogin()">LOGIN TO YOUR ACCOUNT</button>
+<h1>hendchi.pi</h1>
+<h2>Get Paid for Posting Adverts Daily</h2>
+<p>Grow Your Business • Go Viral • Sell Faster</p>
+<button class="btn btn-purple" onclick="showLogin()">CREATE FREE ACCOUNT</button>
+<button class="btn btn-outline" onclick="showLogin()">LOGIN TO YOUR ACCOUNT</button>
 </div>
 
-
-<!-- PAGE 2: PURPLE LOGIN PAGE -->
+<!-- PAGE 2: PURPLE LOGIN -->
 <div class="page hidden" id="login">
-  <h1>Welcome to Hendchi</h1>
-  <p>Earn Pi • Withdraw Pi • Shop with Pi</p>
-  <button class="btn-white2">CREATE ACCOUNT</button>
-  <button class="btn-yellow">LOGIN WITH PI</button>
+<h1>Welcome to Hendchi</h1>
+<p>Earn Pi • Withdraw Pi • Shop with Pi</p>
+<button class="btn btn-white">CREATE ACCOUNT</button>
+<button class="btn btn-yellow" onclick="showDashboard()">LOGIN WITH PI</button>
 </div>
 
+<!-- PAGE 3: DASHBOARD -->
+<div class="page hidden" id="dashboard">
+<h1>Dashboard</h1>
+<p>Welcome Boss! Your Pi Balance: 0.00</p>
+<button class="btn btn-purple">Earn Pi</button>
+<button class="btn btn-purple">Withdraw Pi</button>
+<button class="btn btn-purple">Marketplace</button>
+</div>
 
 <script>
-function showLogin() {
-  document.getElementById('landing').classList.add('hidden'); // hide white
-  document.getElementById('login').classList.remove('hidden'); // show purple
+function showLogin(){
+document.getElementById('landing').classList.add('hidden');
+document.getElementById('login').classList.remove('hidden');
+}
+function showDashboard(){
+document.getElementById('login').classList.add('hidden');
+document.getElementById('dashboard').classList.remove('hidden');
 }
 </script>
-
 </body>
 </html>
