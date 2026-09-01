@@ -36,12 +36,42 @@ html,body{height:100%!important;margin:0!important;padding:0!important;overflow:
 </div>
 <div class="dots" id="d"></div>
 <div class="bottom">
-  <button class="btn1" onclick="login()">CREATE FREE ACCOUNT</button>
-  <button class="btn2" onclick="login()">LOGIN TO YOUR ACCOUNT</button>
+  <button class="btn1" onclick="piLogin()">CREATE FREE ACCOUNT</button>
+  <button class="btn2" onclick="piLogin()">LOGIN TO YOUR ACCOUNT</button>
 </div>
 <script>
-function login() {Pi.authenticate(["payments"], function(payment) {}).then(function(auth) {alert("Welcome " + auth.user.username + "!");}).catch(function(error) { alert("Login failed: " + error); });}
-Pi.init({ version: "2.0" });
+// 1. INITIALIZE PI SDK - TESTNET
+Pi.init({
+  version: "2.0",
+  sandbox: true // true = Testnet. Change to false when LIVE
+});
+
+const CLIENT_ID = "jK8ak1AFY5C_OH1q9JQY3_3kYGN-(";
+
+// 2. PI LOGIN FUNCTION
+async function piLogin() {
+  try {
+    const scopes = ['username', 'payments', 'wallet_address'];
+
+    // This handles incomplete payments too
+    const auth = await Pi.authenticate(scopes, function(payment) {
+      console.log("Incomplete payment found:", payment);
+    });
+
+    console.log("Pi User:", auth.user.username);
+    console.log("Access Token:", auth.accessToken);
+
+    alert("Welcome " + auth.user.username + "! Login Successful");
+
+    // TODO: Send auth.accessToken to your backend to verify user
+
+  } catch (error) {
+    console.error("Login Error:", error);
+    alert("Login failed: " + error.message);
+  }
+}
+
+// 3. YOUR SLIDER CODE
 let c=0,s=document.querySelectorAll('.slide'),sl=document.getElementById('s'),dc=document.getElementById('d');
 s.forEach((_,i)=>{let x=document.createElement('div');x.className='dot'+(i==0?' active':'');dc.appendChild(x)});
 let dots=document.querySelectorAll('.dot');
@@ -52,4 +82,4 @@ let sx=0;sl.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;clearInter
 sl.addEventListener('touchend',e=>{let ex=e.changedTouches[0].clientX;if(sx-ex>50&&c<3)c++;if(ex-sx>50&&c>0)c--;u();t=setInterval(n,3000)});
 </script>
 </body>
-                                                                                      </html>
+</html>
