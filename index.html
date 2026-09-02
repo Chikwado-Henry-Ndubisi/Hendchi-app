@@ -1,87 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hendchi.pi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://sdk.minepi.com/pi-sdk.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-.page{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:25px 20px;text-align:center}
+body{margin:0;font-family:Arial;background:#fff}
+.page{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;text-align:center}
 .hidden{display:none}
-/* SPLASH - PURPLE LIKE HAWKIT */
-#splash{background:#6a0dad;color:#fff}
-#splash h1{font-size:40px;margin-top:10px;font-weight:800}
-/* LANDING - WHITE LIKE HAWKIT */
-#landing{background:#fff;color:#111}
-.logo{color:#6a0dad;font-size:24px;font-weight:800;margin-bottom:20px;align-self:flex-start}
-#landing h2{font-size:24px;margin-bottom:12px}
-#landing p{color:#666;margin-bottom:25px;font-size:15px;line-height:1.5}
-.dots{display:flex;gap:8px;margin-bottom:25px;justify-content:center}
-.dot{width:8px;height:8px;border-radius:50%;background:#ddd}
-.dot.active{background:#6a0dad}
-.btn{padding:16px;border-radius:12px;width:90%;max-width:400px;margin:10px auto;border:none;font-size:16px;font-weight:bold;cursor:pointer}
-.btn-purple{background:#6a0dad;color:#fff}
-.btn-outline{background:#fff;color:#6a0dad;border:2px solid #6a0dad}
-/* LOGIN POPUP */
-.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;z-index:999}
-.popup{background:#fff;padding:25px;border-radius:16px;width:90%;max-width:380px}
-.popup h3{margin-bottom:15px;text-align:left}
-.input{width:100%;padding:14px;margin:8px 0;border:1px solid #ddd;border-radius:10px;font-size:15px}
-/* DASHBOARD */
-#dashboard{background:#f5f5f5;color:#111;padding:20px;align-items:flex-start}
-.header{display:flex;justify-content:space-between;width:100%;margin-bottom:20px;font-weight:bold}
-.balance-box{background:#fff;padding:20px;border-radius:14px;width:100%;text-align:center;margin-bottom:20px}
-.balance{font-size:32px;font-weight:bold;color:#6a0dad;margin:10px 0}
-.btn-row{display:flex;gap:10px;width:100%;margin-bottom:20px}
-.btn-small{flex:1;padding:12px;border-radius:10px;border:none;background:#fff;border:1px solid #ddd;font-weight:bold}
-.member-box{background:#fff;padding:15px;border-radius:12px;width:100%;text-align:left;margin-bottom:15px}
+#splash{background:#6a0dad;color:white}
+#splash h1{font-size:40px}
+#landing h2{color:#6a0dad;font-size:26px}
+#landing p{color:#666;margin-bottom:30px}
+.btn{width:90%;max-width:350px;padding:16px;margin:10px;border-radius:12px;border:none;font-size:16px;font-weight:bold}
+.btn1{background:#6a0dad;color:white}
+.btn2{background:white;color:#6a0dad;border:2px solid #6a0dad}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);display:flex;justify-content:center;align-items:center}
+.popup{background:white;padding:25px;border-radius:15px;width:90%;max-width:380px}
+.popup h3{color:#6a0dad}
+input{width:100%;padding:14px;margin:10px 0;border:1px solid #ddd;border-radius:10px}
+#dashboard{background:#f5f5f5}
+.balance{font-size:45px;color:#6a0dad;font-weight:bold}
 </style>
 </head>
 <body>
 
-<!-- 1. SPLASH LIKE HAWKIT -->
-<div class="page" id="splash">
-<div style="font-size:70px">🛒</div>
-<h1>hendchi</h1>
-</div>
+<!-- 1. SPLASH -->
+<div class="page" id="splash"><h1>🛒 hendchi</h1></div>
 
-<!-- 2. LANDING LIKE HAWKIT -->
+<!-- 2. LANDING - WHITE LIKE HAWKIT -->
 <div class="page hidden" id="landing">
-<div class="logo">hendchi.pi</div>
 <h2>Get Paid for Posting Adverts Daily</h2>
-<p>Earn Pi by posting adverts and performing simple tasks for top businesses</p>
-<div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-<button class="btn btn-purple" onclick="showLogin()">CREATE FREE ACCOUNT</button>
-<button class="btn btn-outline" onclick="showLogin()">LOGIN TO YOUR ACCOUNT</button>
+<p>Earn Pi by posting adverts and performing simple social tasks</p>
+<button class="btn btn1" onclick="showLogin()">CREATE FREE ACCOUNT</button>
+<button class="btn btn2" onclick="showLogin()">LOGIN TO YOUR ACCOUNT</button>
 </div>
 
 <!-- 3. LOGIN POPUP -->
-<div class="overlay hidden" id="loginOverlay">
+<div class="overlay hidden" id="login">
 <div class="popup">
 <h3>Log in to Hendchi</h3>
-<input class="input" type="text" placeholder="Username or Email or Phone">
-<input class="input" type="password" placeholder="Password">
-<button class="btn btn-purple" onclick="goDashboard()">LOG IN</button>
-<button class="btn btn-outline" onclick="piLogin()">LOGIN WITH PI</button>
+<input placeholder="Email or Username">
+<input type="password" placeholder="Password">
+<button class="btn btn1" onclick="goDash()">LOG IN</button>
+<button class="btn btn2" onclick="piLogin()">LOGIN WITH PI</button>
 </div>
 </div>
 
-<!-- 4. DASHBOARD LIKE HAWKIT -->
+<!-- 4. DASHBOARD -->
 <div class="page hidden" id="dashboard">
-<div class="header"><span>hendchi.pi</span> <span onclick="logout()">Logout</span></div>
-<h2>Welcome, Boss</h2>
-<div class="balance-box">
-<p>My Pi Balance</p>
-<div class="balance"><span id="piBalance">0.00</span> π</div>
-<div class="btn-row">
-<button class="btn-small">FUND</button>
-<button class="btn-small">WITHDRAW</button>
+<h2>Welcome!</h2>
+<p>My Balance</p>
+<div class="balance"><span id="bal">0.00</span> π</div>
+<button class="btn btn1" onclick="alert('Tasks coming soon')">PERFORM TASKS</button>
 </div>
-</div>
-<div class="member-box">
-<h3>Congratulations! You are now a MEMBER!</h3>
-<p>Your membership has been activated. You can now earn daily by posting adverts and performing tasks.</p>
-</div>
-<button class="btn btn-purple" onclick="alert('Tasks coming soon')">PERFORM TASKS AND EARN</button>
-</div
+
+<script>
+Pi.init({version:"2.0",sandbox:true});
+setTimeout(()=>{document.getElementById('splash').classList.add('hidden');document.getElementById('landing').classList.remove('hidden')},2000);
+function showLogin(){document.getElementById('login').classList.remove('hidden')}
+function goDash(){document.getElementById('login').classList.add('hidden');document.getElementById('dashboard').classList.remove('hidden')}
+async function piLogin(){const a=await Pi.authenticate(['username','payments']);document.getElementById('bal').innerText="10.50";goDash()}
+</script>
+</body>
+</html>
