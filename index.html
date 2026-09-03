@@ -43,24 +43,39 @@ body{background:#fff}
 </div>
 
 <script>
-Pi.init({ version: "2.0", sandbox: true });
-const slides = [
-  {t:"Shop with Pi Coin", p:"Buy and sell products using Pi cryptocurrency easily"},
-  {t:"Earn Pi by Selling", p:"List your products and get paid in Pi instantly"},
-  {t:"Earn Pi by Posting Adverts", p:"Promote products on your social media and earn Pi"},
-  {t:"Fast & Secure", p:"Safe transactions powered by Pi Network"}
-];
-let currentSlide = 0;
-function changeSlide(){
-  currentSlide = (currentSlide + 1) % 4;
-  document.getElementById('title').innerText = slides[currentSlide].t;
-  document.getElementById('text').innerText = slides[currentSlide].p;
-  document.querySelectorAll('.dot').forEach((d,i)=>{d.classList.toggle('active', i===currentSlide)})
-}
-setInterval(changeSlide, 3000);
+// WAIT FOR PI SDK TO LOAD FIRST
+window.addEventListener('load', function() {
+  if(typeof Pi === 'undefined'){
+    alert("Pi SDK not loaded. Please restart Pi Browser");
+    return;
+  }
+  
+  Pi.init({ version: "2.0", sandbox: true });
+
+  const slides = [
+    {t:"Shop with Pi Coin", p:"Buy and sell products using Pi cryptocurrency easily"},
+    {t:"Earn Pi by Selling", p:"List your products and get paid in Pi instantly"},
+    {t:"Earn Pi by Posting Adverts", p:"Promote products on your social media and earn Pi"},
+    {t:"Fast & Secure", p:"Safe transactions powered by Pi Network"}
+  ];
+  let currentSlide = 0;
+  function changeSlide(){
+    currentSlide = (currentSlide + 1) % 4;
+    document.getElementById('title').innerText = slides[currentSlide].t;
+    document.getElementById('text').innerText = slides[currentSlide].p;
+    document.querySelectorAll('.dot').forEach((d,i)=>{d.classList.toggle('active', i===currentSlide)})
+  }
+  setInterval(changeSlide, 3000);
+});
+
 function loginWithPi() {
-  Pi.authenticate(['payments','username'], ()=>{}, (err)=>{alert("Error: " + err)})
-.then((auth)=>{localStorage.setItem('pi_username', auth.user.username); window.location.href = "dashboard.html"});
+  Pi.authenticate(['username'], 
+    ()=>{}, 
+    (err)=>{alert("Login Error: " + err)}
+  ).then((auth)=>{
+    localStorage.setItem('pi_username', auth.user.username); 
+    window.location.href = "dashboard.html"
+  });
 }
 </script>
 </body>
