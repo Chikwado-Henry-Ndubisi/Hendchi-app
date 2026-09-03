@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hendchi.pi</title>
+<script src="https://sdk.minepi.com/pi-sdk.js"></script>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
   body{background:#fff;overflow:hidden}
@@ -20,7 +21,7 @@
 .dots{display:flex;justify-content:center;gap:8px;margin:20px 0}
 .dot{width:10px;height:10px;border-radius:50%;background:#ddd}
 .dot.active{background:#FFC700} /* PI YELLOW DOTS */
-.btn{width:90%;padding:15px;border:none;border-radius:25px;font-size:16px;margin:10px auto;font-weight:bold;display:block}
+.btn{width:90%;padding:15px;border:none;border-radius:25px;font-size:16px;margin:10px auto;font-weight:bold;display:block;cursor:pointer}
 .btn-primary{background:#FFC700;color:#000} /* PI BUTTON */
 .btn-outline{border:2px solid #FFC700;background:#fff;color:#000}
 </style>
@@ -43,16 +44,19 @@
     <span class="dot active"></span><span class="dot"></span>
     <span class="dot"></span><span class="dot"></span>
   </div>
-  <button class="btn btn-primary" onclick="alert('Coming Soon')">CREATE FREE ACCOUNT</button>
-  <button class="btn btn-outline" onclick="alert('Coming Soon')">LOGIN TO YOUR ACCOUNT</button>
+  <button class="btn btn-primary" onclick="loginWithPi()">CREATE FREE ACCOUNT</button>
+  <button class="btn btn-outline" onclick="loginWithPi()">LOGIN TO YOUR ACCOUNT</button>
 </div>
 
 <script>
+// 1. START PI SDK
+Pi.init({ version: "2.0", sandbox: true });
+
 let currentSlide = 0;
 const slides = [
   {t:"Shop with Pi Coin", p:"Buy and sell products using Pi cryptocurrency easily"},
   {t:"Earn Pi by Selling", p:"List your products and get paid in Pi instantly"},
-  {t:"Trusted Pi Community", p:"Connect with real Pi pioneers to buy and sell"},
+  {t:"Earn Pi by Posting Adverts", p:"Promote products on your social media and earn Pi"}, // <-- NEW SLIDE
   {t:"Fast & Secure", p:"Safe transactions powered by Pi Network"}
 ];
 
@@ -67,6 +71,19 @@ function changeSlide(){
 
 // Auto slide every 3 seconds
 setInterval(changeSlide, 3000);
+
+// 2. REAL PI LOGIN FUNCTION
+function loginWithPi() {
+  Pi.authenticate(['payments','username'], 
+    function(payment){}, // payment callback
+    function(error){alert("Login Failed: " + error)} // error
+  ).then(function(auth){
+    // 3. SAVE USER AND GO TO DASHBOARD
+    localStorage.setItem('pi_username', auth.user.username);
+    alert("Welcome " + auth.user.username + "!");
+    window.location.href = "dashboard.html"; // GO TO DASHBOARD
+  });
+}
 </script>
 </body>
 </html>
