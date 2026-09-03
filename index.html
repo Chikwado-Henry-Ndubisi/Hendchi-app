@@ -6,36 +6,30 @@
 <title>Hendchi.pi</title>
 <script src="https://sdk.minepi.com/pi-sdk.js"></script>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-  body{background:#fff;overflow:hidden}
-  
-  /* FLASH SCREEN - PI YELLOW */
-.flash{background:#FFC700;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#000;position:absolute;width:100%;z-index:999;animation:fadeOut 1s 2.5s forwards}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#fff}
+.flash{background:#FFC700;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#000;position:fixed;width:100%;z-index:999;animation:fadeOut 1s 2.5s forwards}
 .flash h1{font-size:32px;margin-top:10px;font-weight:bold}
-  @keyframes fadeOut{to{opacity:0;visibility:hidden;z-index:-1}}
-  
-  /* SLIDER */
-.slider{padding:20px;text-align:center;height:100vh;display:flex;flex-direction:column;justify-content:center}
+@keyframes fadeOut{to{opacity:0;visibility:hidden}}
+.slider{padding:20px;text-align:center;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
 .slide h2{font-size:24px;margin:20px 0;color:#000}
 .slide p{color:#555;font-size:16px;margin-bottom:30px}
 .dots{display:flex;justify-content:center;gap:8px;margin:20px 0}
 .dot{width:10px;height:10px;border-radius:50%;background:#ddd}
-.dot.active{background:#FFC700} /* PI YELLOW DOTS */
+.dot.active{background:#FFC700}
 .btn{width:90%;padding:15px;border:none;border-radius:25px;font-size:16px;margin:10px auto;font-weight:bold;display:block;cursor:pointer}
-.btn-primary{background:#FFC700;color:#000} /* PI BUTTON */
+.btn-primary{background:#FFC700;color:#000}
 .btn-outline{border:2px solid #FFC700;background:#fff;color:#000}
 </style>
 </head>
 <body>
 
-<!-- FLASH SCREEN -->
-<div class="flash" id="flash">
+<div class="flash">
   <div style="font-size:80px">🛒</div>
   <h1>hendchi.pi</h1>
 </div>
 
-<!-- SLIDER -->
-<div class="slider" id="slider">
+<div class="slider">
   <div class="slide">
     <h2 id="title">Shop with Pi Coin</h2>
     <p id="text">Buy and sell products using Pi cryptocurrency easily</p>
@@ -49,40 +43,24 @@
 </div>
 
 <script>
-// 1. START PI SDK
 Pi.init({ version: "2.0", sandbox: true });
-
-let currentSlide = 0;
 const slides = [
   {t:"Shop with Pi Coin", p:"Buy and sell products using Pi cryptocurrency easily"},
   {t:"Earn Pi by Selling", p:"List your products and get paid in Pi instantly"},
-  {t:"Earn Pi by Posting Adverts", p:"Promote products on your social media and earn Pi"}, // <-- NEW SLIDE
+  {t:"Earn Pi by Posting Adverts", p:"Promote products on your social media and earn Pi"},
   {t:"Fast & Secure", p:"Safe transactions powered by Pi Network"}
 ];
-
+let currentSlide = 0;
 function changeSlide(){
   currentSlide = (currentSlide + 1) % 4;
   document.getElementById('title').innerText = slides[currentSlide].t;
   document.getElementById('text').innerText = slides[currentSlide].p;
-  document.querySelectorAll('.dot').forEach((d,i)=>{
-    d.classList.toggle('active', i===currentSlide)
-  })
+  document.querySelectorAll('.dot').forEach((d,i)=>{d.classList.toggle('active', i===currentSlide)})
 }
-
-// Auto slide every 3 seconds
 setInterval(changeSlide, 3000);
-
-// 2. REAL PI LOGIN FUNCTION
 function loginWithPi() {
-  Pi.authenticate(['payments','username'], 
-    function(payment){}, // payment callback
-    function(error){alert("Login Failed: " + error)} // error
-  ).then(function(auth){
-    // 3. SAVE USER AND GO TO DASHBOARD
-    localStorage.setItem('pi_username', auth.user.username);
-    alert("Welcome " + auth.user.username + "!");
-    window.location.href = "dashboard.html"; // GO TO DASHBOARD
-  });
+  Pi.authenticate(['payments','username'], ()=>{}, (err)=>{alert("Error: " + err)})
+.then((auth)=>{localStorage.setItem('pi_username', auth.user.username); window.location.href = "dashboard.html"});
 }
 </script>
 </body>
