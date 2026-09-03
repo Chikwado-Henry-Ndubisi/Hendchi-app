@@ -4,36 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hendchi.pi</title>
+<script src="https://sdk.minepi.com/pi-sdk.js"></script> <!-- PI SDK -->
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
   body{background:#fff;overflow:hidden}
-  
-  /* FLASH SCREEN - PI YELLOW */
-.flash{background:#FFC700;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#000;position:absolute;width:100%;z-index:999;animation:fadeOut 1s 2.5s forwards}
-.flash h1{font-size:32px;margin-top:10px;font-weight:bold}
+ .flash{background:#FFC700;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#000;position:absolute;width:100%;z-index:999;animation:fadeOut 1s 2.5s forwards}
+ .flash h1{font-size:32px;margin-top:10px;font-weight:bold}
   @keyframes fadeOut{to{opacity:0;visibility:hidden;z-index:-1}}
-  
-  /* SLIDER */
-.slider{padding:20px;text-align:center;height:100vh;display:flex;flex-direction:column;justify-content:center}
-.slide h2{font-size:24px;margin:20px 0;color:#000}
-.slide p{color:#555;font-size:16px;margin-bottom:30px}
-.dots{display:flex;justify-content:center;gap:8px;margin:20px 0}
-.dot{width:10px;height:10px;border-radius:50%;background:#ddd}
-.dot.active{background:#FFC700} /* PI YELLOW DOTS */
-.btn{width:90%;padding:15px;border:none;border-radius:25px;font-size:16px;margin:10px auto;font-weight:bold;display:block}
-.btn-primary{background:#FFC700;color:#000} /* PI BUTTON */
-.btn-outline{border:2px solid #FFC700;background:#fff;color:#000}
+ .slider{padding:20px;text-align:center;height:100vh;display:flex;flex-direction:column;justify-content:center}
+ .slide h2{font-size:24px;margin:20px 0;color:#000}
+ .slide p{color:#555;font-size:16px;margin-bottom:30px}
+ .dots{display:flex;justify-content:center;gap:8px;margin:20px 0}
+ .dot{width:10px;height:10px;border-radius:50%;background:#ddd}
+ .dot.active{background:#FFC700}
+ .btn{width:90%;padding:15px;border:none;border-radius:25px;font-size:16px;margin:10px auto;font-weight:bold;display:block;cursor:pointer}
+ .btn-primary{background:#FFC700;color:#000}
+ .btn-outline{border:2px solid #FFC700;background:#fff;color:#000}
 </style>
 </head>
 <body>
 
-<!-- FLASH SCREEN -->
 <div class="flash" id="flash">
   <div style="font-size:80px">🛒</div>
   <h1>hendchi.pi</h1>
 </div>
 
-<!-- SLIDER -->
 <div class="slider" id="slider">
   <div class="slide">
     <h2 id="title">Shop with Pi Coin</h2>
@@ -43,11 +38,22 @@
     <span class="dot active"></span><span class="dot"></span>
     <span class="dot"></span><span class="dot"></span>
   </div>
-  <button class="btn btn-primary" onclick="alert('Coming Soon')">CREATE FREE ACCOUNT</button>
-  <button class="btn btn-outline" onclick="alert('Coming Soon')">LOGIN TO YOUR ACCOUNT</button>
+  <button class="btn btn-primary" onclick="loginWithPi()">CREATE FREE ACCOUNT</button>
+  <button class="btn btn-outline" onclick="loginWithPi()">LOGIN TO YOUR ACCOUNT</button>
 </div>
 
 <script>
+Pi.init({ version: "2.0", sandbox: true }); // sandbox = test mode
+
+function loginWithPi() {
+  Pi.authenticate(['payments','username'], function(payment){}, function(error){
+    alert("Login Failed: " + error)
+  }).then(function(auth){
+    alert("Welcome " + auth.user.username + "! Your Pi ID: " + auth.user.uid)
+    // Here we will save user and go to dashboard
+  });
+}
+
 let currentSlide = 0;
 const slides = [
   {t:"Shop with Pi Coin", p:"Buy and sell products using Pi cryptocurrency easily"},
@@ -55,17 +61,12 @@ const slides = [
   {t:"Trusted Pi Community", p:"Connect with real Pi pioneers to buy and sell"},
   {t:"Fast & Secure", p:"Safe transactions powered by Pi Network"}
 ];
-
 function changeSlide(){
   currentSlide = (currentSlide + 1) % 4;
   document.getElementById('title').innerText = slides[currentSlide].t;
   document.getElementById('text').innerText = slides[currentSlide].p;
-  document.querySelectorAll('.dot').forEach((d,i)=>{
-    d.classList.toggle('active', i===currentSlide)
-  })
+  document.querySelectorAll('.dot').forEach((d,i)=>{ d.classList.toggle('active', i===currentSlide) })
 }
-
-// Auto slide every 3 seconds
 setInterval(changeSlide, 3000);
 </script>
 </body>
