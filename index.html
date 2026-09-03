@@ -1,58 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hendchi.pi</title>
-<script src="https://sdk.minepi.com/pi-sdk.js"></script> 
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-  body{background:#fff;overflow:hidden}
- .flash{background:#FFC700;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#000;position:absolute;width:100%;z-index:999;animation:fadeOut 1s 2.5s forwards}
- .flash h1{font-size:32px;margin-top:10px;font-weight:bold}
-  @keyframes fadeOut{to{opacity:0;visibility:hidden;z-index:-1}}
- .slider{padding:20px;text-align:center;height:100vh;display:flex;flex-direction:column;justify-content:center}
- .slide h2{font-size:24px;margin:20px 0;color:#000}
- .slide p{color:#555;font-size:16px;margin-bottom:30px}
- .dots{display:flex;justify-content:center;gap:8px;margin:20px 0}
- .dot{width:10px;height:10px;border-radius:50%;background:#ddd}
- .dot.active{background:#FFC700}
- .btn{width:90%;padding:15px;border:none;border-radius:25px;font-size:16px;margin:10px auto;font-weight:bold;display:block;cursor:pointer}
- .btn-primary{background:#FFC700;color:#000}
- .btn-outline{border:2px solid #FFC700;background:#fff;color:#000}
-</style>
-</head>
-<body>
-
-<div class="flash" id="flash">
-  <div style="font-size:80px">🛒</div>
-  <h1>hendchi.pi</h1>
-</div>
-
-<div class="slider" id="slider">
-  <div class="slide">
-    <h2 id="title">Trusted Pi Community</h2>
-    <p id="text">Connect with real Pi pioneers to buy and sell</p>
-  </div>
-  <div class="dots">
-    <span class="dot"></span><span class="dot"></span>
-    <span class="dot active"></span><span class="dot"></span>
-  </div>
-  <button class="btn btn-primary" onclick="loginWithPi()">CREATE FREE ACCOUNT</button>
-  <button class="btn btn-outline" onclick="loginWithPi()">LOGIN TO YOUR ACCOUNT</button>
+<div class="slide">
+  <h2 id="title">Trusted Pi Community</h2>
+  <p id="text">Connect with real Pi pioneers to buy and sell</p>
 </div>
 
 <script>
-Pi.init({ version: "2.0", sandbox: true }); // sandbox = test mode
+const slides = [
+  {
+    title: "Trusted Pi Community",
+    text: "Connect with real Pi pioneers to buy and sell"
+  },
+  {
+    title: "Buy & Sell with Pi", 
+    text: "List your products and get paid instantly in Pi"
+  },
+  {
+    title: "Earn Pi by Posting Adverts",
+    text: "Promote products and earn Pi directly to your wallet"
+  },
+  {
+    title: "Fast & Secure",
+    text: "All payments are secured by Pi Blockchain"
+  }
+];
 
-function loginWithPi() {
-  Pi.authenticate(['payments','username'], function(payment){}, function(error){
-    alert("Login Failed: " + error)
-  }).then(function(auth){
-    alert("Welcome " + auth.user.username + "! Logged in successfully")
-    // Next: redirect to dashboard
-  });
+let currentSlide = 0;
+const titleEl = document.getElementById('title');
+const textEl = document.getElementById('text');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(index) {
+  titleEl.textContent = slides[index].title;
+  textEl.textContent = slides[index].text;
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
 }
-</script>
-</body>
-</html>
+
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}, 3000); // changes every 3 seconds
+   </script>
