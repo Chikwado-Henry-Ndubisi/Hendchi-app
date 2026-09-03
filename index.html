@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hendchi.pi</title>
-<script src="https://sdk.minepi.com/pi-sdk.js"></script> <!-- PI SDK -->
+<script src="https://sdk.minepi.com/pi-sdk.js"></script> 
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
   body{background:#fff;overflow:hidden}
@@ -31,12 +31,12 @@
 
 <div class="slider" id="slider">
   <div class="slide">
-    <h2 id="title">Shop with Pi Coin</h2>
-    <p id="text">Buy and sell products using Pi cryptocurrency easily</p>
+    <h2 id="title">Trusted Pi Community</h2>
+    <p id="text">Connect with real Pi pioneers to buy and sell</p>
   </div>
   <div class="dots">
-    <span class="dot active"></span><span class="dot"></span>
     <span class="dot"></span><span class="dot"></span>
+    <span class="dot active"></span><span class="dot"></span>
   </div>
   <button class="btn btn-primary" onclick="loginWithPi()">CREATE FREE ACCOUNT</button>
   <button class="btn btn-outline" onclick="loginWithPi()">LOGIN TO YOUR ACCOUNT</button>
@@ -49,25 +49,10 @@ function loginWithPi() {
   Pi.authenticate(['payments','username'], function(payment){}, function(error){
     alert("Login Failed: " + error)
   }).then(function(auth){
-    alert("Welcome " + auth.user.username + "! Your Pi ID: " + auth.user.uid)
-    // Here we will save user and go to dashboard
+    alert("Welcome " + auth.user.username + "! Logged in successfully")
+    // Next: redirect to dashboard
   });
 }
-
-let currentSlide = 0;
-const slides = [
-  {t:"Shop with Pi Coin", p:"Buy and sell products using Pi cryptocurrency easily"},
-  {t:"Earn Pi by Selling", p:"List your products and get paid in Pi instantly"},
-  {t:"Trusted Pi Community", p:"Connect with real Pi pioneers to buy and sell"},
-  {t:"Fast & Secure", p:"Safe transactions powered by Pi Network"}
-];
-function changeSlide(){
-  currentSlide = (currentSlide + 1) % 4;
-  document.getElementById('title').innerText = slides[currentSlide].t;
-  document.getElementById('text').innerText = slides[currentSlide].p;
-  document.querySelectorAll('.dot').forEach((d,i)=>{ d.classList.toggle('active', i===currentSlide) })
-}
-setInterval(changeSlide, 3000);
 </script>
 </body>
 </html>
