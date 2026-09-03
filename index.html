@@ -9,27 +9,26 @@
   body{background:#fff;overflow:hidden}
   
   /* FLASH SCREEN - PI YELLOW */
-  .flash{background:#FFC700;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#000;animation:fadeOut 1s 2.5s forwards}
-  .flash h1{font-size:32px;margin-top:10px;font-weight:bold}
-  @keyframes fadeOut{to{opacity:0;visibility:hidden}}
+.flash{background:#FFC700;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#000;position:absolute;width:100%;z-index:999;animation:fadeOut 1s 2.5s forwards}
+.flash h1{font-size:32px;margin-top:10px;font-weight:bold}
+  @keyframes fadeOut{to{opacity:0;visibility:hidden;z-index:-1}}
   
   /* SLIDER */
-  .slider{display:none;padding:20px;text-align:center}
-  .slide{padding:40px 20px}
-  .slide h2{font-size:24px;margin:20px 0;color:#000}
-  .slide p{color:#555;font-size:16px}
-  .dots{display:flex;justify-content:center;gap:8px;margin:20px 0}
-  .dot{width:10px;height:10px;border-radius:50%;background:#ddd}
-  .dot.active{background:#FFC700} /* PI YELLOW DOTS */
-  .btn{width:100%;padding:15px;border:none;border-radius:25px;font-size:16px;margin:10px 0;font-weight:bold}
-  .btn-primary{background:#FFC700;color:#000} /* PI BUTTON */
-  .btn-outline{border:2px solid #FFC700;background:#fff;color:#000}
+.slider{padding:20px;text-align:center;height:100vh;display:flex;flex-direction:column;justify-content:center}
+.slide h2{font-size:24px;margin:20px 0;color:#000}
+.slide p{color:#555;font-size:16px;margin-bottom:30px}
+.dots{display:flex;justify-content:center;gap:8px;margin:20px 0}
+.dot{width:10px;height:10px;border-radius:50%;background:#ddd}
+.dot.active{background:#FFC700} /* PI YELLOW DOTS */
+.btn{width:90%;padding:15px;border:none;border-radius:25px;font-size:16px;margin:10px auto;font-weight:bold;display:block}
+.btn-primary{background:#FFC700;color:#000} /* PI BUTTON */
+.btn-outline{border:2px solid #FFC700;background:#fff;color:#000}
 </style>
 </head>
 <body>
 
 <!-- FLASH SCREEN -->
-<div class="flash">
+<div class="flash" id="flash">
   <div style="font-size:80px">🛒</div>
   <h1>hendchi.pi</h1>
 </div>
@@ -37,39 +36,37 @@
 <!-- SLIDER -->
 <div class="slider" id="slider">
   <div class="slide">
-    <h2>Shop with Pi Coin</h2>
-    <p>Buy and sell products using Pi cryptocurrency easily</p>
-  </div>
-  <div class="slide">
-    <h2>Earn Pi by Selling</h2>
-    <p>List your products and get paid in Pi instantly</p>
-  </div>
-  <div class="slide">
-    <h2>Trusted Pi Community</h2>
-    <p>Connect with real Pi pioneers to buy and sell</p>
-  </div>
-  <div class="slide">
-    <h2>Fast & Secure</h2>
-    <p>Safe transactions powered by Pi Network</p>
+    <h2 id="title">Shop with Pi Coin</h2>
+    <p id="text">Buy and sell products using Pi cryptocurrency easily</p>
   </div>
   <div class="dots">
     <span class="dot active"></span><span class="dot"></span>
     <span class="dot"></span><span class="dot"></span>
   </div>
-  <button class="btn btn-primary">CREATE FREE ACCOUNT</button>
-  <button class="btn btn-outline">LOGIN TO YOUR ACCOUNT</button>
+  <button class="btn btn-primary" onclick="alert('Coming Soon')">CREATE FREE ACCOUNT</button>
+  <button class="btn btn-outline" onclick="alert('Coming Soon')">LOGIN TO YOUR ACCOUNT</button>
 </div>
 
 <script>
 let currentSlide = 0;
-const slides = ["Shop with Pi Coin", "Earn Pi by Selling", "Trusted Pi Community", "Fast & Secure"];
-const slideTexts = [
-  "Buy and sell products using Pi cryptocurrency easily",
-  "List your products and get paid in Pi instantly",
-  "Connect with real Pi pioneers to buy and sell",
-  "Safe transactions powered by Pi Network"
+const slides = [
+  {t:"Shop with Pi Coin", p:"Buy and sell products using Pi cryptocurrency easily"},
+  {t:"Earn Pi by Selling", p:"List your products and get paid in Pi instantly"},
+  {t:"Trusted Pi Community", p:"Connect with real Pi pioneers to buy and sell"},
+  {t:"Fast & Secure", p:"Safe transactions powered by Pi Network"}
 ];
 
-setTimeout(()=>{
-  document.querySelector('.flash').style.display='none';
-  document.getElementById('slider').
+function changeSlide(){
+  currentSlide = (currentSlide + 1) % 4;
+  document.getElementById('title').innerText = slides[currentSlide].t;
+  document.getElementById('text').innerText = slides[currentSlide].p;
+  document.querySelectorAll('.dot').forEach((d,i)=>{
+    d.classList.toggle('active', i===currentSlide)
+  })
+}
+
+// Auto slide every 3 seconds
+setInterval(changeSlide, 3000);
+</script>
+</body>
+</html>
